@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+.login-main{
+	margin:auto;
+	width:300px;
+	padding-top:100px;
+}
+.login-main-input{
+	border:1px solid;
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+	margin-bottom:5px;
+}
+.login-main-submit{
+	text-align:center;
+}

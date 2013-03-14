@@ -1,1 +1,0 @@
-<% out.print("hello world!"); %>
