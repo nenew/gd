@@ -15,6 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
@@ -76,22 +77,51 @@
 					</form>
 				</div>
 			</div>
-			<div class="span10" style="text-align:center;">
-				<img src="img/logo/html5-logo.png" width="63" height="64"
-					alt="HTML5 Powered" title="HTML5 Powered"> <img
-					src="img/logo/css3-logo.png" width="63" height="64"
-					alt="CSS3 Powered" title="CSS3 Powered"> <img
-					src="img/logo/js-logo.png" width="63" height="64"
-					alt="JavaScript Powered" title="JavaScript Powered">
+			<div class="row-fluid">
+				<div class="span12" style="text-align:center;margin-top:30px;">
+					<h3>
+						Powered by <abbr title="www.nenew.net">nenew</abbr>
+					</h3>
+					<div class="row-fluid">
+					<div class="span2  offset2"><h3 style="margin-top:35px;">技术支持：</h3></div>
+						<div class="span1">
+							<img src="img/logo/html5-logo.png" width="63" height="64"
+								alt="HTML5 Powered" title="HTML5 Powered">
+							<h5>HTML 5</h5>
+						</div>
 
+						<div class="span1">
+							<img src="img/logo/css3-logo.png" width="63" height="64"
+								alt="CSS3 Powered" title="CSS3 Powered">
+							<h5>CSS 3</h5>
+						</div>
 
+						<div class="span1">
+							<img src="img/logo/js-logo.png" width="63" height="64"
+								alt="JavaScript Powered" title="JavaScript Powered">
+							<h5>JavaScript</h5>
+						</div>
+												<div class="span1">
+							<img src="img/logo/java-logo.png" width="63" height="64"
+								alt="Java Powered" title="Java Powered">
+							<h5>Java</h5>
+						</div>
+																		<div class="span1">
+							<img src="img/logo/mysql-logo.png" width="63" height="64"
+								alt="Mysql Powered" title="Mysql Powered">
+							<h5>MySQL</h5>
+						</div>
+
+					</div>
+				</div>
 			</div>
+
 		</div>
 
 	</div>
+
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/myscript.js"></script>
-
 </body>
 </html>
