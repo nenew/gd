@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+body{
+padding:0px;
+margin:0px;
+}
+#container {
+	background-color: #D1E7C2;
+	background-clip:border-box;
+	background-origin:padding-box;
+}
+
+#loginheader {
+	background-color: #193B4E;
+	height: 150px;
+	margin: 0;
+	left:0;
+	border-color:#193B4E;
+}
+
+#loginform {
+	background-color: #f3f5f7;
+	height: 150px;
+	width: 300px;
+	margin-left: 50%;
+	margin-top: -50px;
+	border-radius: 15px;
+}
+
+#ttsts {
+	filter: alpha(opacity =       50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+#loginformheader {
+	background-image: -moz-linear-gradient(top, #eceff2, #d8dce1);
+	height: 30px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	height: 30px;
+}
+
+#loginfooter {
+	background-color: #193B4E;
+	height: 15%;
+}

@@ -1403,6 +1403,13 @@
     return this
   }
 
+  /* TOOLTIP API
+   * =================== */ 
+  $('a[data-toggle=tooltip]').mouseover(function() {
+	  $(this).tooltip('show');
+    })
+    
+   
 }(window.jQuery);
 /* ===========================================================
  * bootstrap-popover.js v2.3.1
