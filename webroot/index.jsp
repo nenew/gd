@@ -30,7 +30,7 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span12" style="margin-top:10%;">
-				<h1 style="text-align:center;">ch毕业设计在线管理系统</h1>
+				<h1 style="text-align:center;">毕业设计在线管理系统</h1>
 				<div class="span6 offset3"
 					style="margin-top:25px;">
 					<form class="form-horizontal" name="loginform"
