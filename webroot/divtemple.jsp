@@ -58,39 +58,96 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid" style="margin-top:45px;">
+	<div class="container-fluid" style="margin-top:55px;">
 		<div class="row-fluid">
-			<div class="span3" style="background-color:#666666;">
-				<ul class="nav nav-list" style="position:fixed;">
-					<li><a href="#overview"><i class="icon-chevron-right"></i>
-							Overview</a></li>
-					<li><a href="#transitions"><i class="icon-chevron-right"></i>
-							Transitions</a></li>
-					<li><a href="#modals"><i class="icon-chevron-right"></i>
-							Modal</a></li>
-					<li><a href="#dropdowns"><i class="icon-chevron-right"></i>
-							Dropdown</a></li>
-					<li><a href="#scrollspy"><i class="icon-chevron-right"></i>
-							Scrollspy</a></li>
-					<li><a href="#tabs"><i class="icon-chevron-right"></i> Tab</a>
-					</li>
-					<li><a href="#tooltips"><i class="icon-chevron-right"></i>
-							Tooltip</a></li>
-					<li><a href="#popovers"><i class="icon-chevron-right"></i>
-							Popover</a></li>
-					<li><a href="#alerts"><i class="icon-chevron-right"></i>
-							Alert</a></li>
-					<li><a href="#buttons"><i class="icon-chevron-right"></i>
-							Button</a></li>
-					<li><a href="#collapse"><i class="icon-chevron-right"></i>
-							Collapse</a></li>
-					<li><a href="#carousel"><i class="icon-chevron-right"></i>
-							Carousel</a></li>
-					<li><a href="#typeahead"><i class="icon-chevron-right"></i>
-							Typeahead</a></li>
-					<li><a href="#affix"><i class="icon-chevron-right"></i>
-							Affix</a></li>
-				</ul>
+			<div class="span3">
+				<div class="nav nav-list" style="position:fixed">
+					<div class="accordion" id="mainmenu"
+						style="background-color:#FFFFFF;border-radius: 6px 6px 6px 6px">
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse"
+									data-parent="#mainmenu" href="#collapseOne">第一级菜单</a>
+							</div>
+							<div id="collapseOne" class="accordion-body collapse in">
+								<div class="accordion-inner">
+									<ul class="nav nav-list bs-docs-sidenav">
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse"
+									data-parent="#mainmenu" href="#collapseTwo">第二级菜单</a>
+							</div>
+							<div id="collapseTwo" class="accordion-body collapse">
+								<div class="accordion-inner"><ul class="nav nav-list bs-docs-sidenav">
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+									</ul></div>
+							</div>
+						</div>
+						<div class="accordion-group">
+							<div class="accordion-heading">
+								<a class="accordion-toggle" data-toggle="collapse"
+									data-parent="#mainmenu" href="#collapseThree">第三级菜单</a>
+							</div>
+							<div id="collapseThree" class="accordion-body collapse">
+								<div class="accordion-inner"><ul class="nav nav-list bs-docs-sidenav">
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+										<li><a href="#">链接1</a>
+										</li>
+									</ul></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
 			</div>
 			<div class="span9" style="background-color:#987565;height:7000px;"></div>
 		</div>
