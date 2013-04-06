@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+body > .navbar {
+    font-size: 13px;
+}
+.body > .navbar .brand {
+    float: left;
+    margin-left: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    text-shadow: 0 1px 0 rgba(89，60，86, 0.1), 0 0 1px rgba(89，60，86,0.125);
+    transition: all 0.2s linear 0s;
+}
+.body > .navbar .brand:hover {
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(89，60，86, 0.1), 0 0 2px rgba(89，60，86, 0.4);
+}
+#header{
+	margin-top:41px;
+}
+
+.headerul{
+	float:right;
+}
+
+.nav .text{padding:10px 15px;margin-right:-20px;}
