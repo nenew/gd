@@ -20,11 +20,17 @@ public class Daotest {
 		m = (Main) md.findById(1);
 		System.out.print("输出姓名：" + m.getName() + "\n输出密码：" + m.getPassword()
 				+ "\n");
-		m.setPassword("654321");
-		m.setCookie("sfsfsfsd");
+		m.setPassword("123456");
+		m.setCookie(null);
 		System.out.print("输出姓名：" + m.getName() + "\n输出密码：" + m.getPassword()
 				+ "\n");
 		md.attachClean(m);
+		ProfileDAO p = new ProfileDAO();
+		
+		Iterator<?> o=p.findByProperty("main.id", m.getId()).iterator();
+		while(o.hasNext()){
+			System.out.print(((Profile) o.next()).getGrade());
+		}
 		Transaction tx = md.getSession().beginTransaction();
 		tx.commit();
 		md.getSession().close();
