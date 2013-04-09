@@ -30,7 +30,7 @@ body > .navbar {
     background-color: #FFFFFF;
     border-radius: 6px 6px 6px 6px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    margin: 30px 0 0;
+    margin: 5px 0 0;
     padding: 0;
     width: 228px;
 }
@@ -69,4 +69,16 @@ body > .navbar {
 .bs-docs-sidenav .active .icon-chevron-right, .bs-docs-sidenav .active a:hover .icon-chevron-right {
     background-image: url("../img/glyphicons-halflings-white.png");
     opacity: 1;
+}
+
+.accordion > .accordion-group:first-child {
+	border-radius: 4px 4px 0px 0px;
+}
+
+.accordion > .accordion-group:last-child {
+	border-radius: 0px 0px 4px 4px;
+}
+.accordion-group{
+	margin-bottom:-1px;
+	border-radius:0px;
 }
