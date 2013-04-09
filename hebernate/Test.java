@@ -27,8 +27,7 @@ public class Test {
 		}
 
 		a=(Main) s.get(Main.class,1);
-
-		
+ 
 		Profile p = new Profile();
 		p.setDepartment("dianxin0901");
 		p.setEmail("x@xxx.com");
