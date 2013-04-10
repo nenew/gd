@@ -33,11 +33,7 @@
 	<div class="navbar navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<button data-target=".nav-collapse" data-toggle="collapse"
-					class="btn btn-navbar" type="button">
-					t<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
+
 				<a href="./index.jsp" class="brand"><strong>毕业设计在线管理系统</strong>
 				</a>
 				<div class="nav-collapse collapse headerul" data-toggle="collapse"
@@ -56,9 +52,23 @@
 
 				</div>
 			</div>
+			<div><hr></div>
+			<div class="container">
+			
+				<ul class="nav nav-pills" style="float:left;">
+					<li class="active"><a href="#">概况信息</a></li>
+					<li><a href="#">课题选择</a></li>
+
+					<li><a href="#">开题报告</a></li>
+
+					<li><a href="#">信息维护</a></li>
+
+
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div class="container-fluid" style="margin-top:55px;">
+	<div class="container-fluid header">
 		<div class="row-fluid">
 			<div class="span3">
 				<div class="nav nav-list" style="position:fixed">
@@ -98,7 +108,8 @@
 									data-parent="#mainmenu" href="#collapseTwo">第二级菜单</a>
 							</div>
 							<div id="collapseTwo" class="accordion-body collapse">
-								<div class="accordion-inner"><ul class="nav nav-list bs-docs-sidenav">
+								<div class="accordion-inner">
+									<ul class="nav nav-list bs-docs-sidenav">
 										<li><a href="#">链接1</a>
 										</li>
 										<li><a href="#">链接1</a>
@@ -115,7 +126,8 @@
 										</li>
 										<li><a href="#">链接1</a>
 										</li>
-									</ul></div>
+									</ul>
+								</div>
 							</div>
 						</div>
 						<div class="accordion-group">
@@ -124,7 +136,8 @@
 									data-parent="#mainmenu" href="#collapseThree">第三级菜单</a>
 							</div>
 							<div id="collapseThree" class="accordion-body collapse">
-								<div class="accordion-inner"><ul class="nav nav-list bs-docs-sidenav">
+								<div class="accordion-inner">
+									<ul class="nav nav-list bs-docs-sidenav">
 										<li><a href="#">链接1</a>
 										</li>
 										<li><a href="#">链接1</a>
@@ -141,7 +154,8 @@
 										</li>
 										<li><a href="#">链接1</a>
 										</li>
-									</ul></div>
+									</ul>
+								</div>
 							</div>
 						</div>
 
