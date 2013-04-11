@@ -52,9 +52,11 @@
 
 				</div>
 			</div>
-			<div><hr></div>
-			<div class="container">
-			
+			<div>
+				<hr>
+			</div>
+			<div class="container menus">
+
 				<ul class="nav nav-pills" style="float:left;">
 					<li class="active"><a href="#">概况信息</a></li>
 					<li><a href="#">课题选择</a></li>
@@ -67,6 +69,77 @@
 				</ul>
 			</div>
 		</div>
+	</div>
+	<div class="container-fluid cont">
+		<div class="row-fluid">
+			<div class="span10 offset1">
+				<div class="span12" style="margin-bottom:10px;">
+					<span style="font-size:30px;"><img src="img/icons/home.png"
+						style="vertical-align:text-bottom;">信息概况：</span>
+				</div>
+				<div class="row-fluid">
+					<div class="span4">
+						<div class="me">
+							<h4>个人信息</h4>
+						</div>
+						<div class="menucontent">
+							姓名：宗软软<br> 学号：0911043000<br> 班级：电信0901<br>
+							电话:13300000000<br> 邮箱：abr@123.com<br>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="me">
+							<h4>选题信息</h4>
+						</div>
+						<div class="menucontent">
+							<div font-size="20px">尚未设置</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="me">
+							<h4>短信息</h4>
+						</div>
+						<div class="menucontent">
+							<div font-size="20px">尚未设置</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid" style="margin-top:15px;">
+					<div class="span4">
+						<div class="me">
+							<h4>个人信息</h4>
+						</div>
+						<div class="menucontent">
+							姓名：宗软软<br> 学号：0911043000<br> 班级：电信0901<br>
+							电话:13300000000<br> 邮箱：abr@123.com<br>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="me">
+							<h4>选题信息</h4>
+						</div>
+						<div class="menucontent">
+							<div font-size="20px">尚未设置</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="me">
+							<h4>短信息</h4>
+						</div>
+						<div class="menucontent">
+							<div font-size="20px">尚未设置</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="navbar navbar footer navbar-inner" style="margin-top:30px;">
+		<div class="container"
+			style="text-align:center;color: #777777;font-size: 20px;font-weight: 200;margin-left: -20px;
+  padding: 25px 20px 5px;text-shadow: 0 1px 0 #FFFFFF;
+">
+			网站制作：山东理工大学</div>
 	</div>
 	<div class="container-fluid header">
 		<div class="row-fluid">
