@@ -43,11 +43,12 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">小粽子同学<b class="caret"></b> </a>
 							<ul class="dropdown-menu">
-								<li><a href="#">修改密码</a></li>
-								<li><a href="#">注销登录</a></li>
+								<li><a href="#">修改密码</a>
+								</li>
+								<li><a href="#">注销登录</a>
+								</li>
 
-							</ul>
-						</li>
+							</ul></li>
 					</ul>
 
 				</div>
@@ -58,12 +59,16 @@
 			<div class="container menus">
 
 				<ul class="nav nav-pills" style="float:left;">
-					<li class="active"><a href="#">概况信息</a></li>
-					<li><a href="#">课题选择</a></li>
+					<li class="active"><a href="#">概况信息</a>
+					</li>
+					<li><a href="#">课题选择</a>
+					</li>
 
-					<li><a href="#">开题报告</a></li>
+					<li><a href="#">开题报告</a>
+					</li>
 
-					<li><a href="#">信息维护</a></li>
+					<li><a href="#">信息维护</a>
+					</li>
 
 
 				</ul>
@@ -78,7 +83,7 @@
 						style="vertical-align:text-bottom;">信息概况：</span>
 				</div>
 				<div class="row-fluid">
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>个人信息</h4>
 						</div>
@@ -87,25 +92,25 @@
 							电话:13300000000<br> 邮箱：abr@123.com<br>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>选题信息</h4>
 						</div>
 						<div class="menucontent">
-							<div font-size="20px">尚未设置</div>
+							<div>尚未设置</div>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>短信息</h4>
 						</div>
 						<div class="menucontent">
-							<div font-size="20px">尚未设置</div>
+							<div>尚未设置</div>
 						</div>
 					</div>
 				</div>
 				<div class="row-fluid" style="margin-top:15px;">
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>个人信息</h4>
 						</div>
@@ -114,33 +119,40 @@
 							电话:13300000000<br> 邮箱：abr@123.com<br>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>选题信息</h4>
 						</div>
 						<div class="menucontent">
-							<div font-size="20px">尚未设置</div>
+							<div>尚未设置</div>
 						</div>
 					</div>
-					<div class="span4">
+					<div class="span4 menushadow">
 						<div class="me">
 							<h4>短信息</h4>
 						</div>
 						<div class="menucontent">
-							<div font-size="20px">尚未设置</div>
+							<div>尚未设置</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="navbar navbar footer navbar-inner" style="margin-top:30px;">
+	<div class="navbar navbar footer" style="margin-top:30px;">
 		<div class="container"
-			style="text-align:center;color: #777777;font-size: 20px;font-weight: 200;margin-left: -20px;
-  padding: 25px 20px 5px;text-shadow: 0 1px 0 #FFFFFF;
-">
-			网站制作：山东理工大学</div>
+			style="text-align:center;color: #c2c2c2;font-size: 16px;font-weight: 200;margin-left: -20px;
+  padding: 25px 20px 20px;text-shadow: 1px 1px 1 #FFFFFF;line-height:25px;">
+			Powered by <strong><a href="#" data-toggle="tooltip"
+				title="http://www.nenew.net"
+				style="color: #c2c2c2;text-shadow: 1px 1px 1 #FFFFFF;">nenew</a>
+			</strong><br>
+			<strong>Email:</strong><a href="mailto:nenew.net@gmail.com"
+				data-toggle="tooltip" title="发送邮件给奶牛同学"
+				style="color: #c2c2c2;text-shadow: 1px 1px 1 #FFFFFF;">nenew.net@gmail.com</a>
+		</div>
 	</div>
+	<!-- 
 	<div class="container-fluid header">
 		<div class="row-fluid">
 			<div class="span3">
@@ -155,22 +167,14 @@
 							<div id="collapseOne" class="accordion-body collapse in">
 								<div class="accordion-inner">
 									<ul class="nav nav-list bs-docs-sidenav">
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
 									</ul>
 								</div>
 							</div>
@@ -183,22 +187,14 @@
 							<div id="collapseTwo" class="accordion-body collapse">
 								<div class="accordion-inner">
 									<ul class="nav nav-list bs-docs-sidenav">
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
 									</ul>
 								</div>
 							</div>
@@ -211,22 +207,14 @@
 							<div id="collapseThree" class="accordion-body collapse">
 								<div class="accordion-inner">
 									<ul class="nav nav-list bs-docs-sidenav">
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
-										<li><a href="#">链接1</a>
-										</li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
+										<li><a href="#">链接1</a></li>
 									</ul>
 								</div>
 							</div>
@@ -239,6 +227,8 @@
 			<div class="span9" style="background-color:#987565;height:7000px;"></div>
 		</div>
 	</div>
+	
+	 -->
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>

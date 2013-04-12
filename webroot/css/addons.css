@@ -104,7 +104,8 @@ body>.navbar {
 }
 
 .me {
-	padding: 5px 0 5px 10px; background-color : #fafafa;
+	padding: 0 0 0 10px;
+	background-color: #fafafa;
 	background-image: -moz-linear-gradient(top, #efefef, #e2e2e2);
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#efefef),
 		to(#e2e2e2) );
@@ -157,5 +158,14 @@ body>.navbar {
 .menucontent {
 	border: 1px solid #d4d4d4;
 	margin-top: -1px;
-	padding:5px 5px 5px 10px
+	padding: 5px 5px 5px 10px;
+}
+
+.menushadow {
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.footer {
+	background-color: #777777;
+	box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
