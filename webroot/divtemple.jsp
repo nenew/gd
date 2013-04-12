@@ -139,7 +139,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="navbar navbar footer" style="margin-top:30px;">
+	<div class="navbar navbar footer" style="margin-top:30px;margin-bottom:0;">
 		<div class="container"
 			style="text-align:center;color: #c2c2c2;font-size: 16px;font-weight: 200;margin-left: -20px;
   padding: 25px 20px 20px;text-shadow: 1px 1px 1 #FFFFFF;line-height:25px;">
