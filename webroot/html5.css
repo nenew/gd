@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+.origin {
+	border-color: blue;
+}
+
+.highlight {
+	border-color: red;
+}
+
+#fileinput {
+	width: 80%;
+	margin: 100px auto;
+	border-width: 3px;
+	min-height: 500px;
+	border-color: black;
+	background-color:#d5d5d5;
+}
+
+#status {
+	width: 80%;
+	margin: 100px auto;
+	border-width: 3px;
+	min-height: 50px;
+	border-color: black;
+}
