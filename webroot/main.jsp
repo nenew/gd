@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" import="java.net.URLDecoder"
-	import="hibernate.*"%>
+	import="hibernate.*" import="org.hibernate.Transaction"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -15,7 +15,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>登录——毕业设计在线管理系统</title>
+<title>概况预览——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="css/main.css" rel="stylesheet">
@@ -55,26 +55,31 @@
  	} else
  %><jsp:forward page="/" /> <b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li class="active"><a href="#">概况信息</a></li>
-							<li><a href="#">课题选择</a></li>
-							<li><a href="#">开题报告</a></li>
-							<li><a href="#">信息维护</a></li>
+							<li class="active"><a href="main.jsp">概况信息</a>
+							</li>
+							<li><a href="choose.jsp">课题选择</a>
+							</li>
+							<li><a href="#">开题报告</a>
+							</li>
+							<li><a href="#">信息维护</a>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid">
+		<div class="container-fluid containerfix">
 			<div class="row-fluid">
 				<div class="span12 contentitle">概况信息</div>
 			</div>
@@ -87,12 +92,18 @@
 							MainDAO userdao = new MainDAO();
 							Profile profile = new Profile();
 							ProfileDAO profiledao = new ProfileDAO();
+							profiledao.getSession().clear();
+							Transaction tx = profiledao.getSession().beginTransaction();
+							tx.commit();
+
 							for (int i = 0; i < cookies.length; i++) {
 								if (cookies[i].getName().equals("id"))
 									user = userdao.findById(Integer.parseInt(URLDecoder.decode(
 											cookies[i].getValue(), "UTF-8")));
+//								Iterator<?> iterator = profiledao.findByProperty("main.id",
+//										user.getId()).iterator();
 								Iterator<?> iterator = profiledao.findByProperty("main.id",
-										user.getId()).iterator();
+										1).iterator();
 								while (iterator.hasNext())
 									profile = (Profile) iterator.next();
 							}
@@ -144,6 +155,28 @@
 							out.print("电话：" + profile.getPhonenum() + "<br>");
 							out.print("邮箱：" + profile.getEmail() + "<br>");
 						%>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+
+				<div class="span10 offset1 boxshadow">
+					<div class="boxhead">毕设进度</div>
+					<div class="boxcontent">
+						<div>
+							<div style="width:20%;float:left;text-align:center;">选题完成</div>
+							<div style="width:20%;float:left;text-align:center;">开题完成</div>
+							<div style="width:30%;float:left;text-align:center;">设计进行中</div>
+						</div>
+						<div class="progress progressfix">
+							<div class="bar bar-warning" style="width: 20%;"></div>
+							<div class="bar bar-success" style="width: 20%;"></div>
+							<div
+								class="progress progress-striped active progress-striped-fix">
+								<div class="bar" style="width: 30%;"></div>
+							</div>
+
+						</div>
 					</div>
 				</div>
 			</div>

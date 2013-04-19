@@ -2,7 +2,7 @@
 
 html,body {
 	margin: 0;
-	height: 100%;
+	min-height: 100%;
 }
 
 #main {
@@ -52,10 +52,9 @@ html,body {
 	{
 	background-color: transparent;
 }
-
-.containerfix {
-	padding-bottom: 80px;
-}
+ .containerfix{
+ padding-bottom:80px;
+ }
 
 #footer {
 	background-color: #777777;
@@ -89,11 +88,11 @@ html,body {
 }
 
 .contentitle {
-	background-image: url(../img/batch/home.png);
+	background-image: url(../img/batch/browser-new-window-2.png);
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =         80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -153,3 +152,23 @@ html,body {
 .progress-striped-fix {
 	border-radius: 0px 4px 4px 0px;
 }
+
+.tablefix {
+	width: 100%;
+	border-collapse: collapse;
+}
+.tablefix td, .tablefix th 
+  {
+  font-size:1em;
+  border:1px solid #d3d3d3;
+  padding:3px 7px 2px 7px;
+  }
+
+.tablefix th 
+  {
+  font-size:1.1em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#d3d3d3;
+  }

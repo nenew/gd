@@ -19,8 +19,8 @@
         <property name="thesistitle" type="string">
             <column name="THESISTITLE" length="50" not-null="true" unique="true" />
         </property>
-        <property name="proposalanalysis" type="double">
-            <column name="PROPOSALANALYSIS" precision="22" scale="0">
+        <property name="proposalanalysis" type="string">
+            <column name="PROPOSALANALYSIS" length="65535">
                 <comment>资料调研分析</comment>
             </column>
         </property>
