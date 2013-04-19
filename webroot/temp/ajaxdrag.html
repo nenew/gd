@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>filedrag.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	var droptarget;
+	function setText(text) {
+		document.getElementById("status").innerHTML = text;
+	}
+	function loadDemo() {
+		droptarget = document.getElementById("droptarget");
+		droptarget.className = "validtarget";
+
+		droptarget.addEventListener("dragenter", handleDragEnter, false);
+		droptarget.addEventListener("dragover", handleDragOver, false);
+		droptarget.addEventListener("dragleave", handleDragLeave, false);
+
+		droptarget.addEventListener("drop", handleDrop, false);
+		setText("Drag into here!");
+	}
+	window.addEventListener("load", loadDemo, false);
+
+	function handleDragEnter(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+		setText("Drag files into this area.");
+		return false;
+	}
+	function handleDragOver(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+
+	}
+
+	// reset the text and status when drags leave
+	function handleDragLeave(evt) {
+		evt.stopPropagation();
+		evt.preventDefault();
+		setText("leave");
+
+		droptarget.className = "validtarget";
+
+	}
+	function handleDrop(evt) {
+
+		var filelist = evt.dataTransfer.files || evt.target.files;
+		var message = "There were " + filelist.length
+				+ " files dragged into.<br>";
+		[].forEach.call(filelist, function(f, index) {
+			console.log(f);
+			var reader = new FileReader();
+			console.log(reader);
+			reader.onload = (function(f) {
+				message += "<p><img src=\"";
+				message += f.target.result;
+				message += "\"</p>";
+				setText(message);
+
+			});
+			reader.readAsDataURL(f);
+
+		});
+		console.log(message);
+		var fd = new FormData();
+		[].forEach.call(filelist, function(f, index) {
+			fd.append('files[]', f);
+		});
+		var xhr = new XMLHttpRequest();
+
+		xhr.upload.onprogress = function(e) {
+
+			message += e.loaded / e.total;
+			setText(message);
+			console.log(message);
+
+		};
+
+		xhr.onreadystatechange = function() {
+
+			if (xhr.readyState == 4 && xhr.status == 200) {
+
+				message += xhr.responseText;
+				setText(message);
+			} else {
+
+				console.log(xhr.statusText);
+
+			}
+
+		};
+		xhr.open('POST', 'http://127.0.0.1/bootstrap/upload');
+
+		xhr.send(fd);
+
+		console.log(xhr.responseText);
+
+		evt.stopPropagation();
+		evt.preventDefault();
+	}
+</script>
+<style type="text/css">
+body {
+	background-color: lightgrey;
+	height: 100%;
+}
+
+#droptarget {
+	background-color: white;
+	font-family: Arial;
+	width: 500px;
+	height: 500px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: medium;
+}
+
+#status {
+	padding: 10px;
+	color: grey;
+}
+
+.highlighted {
+	border-color: green;
+}
+
+.validtarget {
+	border-color: darkgrey;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="droptarget">
+		<div id="status"></div>
+	</div>
+</body>
+</html>

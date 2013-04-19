@@ -1,20 +1,22 @@
 @CHARSET "UTF-8";
-body{
-padding:0px;
-margin:0px;
+
+body {
+	padding: 0px;
+	margin: 0px;
 }
+
 #container {
 	background-color: #D1E7C2;
-	background-clip:border-box;
-	background-origin:padding-box;
+	background-clip: border-box;
+	background-origin: padding-box;
 }
 
 #loginheader {
 	background-color: #193B4E;
 	height: 150px;
 	margin: 0;
-	left:0;
-	border-color:#193B4E;
+	left: 0;
+	border-color: #193B4E;
 }
 
 #loginform {
@@ -27,7 +29,7 @@ margin:0px;
 }
 
 #ttsts {
-	filter: alpha(opacity =       50);
+	filter: alpha(opacity = 50);
 	-moz-opacity: 0.5;
 	-khtml-opacity: 0.5;
 	opacity: 0.5;
