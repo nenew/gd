@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>editor page</title>
+<title>editor pageo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -35,9 +35,10 @@
 		<div>
 			<button type="submit" class="btn btn-primary">提交修改</button>
 			<input id="input" name="id" type="text">
-			<textarea name="te">
+			<textarea name="te" id ="tt" onfocus="tinyMCE.execCommand('mceAddControl', false, 'tt');">
 hello world
 			</textarea>
+			<textarea id="bb"></textarea>
 		</div>
 
 	</form>
@@ -46,15 +47,16 @@ hello world
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
-	<script type="text/javascript" src="editor/tiny_mce.js"></script>
+	<script type="text/javascript" src="editor/tinymce.min.js"></script>
 	<script type="text/javascript">
 		tinyMCE
 				.init({
 					// General options
+//					mode : "textareas",
 					mode : "textareas",
-					theme : "advanced",
-					language : "cn",
-					plugins : "lists,pagebreak,style,advlink,save,inlinepopups,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,autosave",
+					theme : "modern",
+//					language : "cn",
+					plugins : "lists,pagebreak,save,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,autosave",
 
 					// Theme options
 					theme_advanced_buttons1 : "newdocument,save,|,bold,italic,underline,strikethrough,|,cut,copy,paste,pastetext,pasteword,|,undo,redo,|,link,unlink|,fullscreen",
@@ -66,7 +68,7 @@ hello world
 					theme_advanced_resizing : true,
 
 					// Example content CSS (should be your site CSS)
-					content_css : "css/content.css",
+//					content_css : "css/content.css",
 
 					// Style formats
 					style_formats : [ {

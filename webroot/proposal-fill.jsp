@@ -16,10 +16,10 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>课题选择——毕业设计在线管理系统</title>
+<title>开题报告——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/choose.css" rel="stylesheet">
+<link href="css/proposal-fill.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -67,8 +67,8 @@
 					<div class="menu">
 						<ul class="nav nav-pills">
 							<li><a href="main.jsp">概况信息</a></li>
-							<li class="active"><a href="choose.jsp">课题选择</a></li>
-							<li><a href="proposal-fill.jsp">开题报告</a></li>
+							<li><a href="choose.jsp">课题选择</a></li>
+							<li class="active"><a href="proposal-fill.jsp">开题报告</a></li>
 							<li><a href="#">信息维护</a></li>
 						</ul>
 					</div>
@@ -77,57 +77,38 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">课题选择</div>
+				<div class="span12 contentitle">开题报告</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span10 offset1 boxshadow">
-					<div class="boxhead">可选列表</div>
-					<div class="boxcontent">
+				<div class="span10 offset1 boxshadow well">
+					<%
+						ProposalDAO proposaldao = new ProposalDAO();
+						Proposal proposal = proposaldao.findById(1);
+						out.print("<h4>设计题目：" + proposal.getThesistitle() + "</h4>");
+					%>
+					<form name="proposal" action="proposal-update.jsp" method="post">
 						<div>
-							<table class="tablefix">
-								<tr>
-									<th width="20%">课题名称</th>
-									<th width="40%">题目简介</th>
-									<th width="10%">指导教师</th>
-									<th width="10%">教师职称</th>
-									<th width="10%"></th>
-								</tr>
-
-								<%
-									Proposal proposal = new Proposal();
-									ProposalDAO proposaldao = new ProposalDAO();
-									Profile profile = new Profile();
-									proposaldao.getSession().clear();
-									proposaldao.getSession().beginTransaction().commit();
-									Iterator<?> iterator = proposaldao.findAll().iterator();
-									while (iterator.hasNext()) {
-										proposal = (Proposal) iterator.next();
-
-										out.print("<tr><td>");
-										out.print(proposal.getThesistitle());
-										out.print("</td><td>");
-										out.print(proposal.getContent());
-										out.print("</td><td>");
-										out.print(proposal.getMain().getName());
-										out.print("</td><td>");
-										Set<Profile> set = proposal.getMain().getProfiles();
-										Iterator<Profile> i=set.iterator();
-										while (i.hasNext()) {
-											Profile p = i.next();
-											out.print(p.getTitle());
-										}
-										;
-										out.print("</td><td align=\"center\">");
-										out.print("<button class=\"btn btn-primary\">选择</button>");
-										out.print("</td></tr>");
-
-									}
-								%>
-							</table>
-
+							资料调研分析：<br>
+							<textarea name="proposalanalysis" id="1"
+								onfocus="tinyMCE.get('1').show();tinyMCE.get('1').focus();tinyMCE.get('2').hide();tinyMCE.get('3').hide();"
+								style="width:100%;height:100px;"><% proposal.getProposalanalysis(); %></textarea>
+						</div>
+						<div>
+							设计方案及预期目标：<br>
+							<textarea name="proposalcontent" id="2"
+								onfocus="tinyMCE.get('2').show();tinyMCE.get('2').focus();tinyMCE.get('1').hide();tinyMCE.get('3').hide();"
+								style="width:100%;height:100px;"></textarea>
 						</div>
 
-					</div>
+
+						<div>
+							所需仪器：<br>
+							<textarea name="proposalfacility" id="3"
+								onfocus="tinyMCE.get('3').show();tinyMCE.get('3').focus();tinyMCE.get('1').hide();tinyMCE.get('2').hide();"
+								style="width:100%;height:100px;"></textarea>
+						</div>
+						<input name="userid" type="hidden" value="1"/><input type="submit" value="提交">
+					</form>
 				</div>
 			</div>
 		</div>
@@ -140,5 +121,38 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
+	<script src="editor/tinymce.min.js"></script>
+	<script type="text/javascript">
+		tinymce
+				.init({
+					selector : "textarea",
+					plugins : [
+							"advlist autolink lists link image charmap print preview anchor",
+							"searchreplace visualblocks code fullscreen",
+							"insertdatetime media table contextmenu paste" ],
+					toolbar : "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+					autosave_ask_before_unload : false,
+					max_height : 200,
+					min_height : 160,
+					height : 180,
+					init_instance_callback : "hidetinymce"
+
+				});
+		var i = 3;
+		function hidetinymce(inst) {
+			console.log("test");
+			if (--i == 0) {
+				try {
+					tinyMCE.get('1').hide();
+					tinyMCE.get('2').hide();
+					tinyMCE.get('3').hide();
+					console.log("hidedone");
+				} catch (error) {
+
+				}
+			}
+		}
+	</script>
+
 </body>
 </html>
