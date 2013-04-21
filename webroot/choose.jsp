@@ -69,7 +69,7 @@
 							<li><a href="main.jsp">概况信息</a></li>
 							<li class="active"><a href="choose.jsp">课题选择</a></li>
 							<li><a href="proposal-fill.jsp">开题报告</a></li>
-							<li><a href="#">信息维护</a></li>
+							<li><a href="profile.jsp">信息维护</a></li>
 						</ul>
 					</div>
 				</div>

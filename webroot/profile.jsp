@@ -16,10 +16,10 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>开题报告——毕业设计在线管理系统</title>
+<title>信息维护——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/proposal-fill.css" rel="stylesheet">
+<link href="css/profile.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -32,7 +32,7 @@
 		<div id="header">
 			<div class="navbar headfix">
 				<div class="navbar-inner navfix">
-					<a class="brand" href="#">毕业设计在线管理系统</a>
+					<a class="brand" href="#">&gt;毕业设计在线管理系统</a>
 					<div class="nav-collapse collapse user" data-toggle="collapse"
 						data-target=".nav-collapse">
 						<ul class="nav">
@@ -56,20 +56,25 @@
  	} else
  %><jsp:forward page="/" /> <b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a></li>
-							<li><a href="choose.jsp">课题选择</a></li>
-							<li class="active"><a href="proposal-fill.jsp">开题报告</a></li>
-							<li><a href="profile.jsp">信息维护</a></li>
+							<li><a href="main.jsp">概况信息</a>
+							</li>
+							<li><a href="choose.jsp">课题选择</a>
+							</li>
+							<li><a href="proposal-fill.jsp">开题报告</a>
+							</li>
+							<li class="active"><a href="profile.jsp">信息维护</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -77,59 +82,46 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">开题报告</div>
+				<div class="span12 contentitle">信息维护</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span10 offset1 boxshadow well">
-					<%
-						ProposalDAO proposaldao = new ProposalDAO();
-						proposaldao.getSession().clear();
-						proposaldao.getSession().beginTransaction().commit();
-						Proposal proposal = proposaldao.findById(1);
-						out.print("<h4>设计题目：" + proposal.getThesistitle() + "</h4>");
-					%>
-					<form name="proposal" action="proposal-update.jsp" method="post">
-						<div>
-							资料调研分析：<br>
-							<textarea name="proposalanalysis" id="1"
-								onfocus="tinyMCE.get('1').show();tinyMCE.get('1').focus();tinyMCE.get('2').hide();tinyMCE.get('3').hide();"
-								style="width:100%;height:100px;">
-								<%
-									if (proposal.getProposalanalysis() == null) {
-										out.print("尚未填写");
-									}
-									//if (proposal.getProposalanalysis().equals("")) {
-									//	out.print("N''''''''''''空'''''''''''N");
-									//}
-									//out.print(proposal.getProposalanalysis());
-								%>
-							</textarea>
-						</div>
-						<div>
-							设计方案及预期目标：<br>
-							<textarea name="proposalcontent" id="2"
-								onfocus="tinyMCE.get('2').show();tinyMCE.get('2').focus();tinyMCE.get('1').hide();tinyMCE.get('3').hide();"
-								style="width:100%;height:100px;">
-								<%
-									out.print(proposal.getProposalcontent());
-								%>
-							</textarea>
-						</div>
+				<div class="span10 offset1 boxshadow">
+					<div class="boxhead">更新信息</div>
+					<div class="boxcontent">
+						<%
+							//	String pus = (String) session.getAttribute("profileupdatestatus");
+							//	if (pus != null && pus.equals("1")) {
+							//		session.setAttribute("profileupdatestatus", "0");
+							//		out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>更新成功.</strong></div>");
+							//	}
+						%>
 
-
-						<div>
-							所需仪器：<br>
-							<textarea name="proposalfacility" id="3"
-								onfocus="tinyMCE.get('3').show();tinyMCE.get('3').focus();tinyMCE.get('1').hide();tinyMCE.get('2').hide();"
-								style="width:100%;height:100px;">
+						<%
+							ProfileDAO profiledao = new ProfileDAO();
+							profiledao.getSession().clear();
+							profiledao.getSession().beginTransaction().commit();
+							Profile profile = profiledao.findById(1);
+						%>
+						<form name="proposal" id="proposal" action="profile-update.jsp"
+							method="post">
+							<div>
+								姓名：<%
+								out.print(profile.getMain().getName());
+							%><br> 学号：<%
+								out.print(profile.getMain().getNum());
+							%><br> 年级：
 								<%
-									out.print(proposal.getProposalfacility());
-								%>								
-								</textarea>
-						</div>
-						<input name="userid" type="hidden" value="1" />
-						<button class="btn btn-primary" type="submit">提交</button>
-					</form>
+								out.print(profile.getGrade());
+							%><br> 电话：<input type="number" name="phonenum"
+									value="<%out.print(profile.getPhonenum());%>"> <br>
+								邮箱：<input type="email" name="email"
+									value="<%out.print(profile.getEmail());%>"> <br> <input
+									name="userid" type="hidden" value="1" />
+							</div>
+							<button class="btn btn-primary" type="submit">提交</button>
+							<button class="btn btn-primary" id="ajax" type="button">ajax</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -174,6 +166,45 @@
 			}
 		}
 	</script>
+	<script>
+		$(document).ready(
+				function() {
+					$('#ajax').click(
+							function() {
+
+								var data = {
+									"userid" : $('input[name="userid"]').val(),
+									"phonenum" : $('input[name="phonenum"]')
+											.val(),
+									"email" : $('input[name="email"]').val()
+								};
+								$.post('profile-update.jsp', data, function(
+										data, textStatus, jqXHR) {
+									//						alert(textStatus+jqXHR);
+									if (jqXHR.success(function() {
+										alert("成功");
+									}))
+										;
+									if (jqXHR.error(function() {
+										alert("失败");
+									}))
+										;
+									alert(jqXHR.status + jqXHR.statusText);
+
+								});
+								var xhr = new XMLHttpRequest();
+								xhr.open('POST', 'profile-update.jsp');
+								xhr.send(data);
+								xhr.onreadystatechange = function(){
+									if ( xhr.readyState == 4 && xhr.status == 200 ) {
+
+											alert( xhr.responseText );}};
+							});
+				}
+
+		);
+	</script>
+
 
 </body>
 </html>
