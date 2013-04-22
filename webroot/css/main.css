@@ -44,12 +44,16 @@ html,body {
 	margin-top: 18px;
 }
 
-.dropdown {
+.dropdownfix {
 	margin-top: 8px;
 }
 
-.navbar .nav li.dropdown.open>.dropdown-toggle,.navbar .nav li.dropdown.active>.dropdown-toggle,.navbar .nav li.dropdown.open.active>.dropdown-toggle
+.navbar .nav li.dropdownfix.open>.dropdown-toggle,.navbar .nav li.dropdownfix.active>.dropdown-toggle,.navbar .nav li.dropdownfix.open.active>.dropdown-toggle
 	{
+	background-color: transparent;
+}
+
+.navbar .nav li.dropdowntrasparent.open>.dropdown-toggle {
 	background-color: transparent;
 }
 
@@ -93,7 +97,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =           80);
+	filter: alpha(opacity =               80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;

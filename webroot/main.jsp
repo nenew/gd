@@ -36,8 +36,8 @@
 						data-target=".nav-collapse">
 						<ul class="nav">
 							<li class="litext">欢迎光临:</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> <%
+							<li class="dropdown dropdownfix"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <%
  	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
  			"UTF-8"));
  	cookie1.setMaxAge(60000000);
@@ -68,9 +68,31 @@
 						<ul class="nav nav-pills">
 							<li class="active"><a href="main.jsp">概况信息</a>
 							</li>
-							<li><a href="choose.jsp">课题选择</a>
+							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">毕业设计<b class="caret"> </b>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="choose.jsp">课题选择</a>
+									</li>
+									<li><a href="proposal-fill.jsp">开题报告</a>
+									</li>
+									<li><a href="#">进度信息</a>
+									</li>
+									<li><a href="#">论文提交</a>
+									</li>
+								</ul>
 							</li>
-							<li><a href="proposal-fill.jsp">开题报告</a>
+							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">消息中心<b class="caret"> </b>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">发信息</a>
+									</li>
+									<li><a href="#">收件箱</a>
+									</li>
+									<li><a href="#">发件箱</a>
+									</li>
+								</ul>
 							</li>
 							<li><a href="profile.jsp">信息维护</a>
 							</li>

@@ -32,13 +32,13 @@
 		<div id="header">
 			<div class="navbar headfix">
 				<div class="navbar-inner navfix">
-					<a class="brand" href="#">&gt;毕业设计在线管理系统</a>
+					<a class="brand" href="#">毕业设计在线管理系统</a>
 					<div class="nav-collapse collapse user" data-toggle="collapse"
 						data-target=".nav-collapse">
 						<ul class="nav">
 							<li class="litext">欢迎光临:</li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown"> <%
+							<li class="dropdown dropdownfix"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"> <%
  	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
  			"UTF-8"));
  	cookie1.setMaxAge(60000000);
@@ -69,9 +69,31 @@
 						<ul class="nav nav-pills">
 							<li><a href="main.jsp">概况信息</a>
 							</li>
-							<li><a href="choose.jsp">课题选择</a>
+							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">毕业设计<b class="caret"> </b>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="choose.jsp">课题选择</a>
+									</li>
+									<li><a href="proposal-fill.jsp">开题报告</a>
+									</li>
+									<li><a href="#">进度信息</a>
+									</li>
+									<li><a href="#">论文提交</a>
+									</li>
+								</ul>
 							</li>
-							<li><a href="proposal-fill.jsp">开题报告</a>
+							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">消息中心<b class="caret"> </b>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">发信息</a>
+									</li>
+									<li><a href="#">收件箱</a>
+									</li>
+									<li><a href="#">发件箱</a>
+									</li>
+								</ul>
 							</li>
 							<li class="active"><a href="profile.jsp">信息维护</a>
 							</li>
@@ -95,6 +117,11 @@
 							//		out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>更新成功.</strong></div>");
 							//	}
 						%>
+						<div class="alert alert-success" style="display: none;">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<strong>更新成功!</strong>
+						</div>
+
 
 						<%
 							ProfileDAO profiledao = new ProfileDAO();
@@ -182,23 +209,27 @@
 										data, textStatus, jqXHR) {
 									//						alert(textStatus+jqXHR);
 									if (jqXHR.success(function() {
-										alert("成功");
+										$('.alert').slideDown().delay(1500)
+												.slideUp();
 									}))
 										;
-									if (jqXHR.error(function() {
-										alert("失败");
-									}))
-										;
-									alert(jqXHR.status + jqXHR.statusText);
+									//									if (jqXHR.error(function() {
+									//										alert("失败");
+									//									}))
+									//										;
+									//									alert(jqXHR.status + jqXHR.statusText);
 
 								});
 								var xhr = new XMLHttpRequest();
 								xhr.open('POST', 'profile-update.jsp');
 								xhr.send(data);
-								xhr.onreadystatechange = function(){
-									if ( xhr.readyState == 4 && xhr.status == 200 ) {
+								xhr.onreadystatechange = function() {
+									if (xhr.readyState == 4
+											&& xhr.status == 200) {
 
-											alert( xhr.responseText );}};
+										alert(xhr.responseText);
+									}
+								};
 							});
 				}
 
