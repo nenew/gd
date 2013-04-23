@@ -17,7 +17,9 @@ html,body {
 }
 
 .headfix {
-	
+	font-family: Tahoma, Verdana, Helvetica, 微软雅黑, 宋体, Arial,
+		"Arial Unicode MS", MingLiu, PMingLiu, "MS Gothic", sans-serief;
+	font-size: 15px;
 }
 
 .navfix {
@@ -26,7 +28,9 @@ html,body {
 
 .navbar .brand {
 	padding-top: 20px;
-	font-size: 30px;
+	font-size: 29px;
+	font-family: Tahoma, Verdana, Helvetica, 微软雅黑, 宋体, Arial,
+		"Arial Unicode MS", MingLiu, PMingLiu, "MS Gothic", sans-serief;
 }
 
 .user {
@@ -53,13 +57,13 @@ html,body {
 	background-color: transparent;
 }
 
-.navbar .nav li.dropdowntrasparent.open > .dropdown-toggle{
-		background-color: transparent;
-	
+.navbar .nav li.dropdowntrasparent.open>.dropdown-toggle {
+	background-color: transparent;
 }
- .containerfix{
- padding-bottom:80px;
- }
+
+.containerfix {
+	padding-bottom: 80px;
+}
 
 #footer {
 	background-color: #777777;
@@ -97,7 +101,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =         80);
+	filter: alpha(opacity =             80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -106,6 +110,8 @@ html,body {
 	font-size: 20px;
 	margin-top: 20px;
 	color: #0;
+	font-family: Tahoma, Verdana, Helvetica, 微软雅黑, 宋体, Arial,
+		"Arial Unicode MS", MingLiu, PMingLiu, "MS Gothic", sans-serief;
 }
 
 .boxhead {
@@ -128,8 +134,10 @@ html,body {
 	-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
 	background-color: #fafafa;
-	font-size: 20px;
+	font-size: 18px;
 	padding: 8px 10px 8px 10px;
+	font-family: Tahoma, Verdana, Helvetica, 微软雅黑, 宋体, Arial,
+		"Arial Unicode MS", MingLiu, PMingLiu, "MS Gothic", sans-serief;
 }
 
 .boxcontent {
@@ -162,18 +170,17 @@ html,body {
 	width: 100%;
 	border-collapse: collapse;
 }
-.tablefix td, .tablefix th 
-  {
-  font-size:1em;
-  border:1px solid #d3d3d3;
-  padding:3px 7px 2px 7px;
-  }
 
-.tablefix th 
-  {
-  font-size:1.1em;
-  text-align:left;
-  padding-top:5px;
-  padding-bottom:4px;
-  background-color:#d3d3d3;
-  }
+.tablefix td,.tablefix th {
+	font-size: 1em;
+	border: 1px solid #d3d3d3;
+	padding: 3px 7px 2px 7px;
+}
+
+.tablefix th {
+	font-size: 1.1em;
+	text-align: left;
+	padding-top: 5px;
+	padding-bottom: 4px;
+	background-color: #d3d3d3;
+}

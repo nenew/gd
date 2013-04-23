@@ -35,7 +35,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid">
+		<div class="container-fluid containerfix">
 			<div class="row-fluid">
 				<div class="span9 offset1 mainarea">
 					<div class="login">
