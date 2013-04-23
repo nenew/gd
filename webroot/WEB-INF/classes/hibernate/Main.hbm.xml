@@ -10,8 +10,8 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <property name="num" type="integer">
-            <column name="NUM" not-null="true" unique="true">
+        <property name="num" type="string">
+            <column name="NUM" length="10" not-null="true" unique="true">
                 <comment>学号/工号</comment>
             </column>
         </property>

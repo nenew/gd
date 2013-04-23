@@ -8,6 +8,29 @@
 			+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	if (request.getSession().getAttribute("islogin") == null
+			|| !request.getSession().getAttribute("islogin").equals("yes"))
+		{response.sendRedirect("index.jsp");return;}
+	Integer id = (Integer) request.getSession().getAttribute("id");
+	String name = (String) request.getSession().getAttribute("name");
+	Integer priority = (Integer) request.getSession().getAttribute(
+			"priority");
+
+	MainDAO userdao = new MainDAO();
+	Main user = userdao.findById(id);
+	Profile profile = new Profile();
+	ProfileDAO profiledao = new ProfileDAO();
+	profiledao.getSession().clear();
+	Transaction tx = profiledao.getSession().beginTransaction();
+	tx.commit();
+
+	//								Iterator<?> iterator = profiledao.findByProperty("main.id",
+	//										user.getId()).iterator();
+	Iterator<?> iterator = profiledao.findByProperty("main.id", id)
+			.iterator();
+	while (iterator.hasNext()) {
+		profile = (Profile) iterator.next();
+	}
 %>
 
 <!DOCTYPE HTML>
@@ -38,64 +61,38 @@
 							<li class="litext">欢迎光临:</li>
 							<li class="dropdown dropdownfix"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown"> <%
- 	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
- 			"UTF-8"));
- 	cookie1.setMaxAge(60000000);
- 	Cookie cookie2 = new Cookie("id", URLEncoder.encode("1", "UTF-8"));
- 	cookie2.setMaxAge(60000000);
- 	response.addCookie(cookie1);
- 	response.addCookie(cookie2);
- 	Cookie[] cookies = request.getCookies();
- 	if (cookies != null) {
- 		for (int i = 0; i < cookies.length; i++) {
- 			if (cookies[i].getName().equals("username"))
- 				out.print(URLDecoder.decode(cookies[i].getValue(),
- 						"UTF-8"));
- 		}
- 	} else
- %><jsp:forward page="/" /> <b class="caret"> </b> </a>
+ 	out.print(name);
+ %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a>
-									</li>
-									<li><a href="#">注销登录</a>
-									</li>
+									<li><a href="#">修改密码</a></li>
+									<li><a href="#">注销登录</a></li>
 
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li class="active"><a href="main.jsp">概况信息</a>
-							</li>
-							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">毕业设计<b class="caret"> </b>
-							</a>
+							<li class="active"><a href="main.jsp">概况信息</a></li>
+							<li class="dropdown  dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a>
-									</li>
-									<li><a href="proposal-fill.jsp">开题报告</a>
-									</li>
-									<li><a href="#">进度信息</a>
-									</li>
-									<li><a href="#">论文提交</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">消息中心<b class="caret"> </b>
-							</a>
+									<li><a href="choose.jsp">课题选择</a></li>
+									<li><a href="proposal-fill.jsp">开题报告</a></li>
+									<li><a href="#">进度信息</a></li>
+									<li><a href="#">论文提交</a></li>
+								</ul></li>
+							<li class="dropdown  dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a>
-									</li>
-									<li><a href="#">收件箱</a>
-									</li>
-									<li><a href="#">发件箱</a>
-									</li>
-								</ul>
-							</li>
-							<li><a href="profile.jsp">信息维护</a>
-							</li>
+									<li><a href="#">发信息</a></li>
+									<li><a href="#">收件箱</a></li>
+									<li><a href="#">发件箱</a></li>
+								</ul></li>
+							<li><a href="profile.jsp">信息维护</a></li>
 						</ul>
 					</div>
 				</div>
@@ -110,25 +107,6 @@
 					<div class="boxhead">个人信息</div>
 					<div class="boxcontent">
 						<%
-							Main user = new Main();
-							MainDAO userdao = new MainDAO();
-							Profile profile = new Profile();
-							ProfileDAO profiledao = new ProfileDAO();
-							profiledao.getSession().clear();
-							Transaction tx = profiledao.getSession().beginTransaction();
-							tx.commit();
-
-							for (int i = 0; i < cookies.length; i++) {
-								if (cookies[i].getName().equals("id"))
-									user = userdao.findById(Integer.parseInt(URLDecoder.decode(
-											cookies[i].getValue(), "UTF-8")));
-//								Iterator<?> iterator = profiledao.findByProperty("main.id",
-//										user.getId()).iterator();
-								Iterator<?> iterator = profiledao.findByProperty("main.id",
-										1).iterator();
-								while (iterator.hasNext())
-									profile = (Profile) iterator.next();
-							}
 							out.print("姓名：" + user.getName() + "<br>");
 							out.print("专业：" + profile.getDepartment() + "<br>");
 							out.print("年级：" + profile.getGrade() + "<br>");
@@ -141,15 +119,6 @@
 					<div class="boxhead">选题信息</div>
 					<div class="boxcontent">
 						<%
-							for (int i = 0; i < cookies.length; i++) {
-								if (cookies[i].getName().equals("id"))
-									user = userdao.findById(Integer.parseInt(URLDecoder.decode(
-											cookies[i].getValue(), "UTF-8")));
-								Iterator<?> iterator = profiledao.findByProperty("main.id",
-										user.getId()).iterator();
-								while (iterator.hasNext())
-									profile = (Profile) iterator.next();
-							}
 							out.print("姓名：" + user.getName() + "<br>");
 							out.print("专业：" + profile.getDepartment() + "<br>");
 							out.print("年级：" + profile.getGrade() + "<br>");
@@ -162,15 +131,6 @@
 					<div class="boxhead">短信息</div>
 					<div class="boxcontent">
 						<%
-							for (int i = 0; i < cookies.length; i++) {
-								if (cookies[i].getName().equals("id"))
-									user = userdao.findById(Integer.parseInt(URLDecoder.decode(
-											cookies[i].getValue(), "UTF-8")));
-								Iterator<?> iterator = profiledao.findByProperty("main.id",
-										user.getId()).iterator();
-								while (iterator.hasNext())
-									profile = (Profile) iterator.next();
-							}
 							out.print("姓名：" + user.getName() + "<br>");
 							out.print("专业：" + profile.getDepartment() + "<br>");
 							out.print("年级：" + profile.getGrade() + "<br>");

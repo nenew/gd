@@ -9,6 +9,16 @@
 			+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	if (request.getSession().getAttribute("islogin") == null
+			|| !request.getSession().getAttribute("islogin")
+					.equals("yes")) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
+	Integer id = (Integer) request.getSession().getAttribute("id");
+	String name = (String) request.getSession().getAttribute("name");
+	Integer priority = (Integer) request.getSession().getAttribute(
+			"priority");
 %>
 
 <!DOCTYPE HTML>
@@ -39,22 +49,8 @@
 							<li class="litext">欢迎光临:</li>
 							<li class="dropdown dropdownfix"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown"> <%
- 	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
- 			"UTF-8"));
- 	cookie1.setMaxAge(60000000);
- 	Cookie cookie2 = new Cookie("id", URLEncoder.encode("1", "UTF-8"));
- 	cookie2.setMaxAge(60000000);
- 	response.addCookie(cookie1);
- 	response.addCookie(cookie2);
- 	Cookie[] cookies = request.getCookies();
- 	if (cookies != null) {
- 		for (int i = 0; i < cookies.length; i++) {
- 			if (cookies[i].getName().equals("username"))
- 				out.print(URLDecoder.decode(cookies[i].getValue(),
- 						"UTF-8"));
- 		}
- 	} else
- %><jsp:forward page="/" /> <b class="caret"> </b> </a>
+ 	out.print(name);
+ %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
 									<li><a href="#">修改密码</a>
 									</li>
@@ -69,9 +65,9 @@
 						<ul class="nav nav-pills">
 							<li><a href="main.jsp">概况信息</a>
 							</li>
-							<li class="dropdown active"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">毕业设计<b class="caret"> </b>
-							</a>
+							<li class="dropdown active"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
 									<li class="active"><a href="choose.jsp">课题选择</a>
 									</li>
@@ -83,9 +79,9 @@
 									</li>
 								</ul>
 							</li>
-							<li class="dropdown dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">消息中心<b class="caret"> </b>
-							</a>
+							<li class="dropdown dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
 									<li><a href="#">发信息</a>
 									</li>
@@ -138,7 +134,7 @@
 										out.print(proposal.getMain().getName());
 										out.print("</td><td>");
 										Set<Profile> set = proposal.getMain().getProfiles();
-										Iterator<Profile> i=set.iterator();
+										Iterator<Profile> i = set.iterator();
 										while (i.hasNext()) {
 											Profile p = i.next();
 											out.print(p.getTitle());

@@ -41,7 +41,7 @@
 					<div class="login">
 						<div class="boxhead">登录系统</div>
 						<div class="boxcontent">
-							<form class="formfix" name="loginform" action="login-check.jsp"
+							<form class="formfix" name="loginform" action="login"
 								method="post">
 								<div class="control-group">
 									<div class="controls">
@@ -49,8 +49,8 @@
 
 										<div class="input-prepend">
 											<span class="add-on"><i class="icon-user"></i> </span> <input
-												id="inputusername" name="id" placeholder="输入用户名" type="text"
-												onblur="check();" onfocus="checkagain();" autofocus>
+												id="inputusername" name="num" placeholder="输入用户名"
+												type="text" autofocus>
 										</div>
 									</div>
 								</div>
@@ -68,8 +68,8 @@
 								<div class="control-group form-inline">
 									<div class="controls">
 										<label class="checkbox" style="margin-right:30px;"> <input
-											type="checkbox"> 记住密码&nbsp; &nbsp; &nbsp; <a href="#">忘记密码?</a>
-										</label>
+											type="checkbox" name="remember" value="yes">
+											记住密码&nbsp; &nbsp; &nbsp; <a href="#">忘记密码?</a> </label>
 
 
 										<button type="submit" class="btn btn-primary">登录</button>

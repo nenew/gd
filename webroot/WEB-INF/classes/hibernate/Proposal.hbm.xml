@@ -57,13 +57,13 @@
                 <comment>是否通过上级审核</comment>
             </column>
         </property>
-        <property name="startdata" type="date">
-            <column name="STARTDATA" length="10" not-null="true">
+        <property name="startdate" type="date">
+            <column name="STARTDATE" length="10" not-null="true">
                 <comment>开始日期</comment>
             </column>
         </property>
-        <property name="enddata" type="date">
-            <column name="ENDDATA" length="10" not-null="true">
+        <property name="enddate" type="date">
+            <column name="ENDDATE" length="10" not-null="true">
                 <comment>结束日期</comment>
             </column>
         </property>

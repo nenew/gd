@@ -5,10 +5,29 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	if (request.getSession().getAttribute("islogin") == null
+	|| !request.getSession().getAttribute("islogin")
+	.equals("yes")) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
+	Integer id = (Integer) request.getSession().getAttribute("id");
+	String name = (String) request.getSession().getAttribute("name");
+	Integer priority = (Integer) request.getSession().getAttribute(
+	"priority");
+	ProposalDAO proposaldao = new ProposalDAO();
+	proposaldao.getSession().clear();
+	proposaldao.getSession().beginTransaction().commit();
+	Proposal proposal = new Proposal();
+	Iterator<?> iterator = proposaldao.findByStudentid(id)
+	.iterator();
+	while (iterator.hasNext()) {
+		proposal = (Proposal) iterator.next();
+	}
 %>
 
 <!DOCTYPE HTML>
@@ -39,64 +58,38 @@
 							<li class="litext">欢迎光临:</li>
 							<li class="dropdown dropdownfix"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown"> <%
- 	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
- 			"UTF-8"));
- 	cookie1.setMaxAge(60000000);
- 	Cookie cookie2 = new Cookie("id", URLEncoder.encode("1", "UTF-8"));
- 	cookie2.setMaxAge(60000000);
- 	response.addCookie(cookie1);
- 	response.addCookie(cookie2);
- 	Cookie[] cookies = request.getCookies();
- 	if (cookies != null) {
- 		for (int i = 0; i < cookies.length; i++) {
- 			if (cookies[i].getName().equals("username"))
- 				out.print(URLDecoder.decode(cookies[i].getValue(),
- 						"UTF-8"));
- 		}
- 	} else
- %><jsp:forward page="/" /> <b class="caret"> </b> </a>
+ 	out.print(name);
+ %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a>
-									</li>
-									<li><a href="#">注销登录</a>
-									</li>
+									<li><a href="#">修改密码</a></li>
+									<li><a href="#">注销登录</a></li>
 
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a>
-							</li>
-							<li class="dropdown active"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">毕业设计<b class="caret"> </b>
-							</a>
+							<li><a href="main.jsp">概况信息</a></li>
+							<li class="dropdown active"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a>
-									</li>
-									<li class="active"><a href="proposal-fill.jsp">开题报告</a>
-									</li>
-									<li><a href="#">进度信息</a>
-									</li>
-									<li><a href="#">论文提交</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">消息中心<b class="caret"> </b>
-							</a>
+									<li><a href="choose.jsp">课题选择</a></li>
+									<li class="active"><a href="proposal-fill.jsp">开题报告</a></li>
+									<li><a href="#">进度信息</a></li>
+									<li><a href="#">论文提交</a></li>
+								</ul></li>
+							<li class="dropdown  dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a>
-									</li>
-									<li><a href="#">收件箱</a>
-									</li>
-									<li><a href="#">发件箱</a>
-									</li>
-								</ul>
-							</li>
-							<li><a href="profile.jsp">信息维护</a>
-							</li>
+									<li><a href="#">发信息</a></li>
+									<li><a href="#">收件箱</a></li>
+									<li><a href="#">发件箱</a></li>
+								</ul></li>
+							<li><a href="profile.jsp">信息维护</a></li>
 						</ul>
 					</div>
 				</div>
@@ -109,10 +102,6 @@
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well">
 					<%
-						ProposalDAO proposaldao = new ProposalDAO();
-						proposaldao.getSession().clear();
-						proposaldao.getSession().beginTransaction().commit();
-						Proposal proposal = proposaldao.findById(1);
 						out.print("<h4>设计题目：" + proposal.getThesistitle() + "</h4>");
 					%>
 					<form name="proposal" action="proposal-update.jsp" method="post">
@@ -123,12 +112,15 @@
 								style="width:100%;height:100px;">
 								<%
 									if (proposal.getProposalanalysis() == null) {
-										out.print("尚未填写");
-									}
-									//if (proposal.getProposalanalysis().equals("")) {
-									//	out.print("N''''''''''''空'''''''''''N");
-									//}
-									//out.print(proposal.getProposalanalysis());
+																						out.print("尚未填写");
+																					}
+															else {
+																out.print(proposal.getProposalanalysis());
+															}
+																					//if (proposal.getProposalanalysis().equals("")) {
+																					//	out.print("N''''''''''''空'''''''''''N");
+																					//}
+																					//out.print(proposal.getProposalanalysis());
 								%>
 							</textarea>
 						</div>

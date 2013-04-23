@@ -9,6 +9,24 @@
 			+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
+	if (request.getSession().getAttribute("islogin") == null || !request.getSession().getAttribute("islogin").equals("yes"))
+		{response.sendRedirect("index.jsp");return;}
+		
+	Integer id = (Integer) request.getSession().getAttribute("id");
+	String name = (String) request.getSession().getAttribute("name");
+	Integer priority = (Integer) request.getSession().getAttribute(
+			"priority");
+	Profile profile = new Profile();
+	ProfileDAO profiledao = new ProfileDAO();
+	profiledao.getSession().clear();
+	profiledao.getSession().beginTransaction().commit();
+	Iterator<?> iterator = profiledao.findByProperty("main.id", id)
+			.iterator();
+	while (iterator.hasNext()) {
+		profile = (Profile) iterator.next();
+	}
+
+
 %>
 
 <!DOCTYPE HTML>
@@ -39,64 +57,38 @@
 							<li class="litext">欢迎光临:</li>
 							<li class="dropdown dropdownfix"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown"> <%
- 	Cookie cookie1 = new Cookie("username", URLEncoder.encode("软软小乖乖",
- 			"UTF-8"));
- 	cookie1.setMaxAge(60000000);
- 	Cookie cookie2 = new Cookie("id", URLEncoder.encode("1", "UTF-8"));
- 	cookie2.setMaxAge(60000000);
- 	response.addCookie(cookie1);
- 	response.addCookie(cookie2);
- 	Cookie[] cookies = request.getCookies();
- 	if (cookies != null) {
- 		for (int i = 0; i < cookies.length; i++) {
- 			if (cookies[i].getName().equals("username"))
- 				out.print(URLDecoder.decode(cookies[i].getValue(),
- 						"UTF-8"));
- 		}
- 	} else
- %><jsp:forward page="/" /> <b class="caret"> </b> </a>
+ 	out.print(name);
+ %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a>
-									</li>
-									<li><a href="#">注销登录</a>
-									</li>
+									<li><a href="#">修改密码</a></li>
+									<li><a href="#">注销登录</a></li>
 
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a>
-							</li>
-							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">毕业设计<b class="caret"> </b>
-							</a>
+							<li><a href="main.jsp">概况信息</a></li>
+							<li class="dropdown  dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a>
-									</li>
-									<li><a href="proposal-fill.jsp">开题报告</a>
-									</li>
-									<li><a href="#">进度信息</a>
-									</li>
-									<li><a href="#">论文提交</a>
-									</li>
-								</ul>
-							</li>
-							<li class="dropdown  dropdowntrasparent"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">消息中心<b class="caret"> </b>
-							</a>
+									<li><a href="choose.jsp">课题选择</a></li>
+									<li><a href="proposal-fill.jsp">开题报告</a></li>
+									<li><a href="#">进度信息</a></li>
+									<li><a href="#">论文提交</a></li>
+								</ul></li>
+							<li class="dropdown  dropdowntrasparent"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
+									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a>
-									</li>
-									<li><a href="#">收件箱</a>
-									</li>
-									<li><a href="#">发件箱</a>
-									</li>
-								</ul>
-							</li>
-							<li class="active"><a href="profile.jsp">信息维护</a>
-							</li>
+									<li><a href="#">发信息</a></li>
+									<li><a href="#">收件箱</a></li>
+									<li><a href="#">发件箱</a></li>
+								</ul></li>
+							<li class="active"><a href="profile.jsp">信息维护</a></li>
 						</ul>
 					</div>
 				</div>
@@ -121,14 +113,6 @@
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<strong>更新成功!</strong>
 						</div>
-
-
-						<%
-							ProfileDAO profiledao = new ProfileDAO();
-							profiledao.getSession().clear();
-							profiledao.getSession().beginTransaction().commit();
-							Profile profile = profiledao.findById(1);
-						%>
 						<form name="proposal" id="proposal" action="profile-update.jsp"
 							method="post">
 							<div>
@@ -162,37 +146,6 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
 	<script src="editor/tinymce.min.js"></script>
-	<script type="text/javascript">
-		tinymce
-				.init({
-					selector : "textarea",
-					plugins : [
-							"advlist autolink lists link image charmap print preview anchor",
-							"searchreplace visualblocks code fullscreen",
-							"insertdatetime media table contextmenu paste" ],
-					toolbar : "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
-					autosave_ask_before_unload : false,
-					max_height : 200,
-					min_height : 160,
-					height : 180,
-					init_instance_callback : "hidetinymce"
-
-				});
-		var i = 3;
-		function hidetinymce(inst) {
-			console.log("test");
-			if (--i == 0) {
-				try {
-					tinyMCE.get('1').hide();
-					tinyMCE.get('2').hide();
-					tinyMCE.get('3').hide();
-					console.log("hidedone");
-				} catch (error) {
-
-				}
-			}
-		}
-	</script>
 	<script>
 		$(document).ready(
 				function() {
