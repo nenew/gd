@@ -178,7 +178,7 @@
 			xhr.ontimeout = function(event) {
 				console.log("time out !");
 			};
-			xhr.open('POST', 'http://127.0.0.1/bootstrap/upload');
+			xhr.open('POST', 'http://127.0.0.1/bootstrap/thesis-upload');
 			xhr.send(fd);
 
 		}
