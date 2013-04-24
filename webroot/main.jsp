@@ -82,7 +82,7 @@
 									<li><a href="choose.jsp">课题选择</a></li>
 									<li><a href="proposal-fill.jsp">开题报告</a></li>
 									<li><a href="#">进度信息</a></li>
-									<li><a href="#">论文提交</a></li>
+									<li><a href="thesis-upload.jsp">论文提交</a></li>
 								</ul></li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b

@@ -75,7 +75,7 @@
 									</li>
 									<li><a href="#">进度信息</a>
 									</li>
-									<li><a href="#">论文提交</a>
+									<li><a href="thesis-upload.jsp">论文提交</a>
 									</li>
 								</ul>
 							</li>
