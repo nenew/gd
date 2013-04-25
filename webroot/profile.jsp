@@ -5,8 +5,8 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 	if (request.getSession().getAttribute("islogin") == null || !request.getSession().getAttribute("islogin").equals("yes"))
@@ -15,18 +15,16 @@
 	Integer id = (Integer) request.getSession().getAttribute("id");
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
-			"priority");
+	"priority");
 	Profile profile = new Profile();
 	ProfileDAO profiledao = new ProfileDAO();
 	profiledao.getSession().clear();
 	profiledao.getSession().beginTransaction().commit();
 	Iterator<?> iterator = profiledao.findByProperty("main.id", id)
-			.iterator();
+	.iterator();
 	while (iterator.hasNext()) {
 		profile = (Profile) iterator.next();
 	}
-
-
 %>
 
 <!DOCTYPE HTML>
@@ -60,35 +58,47 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a></li>
+							<li><a href="main.jsp">概况信息</a>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a></li>
-									<li><a href="proposal-fill.jsp">开题报告</a></li>
-									<li><a href="#">进度信息</a></li>
-									<li><a href="thesis-upload.jsp">论文提交</a></li>
-								</ul></li>
+									<li><a href="choose.jsp">课题选择</a>
+									</li>
+									<li><a href="proposal-fill.jsp">开题报告</a>
+									</li>
+									<li><a href="#">进度信息</a>
+									</li>
+									<li><a href="thesis-upload.jsp">论文提交</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a></li>
-									<li><a href="#">收件箱</a></li>
-									<li><a href="#">发件箱</a></li>
-								</ul></li>
-							<li class="active"><a href="profile.jsp">信息维护</a></li>
+									<li><a href="#">发信息</a>
+									</li>
+									<li><a href="#">收件箱</a>
+									</li>
+									<li><a href="#">发件箱</a>
+									</li>
+								</ul>
+							</li>
+							<li class="active"><a href="profile.jsp">信息维护</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -104,10 +114,10 @@
 					<div class="boxcontent">
 						<%
 							//	String pus = (String) session.getAttribute("profileupdatestatus");
-							//	if (pus != null && pus.equals("1")) {
-							//		session.setAttribute("profileupdatestatus", "0");
-							//		out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>更新成功.</strong></div>");
-							//	}
+											//	if (pus != null && pus.equals("1")) {
+											//		session.setAttribute("profileupdatestatus", "0");
+											//		out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>更新成功.</strong></div>");
+											//	}
 						%>
 						<div class="alert alert-success" style="display: none;">
 							<button type="button" class="close" data-dismiss="alert">×</button>
@@ -145,7 +155,6 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
-	<script src="editor/tinymce.min.js"></script>
 	<script>
 		$(document).ready(
 				function() {
@@ -166,23 +175,14 @@
 												.slideUp();
 									}))
 										;
-									//									if (jqXHR.error(function() {
-									//										alert("失败");
-									//									}))
+									//					if (jqXHR.error(function() {
+									//							alert("失败");
+									//					}))
 									//										;
-									//									alert(jqXHR.status + jqXHR.statusText);
+									//					alert(jqXHR.status + jqXHR.statusText);
 
 								});
-								var xhr = new XMLHttpRequest();
-								xhr.open('POST', 'profile-update.jsp');
-								xhr.send(data);
-								xhr.onreadystatechange = function() {
-									if (xhr.readyState == 4
-											&& xhr.status == 200) {
 
-										alert(xhr.responseText);
-									}
-								};
 							});
 				}
 

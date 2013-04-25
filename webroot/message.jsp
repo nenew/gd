@@ -4,20 +4,20 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 	if (request.getSession().getAttribute("islogin") == null
-			|| !request.getSession().getAttribute("islogin")
-					.equals("yes")) {
+	|| !request.getSession().getAttribute("islogin")
+			.equals("yes")) {
 		response.sendRedirect("index.jsp");
 		return;
 	}
 	Integer id = (Integer) request.getSession().getAttribute("id");
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
-			"priority");
+	"priority");
 	ProposalDAO proposaldao = new ProposalDAO();
 	Proposal proposal = new Proposal();
 	proposaldao.getSession().clear();
@@ -59,35 +59,47 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a></li>
+							<li><a href="main.jsp">概况信息</a>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a></li>
-									<li><a href="proposal-fill.jsp">开题报告</a></li>
-									<li><a href="#">进度信息</a></li>
-									<li><a href="thesis-upload.jsp">论文提交</a></li>
-								</ul></li>
+									<li><a href="choose.jsp">课题选择</a>
+									</li>
+									<li><a href="proposal-fill.jsp">开题报告</a>
+									</li>
+									<li><a href="#">进度信息</a>
+									</li>
+									<li><a href="thesis-upload.jsp">论文提交</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent active"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="message">发信息</a></li>
-									<li><a href="#">收件箱</a></li>
-									<li><a href="#">发件箱</a></li>
-								</ul></li>
-							<li><a href="profile.jsp">信息维护</a></li>
+									<li class="active"><a href="message">发信息</a>
+									</li>
+									<li><a href="#">收件箱</a>
+									</li>
+									<li><a href="#">发件箱</a>
+									</li>
+								</ul>
+							</li>
+							<li><a href="profile.jsp">信息维护</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -99,6 +111,10 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well">
+					<div class="alert alert-success" style="display: none;margin-left:180px;margin-right:180px;">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+						<strong>发送成功!</strong>
+					</div>
 					<form class="form-horizontal" action="message-sender" method="post">
 						<div class="control-group">
 							<label class="control-label">收件人：</label>
@@ -106,16 +122,15 @@
 								<select name="receiver">
 									<%
 										out.print("<option value=\"" + proposal.getMain().getId()
-												+ "\" selected=\"selected\">"
-												+ proposal.getMain().getName() + "</option>");
-										MainDAO maindao = new MainDAO();
-										Iterator<?> admins = maindao.findByPriority(3).iterator();
-										while (admins.hasNext()) {
-											Main main = (Main) admins.next();
-											out.print("<option value=\"" + main.getId() + "\">"
-													+ main.getName() + "</option>");
-										}
-										
+																			+ "\" selected=\"selected\">"
+																			+ proposal.getMain().getName() + "</option>");
+																	MainDAO maindao = new MainDAO();
+																	Iterator<?> admins = maindao.findByPriority(3).iterator();
+																	while (admins.hasNext()) {
+																		Main main = (Main) admins.next();
+																		out.print("<option value=\"" + main.getId() + "\">"
+																				+ main.getName() + "</option>");
+																	}
 									%>
 
 								</select>
@@ -129,7 +144,8 @@
 						</div>
 						<div class="control-group">
 							<label class="control-label">
-								<button type="submit" class="btn btn-primary">发送</button> </label>
+								<button type="button" class="btn btn-primary" id="send">发送</button>
+							</label>
 						</div>
 					</form>
 				</div>
@@ -144,5 +160,37 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
+	<script>
+		$(document).ready(
+				function() {
+					$('#send').click(
+							function() {
+
+								var data = {
+									"receiver" : $('select[name="receiver"]')
+											.val(),
+									"content" : $('textarea[name="content"]')
+											.val()
+								};
+								$.post('message-sender', data, function(
+										data, textStatus, jqXHR) {
+									//						alert(textStatus+jqXHR);
+									if (jqXHR.success(function() {
+										$('.alert').slideDown().delay(1500)
+												.slideUp();
+									}))
+										;
+									//									if (jqXHR.error(function() {
+									//										alert("失败");
+									//									}))
+									//										;
+									//									alert(jqXHR.status + jqXHR.statusText);
+
+								});
+							});
+				}
+
+		);
+	</script>
 </body>
 </html>
