@@ -19,6 +19,12 @@
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
 			"priority");
+	ThesisDAO thesisdao = new ThesisDAO();
+	Thesis thesis = new Thesis();
+	Iterator <Thesis>iterator = thesisdao.findByProperty("main.id", id).iterator();
+	while (iterator.hasNext()){
+		thesis = iterator.next();
+	}
 %>
 
 <!DOCTYPE HTML>
@@ -223,7 +229,7 @@
 											msg = '<div class="alert alert-success fade in"><button type="button" class="close" data-dismiss="alert">&times;</button>'
 													+ "总共上传文件数 : "
 													+ filelist.length
-													+ "</div>";
+													+ "<% if(thesis.getIsuploaded() == true) out.print("  (论文已上传，本次上传将覆盖原文件)");%></div>";
 											msg += '<div class="well">文件名 : '
 													+ f.name + "<br>";
 											msg += "文件类型 : " + f.type + "<br>";

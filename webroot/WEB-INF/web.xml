@@ -16,6 +16,12 @@
     <servlet-name>Thesis_upload</servlet-name>
     <servlet-class>servlet.Thesis_upload</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Msgsender</servlet-name>
+    <servlet-class>servlet.Msgsender</servlet-class>
+  </servlet>
+
+
 
 
  
@@ -30,6 +36,10 @@
   <servlet-mapping>
     <servlet-name>Thesis_upload</servlet-name>
     <url-pattern>/thesis-upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Msgsender</servlet-name>
+    <url-pattern>/message-sender</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

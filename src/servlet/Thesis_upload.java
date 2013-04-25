@@ -34,14 +34,14 @@ public class Thesis_upload extends HttpServlet {
 		ThesisDAO thesisdao = new ThesisDAO();
 		Thesis thesis = new Thesis();
 		thesisdao.getSession().clear();
-		Iterator<Thesis> iterator = thesisdao.findByProperty("main.id", id)
+		Iterator<?> iterator = thesisdao.findByProperty("main.id", id)
 				.iterator();
 		if (!iterator.hasNext()) {
 			thesis.setMain(main);
 			System.out.print("iterator has no next,new main");
 		}
 		while (iterator.hasNext()) {
-			thesis = iterator.next();
+			thesis = (Thesis)iterator.next();
 		}
 		thesis.setIsuploaded(true);
 		thesisdao.attachDirty(thesis);
