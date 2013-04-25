@@ -39,16 +39,15 @@
 				<div class="nav-collapse collapse headerul" data-toggle="collapse"
 					data-target=".nav-collapse">
 					<ul class="nav">
-						<li class="litext">欢迎光临:</li>
+						<li class="text">欢迎光临:</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown">小粽子同学<b class="caret"></b> </a>
 							<ul class="dropdown-menu">
-								<li><a href="#">修改密码</a>
-								</li>
-								<li><a href="#">注销登录</a>
-								</li>
+								<li><a href="#">修改密码</a></li>
+								<li><a href="#">注销登录</a></li>
 
-							</ul></li>
+							</ul>
+						</li>
 					</ul>
 
 				</div>
@@ -59,16 +58,12 @@
 			<div class="container menus">
 
 				<ul class="nav nav-pills" style="float:left;">
-					<li class="active"><a href="#">概况信息</a>
-					</li>
-					<li><a href="#">课题选择</a>
-					</li>
+					<li class="active"><a href="#">概况信息</a></li>
+					<li><a href="#">课题选择</a></li>
 
-					<li><a href="#">开题报告</a>
-					</li>
+					<li><a href="#">开题报告</a></li>
 
-					<li><a href="#">信息维护</a>
-					</li>
+					<li><a href="#">信息维护</a></li>
 
 
 				</ul>

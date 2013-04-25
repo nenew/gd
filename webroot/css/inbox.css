@@ -101,7 +101,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =                   80);
+	filter: alpha(opacity =                     80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -154,14 +154,7 @@ html,body {
 	margin-top: 30px;
 }
 
-.boxmargin {
-	margin-left: 6.38298%;
+.table-hover tbody tr:hover>td,.table-hover tbody tr:hover>th {
+	background-color: hsla(240, 10%, 90%, .8);
 }
 
-.progressfix {
-	margin-top: 30px;
-}
-
-.progress-striped-fix {
-	border-radius: 0px 4px 4px 0px;
-}

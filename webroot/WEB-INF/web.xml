@@ -28,6 +28,11 @@
     <servlet-name>ProposalUpdate</servlet-name>
     <servlet-class>servlet.ProposalUpdate</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>MessageGet</servlet-name>
+    <servlet-class>servlet.MessageGet</servlet-class>
+  </servlet>
+
 
 
 
@@ -58,6 +63,10 @@
   <servlet-mapping>
     <servlet-name>ProposalUpdate</servlet-name>
     <url-pattern>/proposal-update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MessageGet</servlet-name>
+    <url-pattern>/message-get</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -46,6 +46,11 @@ public class Login extends HttpServlet {
 			Main main = new Main();
 			@SuppressWarnings("unchecked")
 			Iterator<Main> iterator = maindao.findByNum(num).iterator();
+			if (iterator.hasNext() == false) {
+				response.sendRedirect("main.jsp");
+				return;
+			}
+
 			while (iterator.hasNext()) {
 				main = iterator.next();
 				if (password.equals(main.getPassword())) {
@@ -54,15 +59,15 @@ public class Login extends HttpServlet {
 					session.setAttribute("priority", main.getPriority());
 					session.setAttribute("name", main.getName());
 					session.setAttribute("islogin", "yes");
-					if (remember == null) out.print("remember is null");
+					if (remember == null)
+						out.print("remember is null");
 					response.sendRedirect("main.jsp");
 				} else {
 					response.sendRedirect("index.jsp");
 				}
 			}
 
-		}
-		else {
+		} else {
 			response.sendRedirect("index.jsp");
 		}
 	}
