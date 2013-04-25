@@ -92,10 +92,8 @@
 								<ul class="dropdown-menu">
 									<li class="active"><a href="message">发信息</a>
 									</li>
-									<li><a href="#">收件箱</a>
-									</li>
-									<li><a href="#">发件箱</a>
-									</li>
+									<li><a href="inbox.jsp">收件箱</a></li>
+									<li><a href="outbox.jsp">发件箱</a></li>
 								</ul>
 							</li>
 							<li><a href="profile.jsp">信息维护</a>

@@ -85,9 +85,9 @@
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a></li>
-									<li><a href="#">收件箱</a></li>
-									<li><a href="#">发件箱</a></li>
+									<li><a href="message.jsp">发信息</a></li>
+									<li><a href="inbox.jsp">收件箱</a></li>
+									<li><a href="outbox.jsp">发件箱</a></li>
 								</ul></li>
 							<li><a href="profile.jsp">信息维护</a></li>
 						</ul>
@@ -104,7 +104,7 @@
 					<%
 						out.print("<h4>设计题目：" + proposal.getThesistitle() + "</h4>");
 					%>
-					<form name="proposal" action="proposal-update.jsp" method="post">
+					<form name="proposal" action="proposal-update" method="post">
 						<div>
 							资料调研分析：<br>
 							<textarea name="proposalanalysis" id="1"

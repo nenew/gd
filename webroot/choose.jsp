@@ -83,12 +83,9 @@
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a>
-									</li>
-									<li><a href="#">收件箱</a>
-									</li>
-									<li><a href="#">发件箱</a>
-									</li>
+									<li><a href="message.jsp">发信息</a></li>
+									<li><a href="inbox.jsp">收件箱</a></li>
+									<li><a href="outbox.jsp">发件箱</a></li>
 								</ul>
 							</li>
 							<li><a href="profile.jsp">信息维护</a>
@@ -133,10 +130,10 @@
 										out.print("</td><td>");
 										out.print(proposal.getMain().getName());
 										out.print("</td><td>");
-										Set<Profile> set = proposal.getMain().getProfiles();
-										Iterator<Profile> i = set.iterator();
+										Set<?> set = proposal.getMain().getProfiles();
+										Iterator<?> i = set.iterator();
 										while (i.hasNext()) {
-											Profile p = i.next();
+											Profile p = (Profile)i.next();
 											out.print(p.getTitle());
 										}
 										;

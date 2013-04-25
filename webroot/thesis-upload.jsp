@@ -21,9 +21,9 @@
 			"priority");
 	ThesisDAO thesisdao = new ThesisDAO();
 	Thesis thesis = new Thesis();
-	Iterator <Thesis>iterator = thesisdao.findByProperty("main.id", id).iterator();
+	Iterator <?>iterator = thesisdao.findByProperty("main.id", id).iterator();
 	while (iterator.hasNext()){
-		thesis = iterator.next();
+		thesis = (Thesis)iterator.next();
 	}
 %>
 
@@ -82,9 +82,9 @@
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">发信息</a></li>
-									<li><a href="#">收件箱</a></li>
-									<li><a href="#">发件箱</a></li>
+									<li><a href="message.jsp">发信息</a></li>
+									<li><a href="inbox.jsp">收件箱</a></li>
+									<li><a href="outbox.jsp">发件箱</a></li>
 								</ul></li>
 							<li><a href="profile.jsp">信息维护</a></li>
 						</ul>
