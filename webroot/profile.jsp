@@ -136,8 +136,8 @@
 									value="<%out.print(profile.getEmail());%>"> <br> <input
 									name="userid" type="hidden" value="1" />
 							</div>
-							<button class="btn btn-primary" type="submit">提交</button>
-							<button class="btn btn-primary" id="ajax" type="button">ajax</button>
+<!-- 							<button class="btn btn-primary" type="submit">提交</button>  -->
+							<button class="btn btn-primary" id="ajax" type="button">提交</button>
 						</form>
 					</div>
 				</div>

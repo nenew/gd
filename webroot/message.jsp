@@ -10,7 +10,7 @@
 	response.setCharacterEncoding("UTF-8");
 	if (request.getSession().getAttribute("islogin") == null
 	|| !request.getSession().getAttribute("islogin")
-			.equals("yes")) {
+	.equals("yes")) {
 		response.sendRedirect("index.jsp");
 		return;
 	}
@@ -90,7 +90,7 @@
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="message">发信息</a>
+									<li class="active"><a href="message.jsp">发信息</a>
 									</li>
 									<li><a href="inbox.jsp">收件箱</a></li>
 									<li><a href="outbox.jsp">发件箱</a></li>
@@ -109,7 +109,8 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well">
-					<div class="alert alert-success" style="display: none;margin-left:180px;margin-right:180px;">
+					<div class="alert alert-success"
+						style="display: none;margin-left:180px;margin-right:180px;">
 						<button type="button" class="close" data-dismiss="alert">×</button>
 						<strong>发送成功!</strong>
 					</div>
@@ -120,15 +121,15 @@
 								<select name="receiver">
 									<%
 										out.print("<option value=\"" + proposal.getMain().getId()
-																			+ "\" selected=\"selected\">"
-																			+ proposal.getMain().getName() + "</option>");
-																	MainDAO maindao = new MainDAO();
-																	Iterator<?> admins = maindao.findByPriority(3).iterator();
-																	while (admins.hasNext()) {
-																		Main main = (Main) admins.next();
-																		out.print("<option value=\"" + main.getId() + "\">"
-																				+ main.getName() + "</option>");
-																	}
+																																																																											+ "\" selected=\"selected\">"
+																																																																											+ proposal.getMain().getName() + "</option>");
+																																																																									MainDAO maindao = new MainDAO();
+																																																																									Iterator<?> admins = maindao.findByPriority(3).iterator();
+																																																																									while (admins.hasNext()) {
+																																																																										Main main = (Main) admins.next();
+																																																																										out.print("<option value=\"" + main.getId() + "\">"
+																																																																												+ main.getName() + "</option>");
+																																																																									}
 									%>
 
 								</select>
@@ -163,19 +164,22 @@
 				function() {
 					$('#send').click(
 							function() {
-
+								$('#send').addClass("disabled").text("发送中...");
 								var data = {
 									"receiver" : $('select[name="receiver"]')
 											.val(),
 									"content" : $('textarea[name="content"]')
 											.val()
 								};
-								$.post('message-sender', data, function(
-										data, textStatus, jqXHR) {
+								$.post('message-sender', data, function(data,
+										textStatus, jqXHR) {
 									//						alert(textStatus+jqXHR);
 									if (jqXHR.success(function() {
-										$('.alert').slideDown().delay(1500)
-												.slideUp();
+										//										$('.alert').slideDown().delay(1500)
+										//												.slideUp();
+										$('.alert').slideDown();
+										$('#send').remove();
+
 									}))
 										;
 									//									if (jqXHR.error(function() {
