@@ -80,7 +80,7 @@ public class MessageDAO extends BaseHibernateDAO {
 				+ ", value: " + value);
 		try {
 			String queryString = "from Message as model where model."
-					+ propertyName + "= ?";
+					+ propertyName + "= ?  order by model.sendtime desc";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
 			return queryObject.list();

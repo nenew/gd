@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ page import="java.net.URLEncoder" import="java.net.URLDecoder"
-	import="hibernate.*" import="org.hibernate.Transaction"%>
+	import="hibernate.*" import="org.hibernate.Transaction"
+	import="java.text.SimpleDateFormat" import="java.text.SimpleDateFormat"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -115,26 +116,25 @@
 								<th style="width:20%;">序号</th>
 								<th style="width:20%;">发件人</th>
 								<th style="width:30%;">发送时间</th>
-								<th style="width:30%;">内容</th>
+								<th style="width:30%;"></th>
 							</tr>
 						</thead>
 						<tbody>
 							<%
 								while (iterator.hasNext()) {
-																								message = (Message) iterator.next();
-																								out.print("<tr><td><span class=\"badge\">" + index++
-																										+ "</span>");
-																								if (message.getIsread() == false)
-																									out.print(" <span class=\"label label-info\">新信息</span>");
-																								out.print("<td>" + message.getMain().getName() + "</td>");
-																								out.print("<td>" + message.getSendtime() + "</td>");
-																								out.print("<td>" + "<a class=\"msg\" msgnum=\"" + message.getMsgnum()
-																										+ "\" href=\"#\"><strong>点此查看</strong></a>"
-																										+ "</td></tr>");
-
-																							}
+									message = (Message) iterator.next();
+									out.print("<tr><td><span class=\"badge\">" + index++ + "</span>");
+									if (message.getIsread() == false)  out.print(" <span class=\"label label-info\">新信息</span>");
+									out.print("<td>" + message.getMain().getName() + "</td>");
+									java.text.DateFormat dateformat = new java.text.SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'时'mm'分'");
+									out.print("<td>" + dateformat.format( message.getSendtime()) + "</td>");
+									out.print("<td>" + "<a class=\"msg\" msgnum=\"" + message.getMsgnum()
+										 + "\" msgsender=\""+message.getMain().getName()+"\" msgdate=\""
+										 + dateformat.format( message.getSendtime())
+										  +"\" href=\"#myModal\" role=\"button\" data-toggle=\"modal\"><strong>查看信息</strong></a>" + "</td></tr>");
+								}
 							%>
-							<tr>
+<!-- 						<tr>
 								<td><span class="badge">1</span> <span
 									class="label label-info">新信息</span>
 								</td>
@@ -146,7 +146,7 @@
 								<td><span class="badge">2</span></td>
 								<td>teacher</td>
 								<td>2012-00-00</td>
-								<td><a class="df" msg="tttttt"><strong>点此查看</strong> </a></td>
+								<td><a class="df"><strong>点此查看</strong> </a></td>
 							</tr>
 							<tr>
 								<td><span class="badge">3</span></td>
@@ -160,10 +160,28 @@
 								<td>2012-00-00</td>
 								<td><a><strong>点此查看</strong> </a></td>
 							</tr>
+							-->
 						</tbody>
 					</table>
 				</div>
 			</div>
+		</div>
+		<div>
+			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h3 id="myModalLabel">信息内容</h3>
+				</div>
+				<div class="modal-body">
+					<p>One fine body…</p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	<div id="footer">
@@ -183,10 +201,12 @@
 								var data = {
 									"msgnum" : $(this).attr("msgnum")
 								};
+								var msgsender =$(this).attr("msgsender");
+								var msgdate = $(this).attr("msgdate");
 								$.post('message-get', data, function(data,
 										textStatus, jqXHR) {
 									if (jqXHR.success(function() {
-										alert(data);
+										$('.modal-body').html("<p>发送时间:"+msgdate+"</p><p>发件人:"+msgsender+"</p><p>信息内容:<br><br>"+data+"</p>");
 									}))
 										;
 								});

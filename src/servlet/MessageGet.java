@@ -43,8 +43,12 @@ public class MessageGet extends HttpServlet {
 		Integer msgnum = Integer.parseInt(request.getParameter("msgnum"));
 		try {
 			MessageDAO messagedao = new MessageDAO();
+			messagedao.getSession().clear();
 			Message message = messagedao.findById(msgnum);
 			out.print(message.getContent());
+			message.setIsread(true);
+			messagedao.attachDirty(message);
+			messagedao.getSession().beginTransaction().commit();
 		} catch (Exception e) {
 			out.print("error" + e);
 		}

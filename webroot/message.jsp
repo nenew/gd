@@ -121,15 +121,15 @@
 								<select name="receiver">
 									<%
 										out.print("<option value=\"" + proposal.getMain().getId()
-																																																																											+ "\" selected=\"selected\">"
-																																																																											+ proposal.getMain().getName() + "</option>");
-																																																																									MainDAO maindao = new MainDAO();
-																																																																									Iterator<?> admins = maindao.findByPriority(3).iterator();
-																																																																									while (admins.hasNext()) {
-																																																																										Main main = (Main) admins.next();
-																																																																										out.print("<option value=\"" + main.getId() + "\">"
-																																																																												+ main.getName() + "</option>");
-																																																																									}
+										+ "\" selected=\"selected\">"
+										+ proposal.getMain().getName() + "</option>");
+										MainDAO maindao = new MainDAO();
+										Iterator<?> admins = maindao.findByPriority(3).iterator();
+										while (admins.hasNext()) {
+										Main main = (Main) admins.next();
+										out.print("<option value=\"" + main.getId() + "\">"
+										+ main.getName() + "</option>");
+										}
 									%>
 
 								</select>
