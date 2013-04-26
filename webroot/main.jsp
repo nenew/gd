@@ -9,8 +9,11 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 	if (request.getSession().getAttribute("islogin") == null
-			|| !request.getSession().getAttribute("islogin").equals("yes"))
-		{response.sendRedirect("index.jsp");return;}
+			|| !request.getSession().getAttribute("islogin")
+					.equals("yes")) {
+		response.sendRedirect("index.jsp");
+		return;
+	}
 	Integer id = (Integer) request.getSession().getAttribute("id");
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
@@ -21,6 +24,10 @@
 	Profile profile = new Profile();
 	ProfileDAO profiledao = new ProfileDAO();
 	profiledao.getSession().clear();
+	ProposalDAO proposaldao = new ProposalDAO();
+	Proposal proposal = new Proposal();
+	MessageDAO messagedao = new MessageDAO();
+	Message message = new Message();
 	Transaction tx = profiledao.getSession().beginTransaction();
 	tx.commit();
 
@@ -30,6 +37,12 @@
 			.iterator();
 	while (iterator.hasNext()) {
 		profile = (Profile) iterator.next();
+	}
+
+	Iterator<?> iterator2 = proposaldao.findByStudentid(id)
+			.iterator();
+	while (iterator2.hasNext()) {
+		proposal = (Proposal) iterator2.next();
 	}
 %>
 
@@ -64,35 +77,47 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li class="active"><a href="main.jsp">概况信息</a></li>
+							<li class="active"><a href="main.jsp">概况信息</a>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a></li>
-									<li><a href="proposal-fill.jsp">开题报告</a></li>
-									<li><a href="#">进度信息</a></li>
-									<li><a href="thesis-upload.jsp">论文提交</a></li>
-								</ul></li>
+									<li><a href="choose.jsp">课题选择</a>
+									</li>
+									<li><a href="proposal-fill.jsp">开题报告</a>
+									</li>
+									<li><a href="#">进度信息</a>
+									</li>
+									<li><a href="thesis-upload.jsp">论文提交</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="message.jsp">发信息</a></li>
-									<li><a href="inbox.jsp">收件箱</a></li>
-									<li><a href="outbox.jsp">发件箱</a></li>
-								</ul></li>
-							<li><a href="profile.jsp">信息维护</a></li>
+									<li><a href="message.jsp">发信息</a>
+									</li>
+									<li><a href="inbox.jsp">收件箱</a>
+									</li>
+									<li><a href="outbox.jsp">发件箱</a>
+									</li>
+								</ul>
+							</li>
+							<li><a href="profile.jsp">信息维护</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -108,10 +133,14 @@
 					<div class="boxcontent">
 						<%
 							out.print("姓名：" + user.getName() + "<br>");
-							out.print("专业：" + profile.getDepartment() + "<br>");
-							out.print("年级：" + profile.getGrade() + "<br>");
-							out.print("电话：" + profile.getPhonenum() + "<br>");
-							out.print("邮箱：" + profile.getEmail() + "<br>");
+							if (profile.getPhonenum() == null) {
+								out.print("请先填写个人信息！");
+							} else {
+								out.print("专业：" + profile.getDepartment() + "<br>");
+								out.print("年级：" + profile.getGrade() + "<br>");
+								out.print("电话：" + profile.getPhonenum() + "<br>");
+								out.print("邮箱：" + profile.getEmail() + "<br>");
+							}
 						%>
 					</div>
 				</div>
@@ -119,11 +148,18 @@
 					<div class="boxhead">选题信息</div>
 					<div class="boxcontent">
 						<%
-							out.print("姓名：" + user.getName() + "<br>");
-							out.print("专业：" + profile.getDepartment() + "<br>");
-							out.print("年级：" + profile.getGrade() + "<br>");
-							out.print("电话：" + profile.getPhonenum() + "<br>");
-							out.print("邮箱：" + profile.getEmail() + "<br>");
+							if (proposal.getThesistitle() == null) {
+								out.print("请先选题！");
+							} else {
+								Profile teacher = new Profile();
+								Iterator <?>teacheriterator =proposal.getMain().getProfiles().iterator();
+								while(teacheriterator.hasNext()) teacher = (Profile)teacheriterator.next();
+								
+								out.print("课题名称：" + proposal.getThesistitle() + "<br>");
+								out.print("导师姓名：" + proposal.getMain().getName() + "<br>");
+								out.print("导师电话：" + teacher.getPhonenum() + "<br>");
+								out.print("导师邮箱：" + teacher.getEmail() + "<br>");
+							}
 						%>
 					</div>
 				</div>
@@ -131,11 +167,27 @@
 					<div class="boxhead">短信息</div>
 					<div class="boxcontent">
 						<%
-							out.print("姓名：" + user.getName() + "<br>");
-							out.print("专业：" + profile.getDepartment() + "<br>");
-							out.print("年级：" + profile.getGrade() + "<br>");
-							out.print("电话：" + profile.getPhonenum() + "<br>");
-							out.print("邮箱：" + profile.getEmail() + "<br>");
+						    int count = 0 ;
+							int incount = 0;
+							int outcount = 0;
+							String newmsg;
+							Iterator <?>messageiterator = messagedao.findByToid(id).iterator();
+							while(messageiterator.hasNext()) {
+								message=(Message)messageiterator.next();
+								if(message.getIsread()==false){count++;};
+								incount++;
+							}
+							messageiterator =messagedao.findByProperty("main.id", id).iterator();
+							while(messageiterator.hasNext()) {
+								message=(Message)messageiterator.next();
+								outcount++;
+							}
+							if(count != 0) {newmsg = "<span class=\"label label-info\"><a href=\"inbox.jsp\">" + count + "</a></span>";}
+							else {newmsg = count+"";}
+							out.print("您有 " + newmsg + " 条新信息<br>");
+							out.print("已接收 " + incount + " 条短消息<br>");
+							out.print("已发送  " + outcount + " 条短消息<br>");
+
 						%>
 					</div>
 				</div>

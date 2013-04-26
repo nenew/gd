@@ -101,7 +101,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =                   80);
+	filter: alpha(opacity =                     80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -164,4 +164,12 @@ html,body {
 
 .progress-striped-fix {
 	border-radius: 0px 4px 4px 0px;
+}
+
+.label>a {
+	color: #FFFFFF;
+}
+
+.label> a:hover {
+	text-decoration: none ;
 }

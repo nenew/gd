@@ -91,9 +91,9 @@
 								<ul class="dropdown-menu">
 									<li><a href="message.jsp">发信息</a>
 									</li>
-									<li class="active"><a href="inbox.jsp">收件箱</a>
+									<li><a href="inbox.jsp">收件箱</a>
 									</li>
-									<li><a href="outbox.jsp">发件箱</a>
+									<li class="active"><a href="outbox.jsp">发件箱</a>
 									</li>
 								</ul>
 							</li>
