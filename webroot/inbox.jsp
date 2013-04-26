@@ -31,7 +31,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>概况预览——毕业设计在线管理系统</title>
+<title>收件箱——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="css/inbox.css" rel="stylesheet">
@@ -126,7 +126,7 @@
 									out.print("<tr><td><span class=\"badge\">" + index++ + "</span>");
 									if (message.getIsread() == false)  out.print(" <span class=\"label label-info\">新信息</span>");
 									out.print("<td>" + message.getMain().getName() + "</td>");
-									java.text.DateFormat dateformat = new java.text.SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'时'mm'分'");
+									SimpleDateFormat dateformat = new SimpleDateFormat("yyyy'年'MM'月'dd'日' HH'时'mm'分'");
 									out.print("<td>" + dateformat.format( message.getSendtime()) + "</td>");
 									out.print("<td>" + "<a class=\"msg\" msgnum=\"" + message.getMsgnum()
 										 + "\" msgsender=\""+message.getMain().getName()+"\" msgdate=\""
@@ -134,6 +134,7 @@
 										  +"\" href=\"#myModal\" role=\"button\" data-toggle=\"modal\"><strong>查看信息</strong></a>" + "</td></tr>");
 								}
 							%>
+							<tr><td></td><td></td><td></td><td></td></tr>
 <!-- 						<tr>
 								<td><span class="badge">1</span> <span
 									class="label label-info">新信息</span>
@@ -175,7 +176,7 @@
 					<h3 id="myModalLabel">信息内容</h3>
 				</div>
 				<div class="modal-body">
-					<p>One fine body…</p>
+					<p></p>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
