@@ -173,6 +173,9 @@
 				}
 				;
 				if (xhr.readyState == 4 && xhr.status == 0) {
+						$('.progress').remove();
+						$('<a class=\"btn btn-primary\" onclick=\"upload(this);\" index=\"0\">上传文件</a>').insertBefore('.disabled');
+						$('.disabled').remove();
 					console.log("服务器无响应，上传失败！");
 				}
 				;
