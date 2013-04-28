@@ -25,7 +25,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>添加学生——毕业设计在线管理系统</title>
+<title>添加教师——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="css/addstudent.css" rel="stylesheet">
@@ -78,11 +78,11 @@
 								class="dropdown-toggle" data-toggle="dropdown">管理功能<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="addstudent.jsp">添加学生</a>
+									<li><a href="addstudent.jsp">添加学生</a>
 									</li>
 									<li><a href="delstudent.jsp">删除学生</a>
 									</li>
-									<li><a href="addteacher.jsp">添加教师</a>
+									<li class="active"><a href="addteacher.jsp">添加教师</a>
 									</li>
 									<li><a href="delteacher.jsp">删除教师</a>
 									</li>
@@ -113,7 +113,7 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">添加学生</div>
+				<div class="span12 contentitle">添加教师</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow">
@@ -126,14 +126,14 @@
 									<label class="control-label">姓名：</label>
 									<div class="controls">
 										<input type="text" id="inputname" name="inputname"
-											placeholder="输入学生姓名"> <span>(不可更改)</span>
+											placeholder="输入教师姓名"> <span>(不可更改)</span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">学号：</label>
 									<div class="controls">
 										<input type="number" id="inputnum" name="inputnum"
-											placeholder="输入学生学号"> <span>(不可更改)</span>
+											placeholder="输入教师编号"> <span>(不可更改)</span>
 									</div>
 								</div>
 								<div class="control-group">
@@ -144,16 +144,12 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">入学年份：</label>
+									<label class="control-label">职称：</label>
 									<div class="controls">
-										<select name="inputgrade">
-											<option value="2009" selected="selected">2009年</option>
-											<%
-												int grade = 2010;
-												for(;grade <= 2015;grade++){
-													out.print("<option value=\""+grade+"\">"+grade+"年</option>");
-												}
-											%>
+										<select name="inputtitle">
+											<option value="lecturer" selected="selected">讲师</option>
+											<option value="professor">教授</option>
+											<option value="associateprofessor">副教授</option>
 										</select>
 									</div>
 								</div>
@@ -197,10 +193,10 @@
 					"inputname" : $('input[name="inputname"]').val(),
 					"inputnum" : $('input[name="inputnum"]').val(),
 					"inputpassword" : $('input[name="inputpassword"]').val(),
-					"inputgrade" : $('select[name="inputgrade"]').val(),
+					"inputtitle" : $('select[name="inputtitle"]').val(),
 					"inputdepartment" : $('select[name="inputdepartment"]').val()
 				};
-				$.post('addstudent', data, function(data, textStatus, jqXHR) {
+				$.post('addteacher', data, function(data, textStatus, jqXHR) {
 					$('#info').html(data).slideDown().delay(2500).slideUp();
 
 				});

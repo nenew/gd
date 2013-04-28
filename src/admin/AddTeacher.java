@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class AddStudent extends HttpServlet {
+public class AddTeacher extends HttpServlet {
 
-	public AddStudent() {
+	public AddTeacher() {
 		super();
 	}
 
@@ -38,9 +38,8 @@ public class AddStudent extends HttpServlet {
 		String newname = request.getParameter("inputname");
 		String newnum = request.getParameter("inputnum");
 		String newpw = request.getParameter("inputpassword");
-		String newgrade = request.getParameter("inputgrade");
+		String newtitle = request.getParameter("inputtitle");
 		String newdepartment = request.getParameter("inputdepartment");
-
 		if (priority != 3) {
 			out.print("<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>警告! </strong> 无操作权限</div>");
 			return;
@@ -61,18 +60,18 @@ public class AddStudent extends HttpServlet {
 				main.setPassword(newpw);
 				main.setIsprofile(false);
 				main.setIssecurity(false);
-				main.setPriority(1);
+				main.setPriority(2);
 				maindao.attachDirty(main);
 				maindao.getSession().beginTransaction().commit();
 				profile.setMain(main);
-				profile.setGrade(newgrade);
+				out.print(newtitle);
+				profile.setTitle(newtitle);
 				profile.setDepartment(newdepartment);
-				profile.setTitle("student");
 				profiledao.attachDirty(profile);
 				profiledao.getSession().beginTransaction().commit();
-				out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong> 添加成功！ </strong><br></div>");
+				out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong> 教师添加成功！ </strong><br></div>");
 			} else {
-				out.print("<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>注意! </strong> 学号已存在，不要重复添加！</div>");
+				out.print("<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>注意! </strong> 编号已存在，不要重复添加！</div>");
 			}
 		} catch (Exception e) {
 		}

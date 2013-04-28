@@ -40,6 +40,11 @@
     <servlet-name>AddStudent</servlet-name>
     <servlet-class>admin.AddStudent</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddTeacher</servlet-name>
+    <servlet-class>admin.AddTeacher</servlet-class>
+  </servlet>
+
 
 
 
@@ -85,6 +90,10 @@
   <servlet-mapping>
     <servlet-name>AddStudent</servlet-name>
     <url-pattern>/admin/addstudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddTeacher</servlet-name>
+    <url-pattern>/admin/addteacher</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

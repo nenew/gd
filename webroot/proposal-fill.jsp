@@ -106,26 +106,26 @@
 					%>
 					<form name="proposal" action="proposal-update" method="post">
 						<div>
-							资料调研分析：<br>
+							<br>资料调研分析：<br> <br>
 							<textarea name="proposalanalysis" id="1"
 								onfocus="tinyMCE.get('1').show();tinyMCE.get('1').focus();tinyMCE.get('2').hide();tinyMCE.get('3').hide();"
 								style="width:100%;height:100px;">
 								<%
 									if (proposal.getProposalanalysis() == null) {
-																						out.print("尚未填写");
+																									out.print("尚未填写");
 																					}
-															else {
-																out.print(proposal.getProposalanalysis());
-															}
-																					//if (proposal.getProposalanalysis().equals("")) {
-																					//	out.print("N''''''''''''空'''''''''''N");
-																					//}
-																					//out.print(proposal.getProposalanalysis());
+																						else {
+																								out.print(proposal.getProposalanalysis());
+																					}
+																				//if (proposal.getProposalanalysis().equals("")) {
+																				//	out.print("N''''''''''''空'''''''''''N");
+																				//}
+																				//out.print(proposal.getProposalanalysis());
 								%>
 							</textarea>
 						</div>
 						<div>
-							设计方案及预期目标：<br>
+							<br>设计方案及预期目标：<br> <br>
 							<textarea name="proposalcontent" id="2"
 								onfocus="tinyMCE.get('2').show();tinyMCE.get('2').focus();tinyMCE.get('1').hide();tinyMCE.get('3').hide();"
 								style="width:100%;height:100px;">
@@ -137,7 +137,7 @@
 
 
 						<div>
-							所需仪器：<br>
+							<br>所需仪器：<br> <br>
 							<textarea name="proposalfacility" id="3"
 								onfocus="tinyMCE.get('3').show();tinyMCE.get('3').focus();tinyMCE.get('1').hide();tinyMCE.get('2').hide();"
 								style="width:100%;height:100px;">
@@ -146,7 +146,7 @@
 								%>								
 								</textarea>
 						</div>
-						<input name="userid" type="hidden" value="1" />
+						<input name="userid" type="hidden" value="1" /> <br> <br>
 						<button class="btn btn-primary" type="submit">提交</button>
 					</form>
 				</div>
@@ -170,7 +170,7 @@
 							"advlist autolink lists link image charmap print preview anchor",
 							"searchreplace visualblocks code fullscreen",
 							"insertdatetime media table contextmenu paste" ],
-					toolbar : "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+					toolbar : "insertfile undo redo | styleselect | bold italic fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
 					autosave_ask_before_unload : false,
 					max_height : 200,
 					min_height : 160,
@@ -183,9 +183,10 @@
 			console.log("test");
 			if (--i == 0) {
 				try {
-					tinyMCE.get('1').hide();
-					tinyMCE.get('2').hide();
-					tinyMCE.get('3').hide();
+					//	      			tinyMCE.get('1').hide();
+					//					tinyMCE.get('2').hide();
+					//					tinyMCE.get('3').hide();
+
 					console.log("hidedone");
 				} catch (error) {
 
