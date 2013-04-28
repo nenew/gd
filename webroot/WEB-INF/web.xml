@@ -36,6 +36,11 @@
     <servlet-name>MessageSent</servlet-name>
     <servlet-class>servlet.MessageSent</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddStudent</servlet-name>
+    <servlet-class>admin.AddStudent</servlet-class>
+  </servlet>
+
 
 
 
@@ -76,6 +81,10 @@
   <servlet-mapping>
     <servlet-name>MessageSent</servlet-name>
     <url-pattern>/message-sent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddStudent</servlet-name>
+    <url-pattern>/admin/addstudent</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
