@@ -57,43 +57,59 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a></li>
+							<li><a href="main.jsp">概况信息</a>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="teacherset.jsp">教师分配</a></li>
-									<li><a href="dutyset.jsp">毕设配置</a></li>
-								</ul></li>
+									<li><a href="teacherset.jsp">教师分配</a>
+									</li>
+									<li><a href="dutyset.jsp">毕设配置</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent active"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">管理功能<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="addstudent.jsp">添加学生</a></li>
-									<li class="active"><a href="delstudent.jsp">学生管理</a></li>
-									<li><a href="addteacher.jsp">添加教师</a></li>
-									<li><a href="delteacher.jsp">删除教师</a></li>
-									<li><a href="addadmin.jsp">添加管理员</a></li>
-									<li><a href="deladmin.jsp">删除管理员</a></li>
-								</ul></li>
+									<li><a href="addstudent.jsp">添加学生</a>
+									</li>
+									<li class="active"><a href="delstudent.jsp">学生管理</a>
+									</li>
+									<li><a href="addteacher.jsp">添加教师</a>
+									</li>
+									<li><a href="delteacher.jsp">教师管理</a>
+									</li>
+									<li><a href="addadmin.jsp">添加管理员</a>
+									</li>
+									<li><a href="deladmin.jsp">管理员管理</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="message.jsp">发信息</a></li>
-									<li><a href="inbox.jsp">收件箱</a></li>
-									<li><a href="outbox.jsp">发件箱</a></li>
-								</ul></li>
+									<li><a href="message.jsp">发信息</a>
+									</li>
+									<li><a href="inbox.jsp">收件箱</a>
+									</li>
+									<li><a href="outbox.jsp">发件箱</a>
+									</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -109,23 +125,23 @@
 					<form class="form-horizontal">
 						<div class="control-group">
 							<div class="controls">
-								<label style="display:inline-block;margin-right:5px;">专业：</label><select>
-									<option>电子信息工程</option>
-									<option>电子信息科学与技术</option>
+								<label style="display:inline-block;margin-right:5px;">专业：</label>
+								<select id="inputdepartment">
+									<option value="电子信息工程" selected="selected">电子信息工程</option>
+									<option value="电子信息科学与技术">电子信息科学与技术</option>
 									<option>电气工程及其自动化</option>
 									<option>4</option>
 									<option>5</option>
 								</select> <label
 									style="display:inline-block;margin-left:20px;margin-right:5px;">年级：</label>
-								<select>
-									<option>电子信息工程</option>
-									<option>电子信息科学与技术</option>
+								<select id="inputgrade">
+									<option value="2009" selected="selected">2009</option>
+									<option value="2010">2010</option>
 									<option>电气工程及其自动化</option>
 									<option>4</option>
 									<option>5</option>
 								</select> <label style="display:inline-block;margin-left:20px;"><button
-										class="btn">查看</button>
-								</label>
+										class="btn" id="ajax" type="button">查看</button> </label>
 							</div>
 						</div>
 					</form>
@@ -144,16 +160,16 @@
 								<th style="width:20%;">删除</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="contentbody">
 							<%
 								while (iterator.hasNext()) {
-								main = (Main) iterator.next();
-								out.print("<tr><td><span class=\"badge\">" + index++ + "</span>");
-								out.print("<td>" + main.getNum() + "</td>");
-								out.print("<td>" + main.getName() + "</td>");
-								out.print("<td>" + main.getPassword() + "</td>");
-								out.print("<td>" + "<a class=\"msg\" msgnum=\""+ "\" msgsender=\""+"\" msgdate=\""+"\" href=\"#myModal\" role=\"button\" data-toggle=\"modal\"><strong>查看信息</strong></a>" + "</td></tr>");
-											}
+																		main = (Main) iterator.next();
+																		out.print("<tr><td><span class=\"badge\">" + index++ + "</span>");
+																		out.print("<td>" + main.getNum() + "</td>");
+																		out.print("<td>" + main.getName() + "</td>");
+																		out.print("<td>" + main.getPassword() + "</td>");
+																		out.print("<td>" + "<a class=\"msg\" msgnum=\""+ "\" msgsender=\""+"\" msgdate=\""+"\" href=\"#myModal\" role=\"button\" data-toggle=\"modal\"><strong>查看信息</strong></a>" + "</td></tr>");
+																					}
 							%>
 							<tr>
 								<td></td>
@@ -166,23 +182,6 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h3 id="myModalLabel">信息内容</h3>
-				</div>
-				<div class="modal-body">
-					<p></p>
-				</div>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-				</div>
-			</div>
-
-		</div>
 	</div>
 	<div id="footer">
 		<div class="footext">Copyright © 2013 nenew.net. All Rigths
@@ -193,48 +192,27 @@
 	<script src="js/bootstrap.js"></script>
 	<script src="js/myscript.js"></script>
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('.msg')
-									.click(
-											function(e) {
-												e.preventDefault();
-												var data = {
-													"msgnum" : $(this).attr(
-															"msgnum")
-												};
-												var msgsender = $(this).attr(
-														"msgsender");
-												var msgdate = $(this).attr(
-														"msgdate");
-												$
-														.post(
-																'message-get',
-																data,
-																function(
-																		data,
-																		textStatus,
-																		jqXHR) {
-																	if (jqXHR
-																			.success(function() {
-																				$(
-																						'.modal-body')
-																						.html(
-																								"<p>发送时间:"
-																										+ msgdate
-																										+ "</p><p>发件人:"
-																										+ msgsender
-																										+ "</p><p>信息内容:<br><br>"
-																										+ data
-																										+ "</p>");
-																			}))
-																		;
-																});
+		$(document).ready(
+				function() {
+					$('#ajax').click(
+							function() {
+								$('#ajax').addClass("disabled").text("查询中...");
+								var data = {
+									"inputdepartment" : $(
+											'select[id="inputdepartment"]')
+											.val(),
+									"inputgrade" : $('select[id="inputgrade"]')
+											.val()
+								};
+								$.post('delstudent', data, function(data,
+										textStatus, jqXHR) {
+									$('#contentbody').html(data);
+									$('#ajax').removeClass("disabled").text(
+											"查看");
 
-											});
-
-						});
+								});
+							});
+				});
 	</script>
 </body>
 </html>

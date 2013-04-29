@@ -19,11 +19,11 @@ public class count {
 		ProfileDAO profiledao = new ProfileDAO();
 		Profile profile = new Profile();
 		System.out.print(profiledao.count("department", "电子信息工程")+"\n");
-		List<?> l =profiledao.page("department", "电子信息工程","0");
+		List<?> l =profiledao.page("department", "电子信息工程","grade","2009");
 		java.util.Iterator<?> i = l.iterator();
 		while(i.hasNext()){
 			profile=(Profile)i.next();
-			System.out.print("\n"+profile.getProfileid()+"\n");
+			System.out.print("\n"+profile.getMain().getName()+"\n");
 			
 		}
 	}

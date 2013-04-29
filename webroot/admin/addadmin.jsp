@@ -80,15 +80,15 @@
 								<ul class="dropdown-menu">
 									<li><a href="addstudent.jsp">添加学生</a>
 									</li>
-									<li><a href="delstudent.jsp">删除学生</a>
+									<li><a href="delstudent.jsp">学生管理</a>
 									</li>
 									<li><a href="addteacher.jsp">添加教师</a>
 									</li>
-									<li><a href="delteacher.jsp">删除教师</a>
+									<li><a href="delteacher.jsp">教师管理</a>
 									</li>
 									<li class="active"><a href="addadmin.jsp">添加管理员</a>
 									</li>
-									<li><a href="deladmin.jsp">删除管理员</a>
+									<li><a href="deladmin.jsp">管理员管理</a>
 									</li>
 								</ul>
 							</li>
