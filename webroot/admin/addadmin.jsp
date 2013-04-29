@@ -28,7 +28,7 @@
 <title>添加管理员——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/addteacher.css" rel="stylesheet">
+<link href="css/addadmin.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
