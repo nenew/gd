@@ -28,7 +28,7 @@
 <title>添加教师——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/addstudent.css" rel="stylesheet">
+<link href="css/addteacher.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -104,8 +104,6 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="profile.jsp">信息维护</a>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -130,7 +128,7 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">学号：</label>
+									<label class="control-label">编号：</label>
 									<div class="controls">
 										<input type="number" id="inputnum" name="inputnum"
 											placeholder="输入教师编号"> <span>(不可更改)</span>
@@ -188,7 +186,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#ajax').click(function() {
-				$('#send').addClass("disabled").text("添加中...");
+				$('#ajax').addClass("disabled").text("添加中...");
 				var data = {
 					"inputname" : $('input[name="inputname"]').val(),
 					"inputnum" : $('input[name="inputnum"]').val(),
@@ -197,7 +195,7 @@
 					"inputdepartment" : $('select[name="inputdepartment"]').val()
 				};
 				$.post('addteacher', data, function(data, textStatus, jqXHR) {
-					$('#info').html(data).slideDown().delay(2500).slideUp();
+					$('#info').html(data).slideDown(function(){$('#ajax').removeClass("disabled").text("继续添加");}).delay(2500).slideUp();
 
 				});
 

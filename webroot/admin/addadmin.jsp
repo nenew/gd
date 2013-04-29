@@ -25,10 +25,10 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>添加学生——毕业设计在线管理系统</title>
+<title>添加管理员——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/addstudent.css" rel="stylesheet">
+<link href="css/addteacher.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -78,7 +78,7 @@
 								class="dropdown-toggle" data-toggle="dropdown">管理功能<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="addstudent.jsp">添加学生</a>
+									<li><a href="addstudent.jsp">添加学生</a>
 									</li>
 									<li><a href="delstudent.jsp">删除学生</a>
 									</li>
@@ -86,7 +86,7 @@
 									</li>
 									<li><a href="delteacher.jsp">删除教师</a>
 									</li>
-									<li><a href="addadmin.jsp">添加管理员</a>
+									<li class="active"><a href="addadmin.jsp">添加管理员</a>
 									</li>
 									<li><a href="deladmin.jsp">删除管理员</a>
 									</li>
@@ -111,27 +111,27 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">添加学生</div>
+				<div class="span12 contentitle">添加管理员</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow">
 					<div class="boxhead">填写信息</div>
 					<div class="boxcontent clearfix">
 						<div id="formcontainer">
-							<form class="form-horizontal" id="proposal" action="addstudent"
+							<form class="form-horizontal" id="proposal" action="addadmin"
 								method="post">
 								<div class="control-group">
 									<label class="control-label">姓名：</label>
 									<div class="controls">
 										<input type="text" id="inputname" name="inputname"
-											placeholder="输入学生姓名"> <span>(不可更改)</span>
+											placeholder="输入管理员姓名"> <span>(不可更改)</span>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label">学号：</label>
+									<label class="control-label">编号：</label>
 									<div class="controls">
 										<input type="number" id="inputnum" name="inputnum"
-											placeholder="输入学生学号"> <span>(不可更改)</span>
+											placeholder="输入管理员编号"> <span>(不可更改)</span>
 									</div>
 								</div>
 								<div class="control-group">
@@ -139,30 +139,6 @@
 									<div class="controls">
 										<input type="number" id="inputpassword" name="inputpassword"
 											placeholder="输入初始密码">
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">入学年份：</label>
-									<div class="controls">
-										<select name="inputgrade">
-											<option value="2009" selected="selected">2009年</option>
-											<%
-												int grade = 2010;
-												for(;grade <= 2015;grade++){
-													out.print("<option value=\""+grade+"\">"+grade+"年</option>");
-												}
-											%>
-										</select>
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">专业：</label>
-									<div class="controls">
-										<select name="inputdepartment">
-											<option value="电子信息工程" selected="selected">电子信息工程</option>
-											<option value="电子信息科学与技术">电子信息科学与技术</option>
-											<option value="电气工程及其自动化">电气工程及其自动化</option>
-										</select>
 									</div>
 								</div>
 								<div class="control-group">
@@ -194,11 +170,9 @@
 				var data = {
 					"inputname" : $('input[name="inputname"]').val(),
 					"inputnum" : $('input[name="inputnum"]').val(),
-					"inputpassword" : $('input[name="inputpassword"]').val(),
-					"inputgrade" : $('select[name="inputgrade"]').val(),
-					"inputdepartment" : $('select[name="inputdepartment"]').val()
+					"inputpassword" : $('input[name="inputpassword"]').val()
 				};
-				$.post('addstudent', data, function(data, textStatus, jqXHR) {
+				$.post('addadmin', data, function(data, textStatus, jqXHR) {
 					$('#info').html(data).slideDown(function(){$('#ajax').removeClass("disabled").text("继续添加");}).delay(2500).slideUp();
 
 				});

@@ -130,8 +130,6 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="profile.jsp">信息维护</a>
-							</li>
 						</ul>
 					</div>
 				</div>

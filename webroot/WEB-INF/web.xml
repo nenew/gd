@@ -44,6 +44,11 @@
     <servlet-name>AddTeacher</servlet-name>
     <servlet-class>admin.AddTeacher</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>AddAdmin</servlet-name>
+    <servlet-class>admin.AddAdmin</servlet-class>
+  </servlet>
+
 
 
 
@@ -94,6 +99,10 @@
   <servlet-mapping>
     <servlet-name>AddTeacher</servlet-name>
     <url-pattern>/admin/addteacher</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddAdmin</servlet-name>
+    <url-pattern>/admin/addadmin</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

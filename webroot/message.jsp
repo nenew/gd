@@ -22,10 +22,6 @@
 	Proposal proposal = new Proposal();
 	proposaldao.getSession().clear();
 	proposaldao.getSession().beginTransaction().commit();
-	Iterator<?> iterator = proposaldao.findByStudentid(id).iterator();
-	while (iterator.hasNext()) {
-		proposal = (Proposal) iterator.next();
-	}
 %>
 
 <!DOCTYPE HTML>
@@ -119,10 +115,16 @@
 							<label class="control-label">收件人：</label>
 							<div class="controls">
 								<select name="receiver">
-									<%
+									<%	
+										Iterator<?> iterator = proposaldao.findByStudentid(id).iterator();
+										if(iterator.hasNext()!=false){
+										while (iterator.hasNext()) {
+												proposal =(Proposal) iterator.next();
+										}
+										
 										out.print("<option value=\"" + proposal.getMain().getId()
 										+ "\" selected=\"selected\">"
-										+ proposal.getMain().getName() + "</option>");
+										+ proposal.getMain().getName() + "</option>");}
 										MainDAO maindao = new MainDAO();
 										Iterator<?> admins = maindao.findByPriority(3).iterator();
 										while (admins.hasNext()) {
