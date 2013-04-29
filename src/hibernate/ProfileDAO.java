@@ -156,4 +156,61 @@ public class ProfileDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+
+	public Integer count() {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(m) from Profile as m";
+			Query queryObject = getSession().createQuery(queryString);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+
+	public Integer count(String propertyName, Object value) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(m) from Profile as m where m."
+					+ propertyName + "= ?";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+
+	public List <?>page(String propertyName, Object value) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select m from Profile as m where m."
+					+ propertyName + "= ?";
+			Query queryObject = getSession().createQuery(queryString).setFirstResult(0).setMaxResults(10);
+			queryObject.setParameter(0, value);
+			List <?>s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	public List <?>page(String propertyName, Object value ,String index) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select m from Profile as m where m."
+					+ propertyName + "= ?";
+			Query queryObject = getSession().createQuery(queryString).setFirstResult(Integer.parseInt(index)).setMaxResults(10);
+			queryObject.setParameter(0, value);
+			List <?>s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
 }
