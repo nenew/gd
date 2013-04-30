@@ -56,6 +56,11 @@
     <servlet-name>CountStudent</servlet-name>
     <servlet-class>admin.CountStudent</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Rename</servlet-name>
+    <servlet-class>admin.Rename</servlet-class>
+  </servlet>
+
 
 
 
@@ -121,6 +126,10 @@
   <servlet-mapping>
     <servlet-name>CountStudent</servlet-name>
     <url-pattern>/admin/countstudent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Rename</servlet-name>
+    <url-pattern>/admin/rename</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

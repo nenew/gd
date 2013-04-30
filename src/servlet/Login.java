@@ -61,7 +61,12 @@ public class Login extends HttpServlet {
 					session.setAttribute("islogin", "yes");
 					if (remember == null)
 						out.print("remember is null");
-					response.sendRedirect("main.jsp");
+					if(main.getPriority()==1){
+						response.sendRedirect("main.jsp");return;}
+					if(main.getPriority()==2){
+						response.sendRedirect("teacher/main.jsp");return;}
+					if(main.getPriority()==3){
+						response.sendRedirect("admin/main.jsp");return;}
 				} else {
 					response.sendRedirect("index.jsp");
 				}

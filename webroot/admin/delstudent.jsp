@@ -123,19 +123,21 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well liststudent">
-					<table class="table table-hover">
+					<table class="table table-hover" style="text-align:center;">
 						<thead>
 							<tr>
 								<th style="width:15%;">序号</th>
-								<th style="width:25%;">学号</th>
+								<th style="width:20%;">学号</th>
 								<th style="width:20%;">姓名</th>
-								<th style="width:20%;">密码重置</th>
-								<th style="width:20%;">删除</th>
+								<th style="width:15%;">修改姓名</th>
+								<th style="width:15%;">密码重置</th>
+								<th style="width:15%;">删除</th>
 							</tr>
 						</thead>
 						<tbody id="contentbody">
 
 							<tr>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -147,6 +149,34 @@
 					<div id="pager"></div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div id="renameModal" class="modal hide fade" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel">修改姓名</h3>
+		</div>
+		<div class="modal-body">
+			<form class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label">原姓名</label>
+					<div class="controls">
+						<input type="text" disabled="" id="oldname">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">新姓名</label>
+					<div class="controls">
+						<input type="text" placeholder="输入新姓名" id="newname">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+			<button class="btn btn-primary" id="savename">保存</button>
 		</div>
 	</div>
 	<div id="footer">
@@ -211,6 +241,24 @@
 				}
 
 			});
+		});
+	</script>
+	<script>
+		var nametarget;
+		$(document).on('click', 'button[class="renamefunction"]', function() {
+			$('#oldname').attr("value", $(this).attr("name")).attr("mainid", $(this).attr("mainid"));
+			nametarget = $(this);
+		});
+		$(document).on('click', '#savename', function() {
+			var data = {
+				"mainid" : $('#oldname').attr("mainid"),
+				"newname" : $('#newname').val()	};
+			$.post('rename', data, function(data,
+										textStatus, jqXHR) {
+									$('#savename').text(data).addClass="disabled";
+									nametarget.parent().prev().text($('#newname').val());
+
+								});
 		});
 	</script>
 	<!-- 	<script>

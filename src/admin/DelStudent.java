@@ -60,11 +60,14 @@ public class DelStudent extends HttpServlet {
 							+ "</span>");
 					out.print("<td>" + profile.getMain().getNum() + "</td>");
 					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td>" + profile.getMain().getPassword()
-							+ "</td>");
-					out.print("<td><a>del</a></td>");
+					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" class=\"renamefunction\" mainid=\""
+							+ profile.getMain().getId()
+							+ "\" name=\""
+							+ profile.getMain().getName() + "\"></button></td>");
+					out.print("<td><button type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
-				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 
 			} catch (Exception e) {
 				out.print(e);
@@ -81,11 +84,14 @@ public class DelStudent extends HttpServlet {
 							+ "</span>");
 					out.print("<td>" + profile.getMain().getNum() + "</td>");
 					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td>" + profile.getMain().getPassword()
-							+ "</td>");
-					out.print("<td><a>del</a></td>");
+					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" class=\"renamefunction\" mainid=\""
+							+ profile.getMain().getId()
+							+ "\" name=\""
+							+ profile.getMain().getName() + "\"></button></td>");
+					out.print("<td><button type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
-				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 
 			} catch (Exception e) {
 				out.print(e);
