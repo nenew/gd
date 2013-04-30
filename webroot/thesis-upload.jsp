@@ -174,7 +174,7 @@
 				;
 				if (xhr.readyState == 4 && xhr.status == 0) {
 						$('.progress').remove();
-						$('<a class=\"btn btn-primary\" onclick=\"upload(this);\" index=\"0\">上传文件</a>').insertBefore('.disabled');
+						$('<button class=\"btn btn-primary\" type=\"button\" onclick=\"upload(this);\" index=\"0\">上传文件</button>').insertBefore('.disabled');
 						$('.disabled').remove();
 					console.log("服务器无响应，上传失败！");
 				}
@@ -239,9 +239,9 @@
 											msg += "文件大小 : " + f.size
 													+ " KB<br>";
 											msg += "<p align=\"right\">";
-											msg += "<span><a class=\"btn btn-primary\" onclick=\"upload(this);\" index=\""
+											msg += "<span><button type=\"button\" class=\"btn btn-primary\" onclick=\"upload(this);\" index=\""
 													+ index
-													+ "\">上传文件</a></span>";
+													+ "\">上传文件</button></span>";
 
 											msg += "</p></div>";
 											document

@@ -41,30 +41,55 @@ public class DelStudent extends HttpServlet {
 				"priority");
 		String department = request.getParameter("inputdepartment");
 		String grade = request.getParameter("inputgrade");
+		String page = request.getParameter("inputpage");
 		if (priority != 3) {
 			out.print("无操作权限!");
 			return;
 		}
 		ProfileDAO profiledao = new ProfileDAO();
 		Profile profile = new Profile();
-		int index = 1;
-		try {
-			List<?> list = profiledao.page("department", department, "grade",
-					grade);
-			Iterator<?> iterator = list.iterator();
-			while (iterator.hasNext()) {
-				profile = (Profile) iterator.next();
-				out.print("<tr><td><span class=\"badge\">" + index++
-						+ "</span>");
-				out.print("<td>" + profile.getMain().getNum() + "</td>");
-				out.print("<td>" + profile.getMain().getName() + "</td>");
-				out.print("<td>" + profile.getMain().getPassword() + "</td>");
-				out.print("<td><a>del</a></td>");
-			}
-			out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+		if (page.equals("")) {
+			int index = 1;
+			try {
+				List<?> list = profiledao.page("department", department,
+						"grade", grade);
+				Iterator<?> iterator = list.iterator();
+				while (iterator.hasNext()) {
+					profile = (Profile) iterator.next();
+					out.print("<tr><td><span class=\"badge\">" + index++
+							+ "</span>");
+					out.print("<td>" + profile.getMain().getNum() + "</td>");
+					out.print("<td>" + profile.getMain().getName() + "</td>");
+					out.print("<td>" + profile.getMain().getPassword()
+							+ "</td>");
+					out.print("<td><a>del</a></td>");
+				}
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
 
-		} catch (Exception e) {
-			out.print(e);
+			} catch (Exception e) {
+				out.print(e);
+			}
+		} else {
+			int index = (Integer.parseInt(page)+1);
+			try {
+				List<?> list = profiledao.page("department", department,
+						"grade", grade,page);
+				Iterator<?> iterator = list.iterator();
+				while (iterator.hasNext()) {
+					profile = (Profile) iterator.next();
+					out.print("<tr><td><span class=\"badge\">" + index++
+							+ "</span>");
+					out.print("<td>" + profile.getMain().getNum() + "</td>");
+					out.print("<td>" + profile.getMain().getName() + "</td>");
+					out.print("<td>" + profile.getMain().getPassword()
+							+ "</td>");
+					out.print("<td><a>del</a></td>");
+				}
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
+
+			} catch (Exception e) {
+				out.print(e);
+			}
 		}
 
 	}

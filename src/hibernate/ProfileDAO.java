@@ -185,29 +185,66 @@ public class ProfileDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List <?>page(String propertyName1, Object value1,String propertyName2, Object value2 ) {
+	public Integer count(String propertyName1, Object value1,
+			String propertyName2, Object value2) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(m) from Profile as m where m."
+					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value1);
+			queryObject.setParameter(1, value2);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+
+	public List<?> page(String propertyName1, Object value1,
+			String propertyName2, Object value2) {
 		log.debug("Count Profile instance");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName1 + "= ? and m."+ propertyName2 + "= ?";
-			Query queryObject = getSession().createQuery(queryString).setFirstResult(0).setMaxResults(10);
+					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(0).setMaxResults(10);
 			queryObject.setParameter(0, value1);
 			queryObject.setParameter(1, value2);
-			List <?>s = (List<?>) queryObject.list();
+			List<?> s = (List<?>) queryObject.list();
 			return s;
 		} catch (RuntimeException re) {
 			log.error("count failed", re);
 			throw re;
 		}
 	}
-	public List <?>page(String propertyName, Object value ,String index) {
+	public List<?> page(String propertyName1, Object value1,
+			String propertyName2, Object value2,String index) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select m from Profile as m where m."
+					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
+			queryObject.setParameter(0, value1);
+			queryObject.setParameter(1, value2);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	public List<?> page(String propertyName, Object value, String index) {
 		log.debug("Count Profile instance");
 		try {
 			String queryString = "select m from Profile as m where m."
 					+ propertyName + "= ?";
-			Query queryObject = getSession().createQuery(queryString).setFirstResult(Integer.parseInt(index)).setMaxResults(10);
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
 			queryObject.setParameter(0, value);
-			List <?>s = (List<?>) queryObject.list();
+			List<?> s = (List<?>) queryObject.list();
 			return s;
 		} catch (RuntimeException re) {
 			log.error("count failed", re);
