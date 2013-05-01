@@ -184,6 +184,21 @@ public class ProfileDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	public Integer teachercount(String propertyName, Object value) {
+		log.debug("Count teacher");
+		try {
+			String queryString = "select count(m) from Profile as m where m."
+					+ propertyName + "= ? and m.title != 'student'";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
 
 	public Integer count(String propertyName1, Object value1,
 			String propertyName2, Object value2) {
@@ -204,7 +219,7 @@ public class ProfileDAO extends BaseHibernateDAO {
 
 	public List<?> page(String propertyName1, Object value1,
 			String propertyName2, Object value2) {
-		log.debug("Count Profile instance");
+		log.debug("学生分页");
 		try {
 			String queryString = "select m from Profile as m where m."
 					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
@@ -221,7 +236,7 @@ public class ProfileDAO extends BaseHibernateDAO {
 	}
 	public List<?> page(String propertyName1, Object value1,
 			String propertyName2, Object value2,String index) {
-		log.debug("Count Profile instance");
+		log.debug("学生分页");
 		try {
 			String queryString = "select m from Profile as m where m."
 					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
@@ -236,11 +251,26 @@ public class ProfileDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-	public List<?> page(String propertyName, Object value, String index) {
-		log.debug("Count Profile instance");
+	public List<?> page(String propertyName, Object value) {
+		log.debug("教师分页");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName + "= ?";
+					+ propertyName + "= ? and m.title != 'student'";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(0).setMaxResults(10);
+			queryObject.setParameter(0, value);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	public List<?> page(String propertyName, Object value, String index) {
+		log.debug("教师分页");
+		try {
+			String queryString = "select m from Profile as m where m."
+					+ propertyName + "= ? and m.title != 'student'";
 			Query queryObject = getSession().createQuery(queryString)
 					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
 			queryObject.setParameter(0, value);

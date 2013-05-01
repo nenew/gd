@@ -68,6 +68,21 @@
     <servlet-name>DelFunction</servlet-name>
     <servlet-class>admin.DelFunction</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DelTeacher</servlet-name>
+    <servlet-class>admin.DelTeacher</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CountTeacher</servlet-name>
+    <servlet-class>admin.CountTeacher</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ChangeTitle</servlet-name>
+    <servlet-class>admin.ChangeTitle</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -148,6 +163,18 @@
   <servlet-mapping>
     <servlet-name>DelFunction</servlet-name>
     <url-pattern>/admin/delfunction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelTeacher</servlet-name>
+    <url-pattern>/admin/delteacher</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CountTeacher</servlet-name>
+    <url-pattern>/admin/countteacher</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangeTitle</servlet-name>
+    <url-pattern>/admin/changetitle</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
