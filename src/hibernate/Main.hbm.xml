@@ -45,43 +45,43 @@
                 <comment>是否填写安全问题</comment>
             </column>
         </property>
-        <set name="securities" inverse="true">
+        <set name="securities" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" unique="true" />
             </key>
             <one-to-many class="hibernate.Security" />
         </set>
-        <set name="processes" inverse="true">
+        <set name="processes" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" unique="true" />
             </key>
             <one-to-many class="hibernate.Process" />
         </set>
-        <set name="proposals" inverse="true">
+        <set name="proposals" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" />
             </key>
             <one-to-many class="hibernate.Proposal" />
         </set>
-        <set name="managements" inverse="true">
+        <set name="managements" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" unique="true" />
             </key>
             <one-to-many class="hibernate.Management" />
         </set>
-        <set name="thesises" inverse="true">
+        <set name="thesises" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" unique="true" />
             </key>
             <one-to-many class="hibernate.Thesis" />
         </set>
-        <set name="profiles" inverse="true">
+        <set name="profiles" inverse="true" cascade="delete">
             <key>
                 <column name="ID" not-null="true" unique="true" />
             </key>
             <one-to-many class="hibernate.Profile" />
         </set>
-        <set name="messages" inverse="true">
+        <set name="messages" inverse="true" cascade="delete">
             <key>
                 <column name="FROMID" not-null="true">
                     <comment>发件人</comment>

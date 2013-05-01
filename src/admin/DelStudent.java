@@ -48,6 +48,8 @@ public class DelStudent extends HttpServlet {
 		}
 		ProfileDAO profiledao = new ProfileDAO();
 		Profile profile = new Profile();
+		profiledao.getSession().clear();
+		profiledao.getSession().beginTransaction().commit();
 		if (page.equals("")) {
 			int index = 1;
 			try {
@@ -60,12 +62,12 @@ public class DelStudent extends HttpServlet {
 							+ "</span>");
 					out.print("<td>" + profile.getMain().getNum() + "</td>");
 					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" class=\"renamefunction\" mainid=\""
+					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" type=\"button\" class=\"renamefunction\" mainid=\""
 							+ profile.getMain().getId()
 							+ "\" name=\""
 							+ profile.getMain().getName() + "\"></button></td>");
-					out.print("<td><button type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button href=\"#passwordModal\" data-toggle=\"modal\" type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button href=\"#delModal\" data-toggle=\"modal\" type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
 				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 
@@ -84,12 +86,12 @@ public class DelStudent extends HttpServlet {
 							+ "</span>");
 					out.print("<td>" + profile.getMain().getNum() + "</td>");
 					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" class=\"renamefunction\" mainid=\""
+					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" type=\"button\" class=\"renamefunction\" mainid=\""
 							+ profile.getMain().getId()
 							+ "\" name=\""
 							+ profile.getMain().getName() + "\"></button></td>");
-					out.print("<td><button type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button href=\"#passwordModal\" data-toggle=\"modal\" type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					out.print("<td><button href=\"#delModal\" data-toggle=\"modal\" type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
 				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 

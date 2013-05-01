@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class Rename extends HttpServlet {
+public class DelFunction extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Rename() {
+	public DelFunction() {
 		super();
 	}
 
@@ -39,7 +39,6 @@ public class Rename extends HttpServlet {
 		Integer priority = (Integer) request.getSession().getAttribute(
 				"priority");
 		String mainid = request.getParameter("mainid");
-		String newname = request.getParameter("newname");
 		if (priority != 3) {
 			out.print("无操作权限!");
 			return;
@@ -49,10 +48,9 @@ public class Rename extends HttpServlet {
 		try {
 			Integer id = Integer.parseInt(mainid);
 			main = maindao.findById(id);
-			main.setName(newname);
-			maindao.attachDirty(main);
+			maindao.delete(main);
 			maindao.getSession().beginTransaction().commit();
-			out.print("修改成功");
+			out.print("删除成功");
 			
 		} catch (Exception e) {
 			out.print(e);

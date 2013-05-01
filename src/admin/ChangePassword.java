@@ -5,19 +5,18 @@ import hibernate.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class Rename extends HttpServlet {
+public class ChangePassword extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Rename() {
+	public ChangePassword() {
 		super();
 	}
 
@@ -39,7 +38,7 @@ public class Rename extends HttpServlet {
 		Integer priority = (Integer) request.getSession().getAttribute(
 				"priority");
 		String mainid = request.getParameter("mainid");
-		String newname = request.getParameter("newname");
+		String newpassword = request.getParameter("newpassword");
 		if (priority != 3) {
 			out.print("无操作权限!");
 			return;
@@ -49,7 +48,7 @@ public class Rename extends HttpServlet {
 		try {
 			Integer id = Integer.parseInt(mainid);
 			main = maindao.findById(id);
-			main.setName(newname);
+			main.setPassword(newpassword);
 			maindao.attachDirty(main);
 			maindao.getSession().beginTransaction().commit();
 			out.print("修改成功");
