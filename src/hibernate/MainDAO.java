@@ -166,18 +166,20 @@ public class MainDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+
 	public Integer count() {
 		log.debug("Count Main instance");
 		try {
-			String queryString = "select count(m) from Main as m";
+			String queryString = "select count(m) from Main as m where m.priority = 3";
 			Query queryObject = getSession().createQuery(queryString);
-			Number s=(Number) queryObject.list().get(0);
+			Number s = (Number) queryObject.list().get(0);
 			return s.intValue();
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
 			throw re;
 		}
 	}
+
 	public Integer count(String propertyName, Object value) {
 		log.debug("Count Main instance");
 		try {
@@ -185,10 +187,38 @@ public class MainDAO extends BaseHibernateDAO {
 					+ propertyName + "= ?";
 			Query queryObject = getSession().createQuery(queryString);
 			queryObject.setParameter(0, value);
-			Number s=(Number) queryObject.list().get(0);
+			Number s = (Number) queryObject.list().get(0);
 			return s.intValue();
 		} catch (RuntimeException re) {
 			log.error("attach failed", re);
+			throw re;
+		}
+	}
+
+	public List<?> page() {
+		log.debug("管理员分页");
+		try {
+			String queryString = "select m from Main as m where m.priority= 3";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(0).setMaxResults(10);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+
+	public List<?> page(String index) {
+		log.debug("管理员分页");
+		try {
+			String queryString = "select m from Main as m where m.priority= 3";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
 			throw re;
 		}
 	}

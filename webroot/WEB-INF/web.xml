@@ -80,6 +80,16 @@
     <servlet-name>ChangeTitle</servlet-name>
     <servlet-class>admin.ChangeTitle</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DelAdmin</servlet-name>
+    <servlet-class>admin.DelAdmin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CountAdmin</servlet-name>
+    <servlet-class>admin.CountAdmin</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -175,6 +185,14 @@
   <servlet-mapping>
     <servlet-name>ChangeTitle</servlet-name>
     <url-pattern>/admin/changetitle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DelAdmin</servlet-name>
+    <url-pattern>/admin/deladmin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CountAdmin</servlet-name>
+    <url-pattern>/admin/countadmin</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
