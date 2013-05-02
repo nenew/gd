@@ -18,5 +18,10 @@
                 <comment>论文数目</comment>
             </column>
         </property>
+        <property name="permission" type="boolean">
+            <column name="permission" not-null="true">
+                <comment>是否允许</comment>
+            </column>
+        </property>
     </class>
 </hibernate-mapping>

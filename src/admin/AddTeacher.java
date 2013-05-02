@@ -53,6 +53,8 @@ public class AddTeacher extends HttpServlet {
 			Main main = new Main();
 			ProfileDAO profiledao = new ProfileDAO();
 			Profile profile = new Profile();
+			ManagementDAO managementdao = new ManagementDAO();
+			Management management = new Management();
 			Iterator<?> iterator = maindao.findByNum(newnum).iterator();
 			if (iterator.hasNext() == false) {
 				main.setName(newname);
@@ -68,6 +70,10 @@ public class AddTeacher extends HttpServlet {
 				profile.setDepartment(newdepartment);
 				profiledao.attachDirty(profile);
 				profiledao.getSession().beginTransaction().commit();
+				management.setMain(main);
+				management.setPermission(false);
+				managementdao.attachDirty(management);
+				managementdao.getSession().beginTransaction().commit();
 				out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong> 教师添加成功！ </strong><br></div>");
 			} else {
 				out.print("<div class=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>注意! </strong> 编号已存在，不要重复添加！</div>");

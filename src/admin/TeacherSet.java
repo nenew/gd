@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class DelTeacher extends HttpServlet {
+public class TeacherSet extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public DelTeacher() {
+	public TeacherSet() {
 		super();
 	}
 
@@ -65,10 +65,8 @@ public class DelTeacher extends HttpServlet {
 							+ "\" name=\""
 							+ profile.getMain().getName() + "\"></button></td>");
 					out.print("<td><button href=\"#changetitleModal\" data-toggle=\"modal\" type=\"button\" class=\"changetitlefunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button href=\"#passwordModal\" data-toggle=\"modal\" type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button href=\"#delModal\" data-toggle=\"modal\" type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
-				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
 
 			} catch (Exception e) {
 				out.print(e);
@@ -89,10 +87,8 @@ public class DelTeacher extends HttpServlet {
 							+ "\" name=\""
 							+ profile.getMain().getName() + "\"></button></td>");
 					out.print("<td><button href=\"#changetitleModal\" data-toggle=\"modal\" type=\"button\" class=\"changetitlefunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button href=\"#passwordModal\" data-toggle=\"modal\" type=\"button\" class=\"passwordfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
-					out.print("<td><button href=\"#delModal\" data-toggle=\"modal\" type=\"button\" class=\"delfunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
 				}
-				out.print("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
 
 			} catch (Exception e) {
 				out.print(e);

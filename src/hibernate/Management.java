@@ -11,6 +11,7 @@ public class Management implements java.io.Serializable {
 	private Integer managementid;
 	private Main main;
 	private Integer limitnum;
+	private boolean permission;
 
 	// Constructors
 
@@ -19,14 +20,16 @@ public class Management implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Management(Main main) {
+	public Management(Main main, boolean permission) {
 		this.main = main;
+		this.permission = permission;
 	}
 
 	/** full constructor */
-	public Management(Main main, Integer limitnum) {
+	public Management(Main main, Integer limitnum, boolean permission) {
 		this.main = main;
 		this.limitnum = limitnum;
+		this.permission = permission;
 	}
 
 	// Property accessors
@@ -53,6 +56,14 @@ public class Management implements java.io.Serializable {
 
 	public void setLimitnum(Integer limitnum) {
 		this.limitnum = limitnum;
+	}
+
+	public boolean getPermission() {
+		return this.permission;
+	}
+
+	public void setPermission(boolean permission) {
+		this.permission = permission;
 	}
 
 }

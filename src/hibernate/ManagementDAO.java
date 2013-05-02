@@ -24,6 +24,7 @@ public class ManagementDAO extends BaseHibernateDAO {
 			.getLogger(ManagementDAO.class);
 	// property constants
 	public static final String LIMITNUM = "limitnum";
+	public static final String PERMISSION = "permission";
 
 	public void save(Management transientInstance) {
 		log.debug("saving Management instance");
@@ -90,6 +91,10 @@ public class ManagementDAO extends BaseHibernateDAO {
 
 	public List findByLimitnum(Object limitnum) {
 		return findByProperty(LIMITNUM, limitnum);
+	}
+
+	public List findByPermission(Object permission) {
+		return findByProperty(PERMISSION, permission);
 	}
 
 	public List findAll() {

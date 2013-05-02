@@ -18,10 +18,10 @@
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
 	"priority");
-	ProposalDAO proposaldao = new ProposalDAO();
-	Proposal proposal = new Proposal();
-	proposaldao.getSession().clear();
-	proposaldao.getSession().beginTransaction().commit();
+	MainDAO maindao = new MainDAO();
+	Main main = new Main();
+	maindao.getSession().clear();
+	maindao.getSession().beginTransaction().commit();
 %>
 
 <!DOCTYPE HTML>
@@ -128,21 +128,14 @@
 							<div class="controls">
 								<select name="receiver">
 									<%	
-										Iterator<?> iterator = proposaldao.findByStudentid(id).iterator();
+										Iterator<?> iterator = maindao.findAll().iterator();
 										if(iterator.hasNext()!=false){
 										while (iterator.hasNext()) {
-												proposal =(Proposal) iterator.next();
-										}
-										
-										out.print("<option value=\"" + proposal.getMain().getId()
-										+ "\" selected=\"selected\">"
-										+ proposal.getMain().getName() + "</option>");}
-										MainDAO maindao = new MainDAO();
-										Iterator<?> admins = maindao.findByPriority(3).iterator();
-										while (admins.hasNext()) {
-										Main main = (Main) admins.next();
-										out.print("<option value=\"" + main.getId() + "\">"
-										+ main.getName() + "</option>");
+												main =(Main) iterator.next();
+
+										out.print("<option value=\"" + main.getId()
+										+ "\">"
+										+ main.getName() + "</option>");}
 										}
 									%>
 
