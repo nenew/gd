@@ -56,15 +56,48 @@ public class TeacherSet extends HttpServlet {
 				Iterator<?> iterator = list.iterator();
 				while (iterator.hasNext()) {
 					profile = (Profile) iterator.next();
-					out.print("<tr><td><span class=\"badge\">" + index++
-							+ "</span>");
-					out.print("<td>" + profile.getMain().getNum() + "</td>");
-					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" type=\"button\" class=\"renamefunction\" mainid=\""
-							+ profile.getMain().getId()
-							+ "\" name=\""
-							+ profile.getMain().getName() + "\"></button></td>");
-					out.print("<td><button href=\"#changetitleModal\" data-toggle=\"modal\" type=\"button\" class=\"changetitlefunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					if (profile.getMain().getManagements().isEmpty() == true) {
+						Management managetemp = new Management();
+						managetemp.setMain(profile.getMain());
+						managetemp.setPermission(false);
+						ManagementDAO managetempdao = new ManagementDAO();
+						managetempdao.attachDirty(managetemp);
+						managetempdao.getSession().beginTransaction().commit();
+						out.print("<tr><td><span class=\"badge\">" + index++
+								+ "</span>");
+						out.print("<td>" + profile.getMain().getNum() + "</td>");
+						out.print("<td>" + profile.getMain().getName()
+								+ "</td>");
+						out.print("<td><button type=\"button\" class=\"enablecross\" mainid=\""
+								+ profile.getMain().getId()
+								+ "\"></button></td>");
+						out.print("<td><button type=\"button\" class=\"disabletick\" mainid=\""
+								+ profile.getMain().getId()
+								+ "\"></button></td>");
+					} else {
+						Management managetemp = (Management) profile.getMain()
+								.getManagements().iterator().next();
+						out.print("<tr><td><span class=\"badge\">" + index++
+								+ "</span>");
+						out.print("<td>" + profile.getMain().getNum() + "</td>");
+						out.print("<td>" + profile.getMain().getName()
+								+ "</td>");
+						if (managetemp.getPermission() == false) {
+							out.print("<td><button type=\"button\" class=\"enablecross\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+							out.print("<td><button type=\"button\" class=\"disabletick\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+						} else {
+							out.print("<td><button type=\"button\" class=\"disablecross\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+							out.print("<td><button type=\"button\" class=\"enabletick\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+						}
+					}
 				}
 				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
 
@@ -72,21 +105,54 @@ public class TeacherSet extends HttpServlet {
 				out.print(e);
 			}
 		} else {
-			int index = (Integer.parseInt(page)+1);
+			int index = (Integer.parseInt(page) + 1);
 			try {
-				List<?> list = profiledao.page("department", department,page);
+				List<?> list = profiledao.page("department", department, page);
 				Iterator<?> iterator = list.iterator();
 				while (iterator.hasNext()) {
 					profile = (Profile) iterator.next();
-					out.print("<tr><td><span class=\"badge\">" + index++
-							+ "</span>");
-					out.print("<td>" + profile.getMain().getNum() + "</td>");
-					out.print("<td>" + profile.getMain().getName() + "</td>");
-					out.print("<td><button href=\"#renameModal\" data-toggle=\"modal\" type=\"button\" class=\"renamefunction\" mainid=\""
-							+ profile.getMain().getId()
-							+ "\" name=\""
-							+ profile.getMain().getName() + "\"></button></td>");
-					out.print("<td><button href=\"#changetitleModal\" data-toggle=\"modal\" type=\"button\" class=\"changetitlefunction\" mainid=\""+profile.getMain().getId()+"\"></button></td>");
+					if (profile.getMain().getManagements().isEmpty() == true) {
+						Management managetemp = new Management();
+						managetemp.setMain(profile.getMain());
+						managetemp.setPermission(false);
+						ManagementDAO managetempdao = new ManagementDAO();
+						managetempdao.attachDirty(managetemp);
+						managetempdao.getSession().beginTransaction().commit();
+						out.print("<tr><td><span class=\"badge\">" + index++
+								+ "</span>");
+						out.print("<td>" + profile.getMain().getNum() + "</td>");
+						out.print("<td>" + profile.getMain().getName()
+								+ "</td>");
+						out.print("<td><button type=\"button\" class=\"enablecross\" mainid=\""
+								+ profile.getMain().getId()
+								+ "\"></button></td>");
+						out.print("<td><button type=\"button\" class=\"disabletick\" mainid=\""
+								+ profile.getMain().getId()
+								+ "\"></button></td>");
+					} else {
+						Management managetemp = (Management) profile.getMain()
+								.getManagements().iterator().next();
+						out.print("<tr><td><span class=\"badge\">" + index++
+								+ "</span>");
+						out.print("<td>" + profile.getMain().getNum() + "</td>");
+						out.print("<td>" + profile.getMain().getName()
+								+ "</td>");
+						if (managetemp.getPermission() == false) {
+							out.print("<td><button type=\"button\" class=\"enablecross\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+							out.print("<td><button type=\"button\" class=\"disabletick\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+						} else {
+							out.print("<td><button type=\"button\" class=\"disablecross\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+							out.print("<td><button type=\"button\" class=\"enabletick\" mainid=\""
+									+ profile.getMain().getId()
+									+ "\"></button></td>");
+						}
+					}
 				}
 				out.print("<tr><td></td><td></td><td></td><td></td><td></td></tr>");
 

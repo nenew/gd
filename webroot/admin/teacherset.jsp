@@ -52,43 +52,59 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="#">修改密码</a></li>
-									<li><a href="#">注销登录</a></li>
+									<li><a href="#">修改密码</a>
+									</li>
+									<li><a href="#">注销登录</a>
+									</li>
 
-								</ul>
-							</li>
+								</ul></li>
 						</ul>
 
 					</div>
 					<div class="menu">
 						<ul class="nav nav-pills">
-							<li><a href="main.jsp">概况信息</a></li>
+							<li><a href="main.jsp">概况信息</a>
+							</li>
 							<li class="dropdown  dropdowntrasparent active"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="teacherset.jsp">教师分配</a></li>
-									<li><a href="dutyset.jsp">毕设配置</a></li>
-								</ul></li>
+									<li class="active"><a href="teacherset.jsp">教师分配</a>
+									</li>
+									<li><a href="dutyset.jsp">毕设配置</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">管理功能<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="addstudent.jsp">添加学生</a></li>
-									<li><a href="delstudent.jsp">学生管理</a></li>
-									<li><a href="addteacher.jsp">添加教师</a></li>
-									<li><a href="delteacher.jsp">教师管理</a></li>
-									<li><a href="addadmin.jsp">添加管理员</a></li>
-									<li><a href="deladmin.jsp">管理员管理</a></li>
-								</ul></li>
+									<li><a href="addstudent.jsp">添加学生</a>
+									</li>
+									<li><a href="delstudent.jsp">学生管理</a>
+									</li>
+									<li><a href="addteacher.jsp">添加教师</a>
+									</li>
+									<li><a href="delteacher.jsp">教师管理</a>
+									</li>
+									<li><a href="addadmin.jsp">添加管理员</a>
+									</li>
+									<li><a href="deladmin.jsp">管理员管理</a>
+									</li>
+								</ul>
+							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="message.jsp">发信息</a></li>
-									<li><a href="inbox.jsp">收件箱</a></li>
-									<li><a href="outbox.jsp">发件箱</a></li>
-								</ul></li>
+									<li><a href="message.jsp">发信息</a>
+									</li>
+									<li><a href="inbox.jsp">收件箱</a>
+									</li>
+									<li><a href="outbox.jsp">发件箱</a>
+									</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -141,103 +157,6 @@
 					<div id="pager"></div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div id="renameModal" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">修改姓名</h3>
-		</div>
-		<div class="modal-body">
-			<form class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label">原姓名：</label>
-					<div class="controls">
-						<input type="text" disabled="" id="oldname">
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label">新姓名：</label>
-					<div class="controls">
-						<input type="text" placeholder="输入新姓名" id="newname">
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-			<button class="btn btn-primary" id="savename">保存</button>
-		</div>
-	</div>
-	<div id="passwordModal" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">修改密码</h3>
-		</div>
-		<div class="modal-body">
-			<form class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label">输入密码：</label>
-					<div class="controls">
-						<input type="password" id="password1" placeholder="输入新密码">
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label">再次输入：</label>
-					<div class="controls">
-						<input type="password" id="password2" placeholder="再次输入新密码">
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
-			<button class="btn btn-primary" id="savepassword">保存</button>
-		</div>
-	</div>
-	<div id="delModal" class="modal hide fade" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">删除教师</h3>
-		</div>
-		<div class="modal-body">
-			<h1 align="center">确认删除？</h1>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-			<button class="btn btn-danger" id="delstudent">确定</button>
-		</div>
-	</div>
-	<div id="changetitleModal" class="modal hide fade" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-hidden="true">×</button>
-			<h3 id="myModalLabel">修改职称</h3>
-		</div>
-		<div class="modal-body">
-			<form class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label">选择职称：</label>
-					<div class="controls">
-						<select name="inputtitle">
-							<option value="lecturer" selected="selected">讲师</option>
-							<option value="professor">教授</option>
-							<option value="associateprofessor">副教授</option>
-						</select>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-			<button class="btn btn-primary" id="changetitle">确定</button>
 		</div>
 	</div>
 	<div id="footer">
@@ -349,79 +268,28 @@
 	</script>
 	<script>
 		var nametarget;
-		$(document).on(
-				'click',
-				'button[class="renamefunction"]',
-				function() {
-					$('#oldname').attr("value", $(this).attr("name")).attr(
-							"mainid", $(this).attr("mainid"));
-					nametarget = $(this);
-					$('#savename').text("保存").removeClass("disabled");
-
-				});
-
-		$(document).on('click', '#savename', function() {
-			var data = {
-				"mainid" : $('#oldname').attr("mainid"),
-				"newname" : $('#newname').val()
-			};
-			$.post('rename', data, function(data, textStatus, jqXHR) {
-				$('#savename').text(data).addClass("disabled");
-				nametarget.parent().prev().text($('#newname').val());
-
-			});
-		});
-		$(document).on('click', 'button[class="passwordfunction"]', function() {
+		$(document).on('click', 'button[class="disabletick"]', function() {
 			nametarget = $(this);
-			$('#savepassword').text("保存").removeClass("disabled");
 
-		});
-
-		$(document).on(
-				'click',
-				'#savepassword',
-				function() {
-					if ($('#password1').val() == $('#password2').val()) {
-						var data = {
-							"newpassword" : $('#password1').val(),
-							"mainid" : nametarget.attr("mainid")
-						};
-						$.post('changepassword', data, function(data,
-								textStatus, jqXHR) {
-							$('#savepassword').text(data).addClass("disabled");
-						});
-					}
-				});
-		$(document).on('click', 'button[class="delfunction"]', function() {
-			nametarget = $(this);
-			$('#delstudent').text("确定").removeClass("disabled");
-
-		});
-
-		$(document).on('click', '#delstudent', function() {
-			var data = {
-				"mainid" : nametarget.attr("mainid")
-			};
-			$.post('delfunction', data, function(data, textStatus, jqXHR) {
-				$('#delstudent').text(data).addClass("disabled");
-				nametarget.parent().parent().slideUp();
-			});
-		});
-		$(document).on('click', 'button[class="changetitlefunction"]',
-				function() {
-					nametarget = $(this);
-					$('#changetitle').text("确定").removeClass("disabled");
-
-				});
-
-		$(document).on('click', '#changetitle', function() {
 			var data = {
 				"mainid" : nametarget.attr("mainid"),
-				"newtitle" : $('select[name="inputtitle"]').val()
 			};
-			alert($('select[name="inputtitle"]').val());
-			$.post('changetitle', data, function(data, textStatus, jqXHR) {
-				$('#changetitle').text(data).addClass("disabled");
+			$.post('enableset', data, function(data, textStatus, jqXHR) {
+			}).success(function() {
+				nametarget.attr("class", "enabletick");
+				nametarget.parent().prev().children(':button').attr("class", "disablecross");
+			});
+		});
+		$(document).on('click', 'button[class="disablecross"]', function() {
+			nametarget = $(this);
+
+			var data = {
+				"mainid" : nametarget.attr("mainid"),
+			};
+			$.post('disableset', data, function(data, textStatus, jqXHR) {
+			}).success(function() {
+				nametarget.attr("class", "enablecross");
+				nametarget.parent().next().children(':button').attr("class", "disabletick");
 			});
 		});
 	</script>

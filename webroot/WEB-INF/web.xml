@@ -92,6 +92,16 @@
     <servlet-name>TeacherSet</servlet-name>
     <servlet-class>admin.TeacherSet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>EnableSet</servlet-name>
+    <servlet-class>admin.EnableSet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DisableSet</servlet-name>
+    <servlet-class>admin.DisableSet</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -202,6 +212,14 @@
   <servlet-mapping>
     <servlet-name>TeacherSet</servlet-name>
     <url-pattern>/admin/teacherset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EnableSet</servlet-name>
+    <url-pattern>/admin/enableset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DisableSet</servlet-name>
+    <url-pattern>/admin/disableset</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
