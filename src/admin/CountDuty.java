@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-public class CountTeacher extends HttpServlet {
+public class CountDuty extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public CountTeacher() {
+	public CountDuty() {
 		super();
 	}
 
@@ -47,7 +47,7 @@ public class CountTeacher extends HttpServlet {
 		profiledao.getSession().clear();
 		profiledao.getSession().beginTransaction().commit();
 		try {
-			Integer count = profiledao.teachercount("department", department);
+			Integer count = profiledao.dutycount("department", department);
 			int pagenum = 0;
 			if (count % 10 != 0) {
 				pagenum = count / 10 + 1;

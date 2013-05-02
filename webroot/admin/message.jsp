@@ -178,7 +178,7 @@
 									"content" : $('textarea[name="content"]')
 											.val()
 								};
-								$.post('message-sender', data, function(data,
+								$.post('../message-sender', data, function(data,
 										textStatus, jqXHR) {
 									//						alert(textStatus+jqXHR);
 									if (jqXHR.success(function() {

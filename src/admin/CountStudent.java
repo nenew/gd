@@ -44,6 +44,8 @@ public class CountStudent extends HttpServlet {
 			return;
 		}
 		ProfileDAO profiledao = new ProfileDAO();
+		profiledao.getSession().clear();
+		profiledao.getSession().beginTransaction().commit();
 		try {
 			Integer count = profiledao.count("department", department, "grade",
 					grade);

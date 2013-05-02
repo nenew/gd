@@ -222,7 +222,7 @@ public class ProfileDAO extends BaseHibernateDAO {
 		log.debug("学生分页");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
+					+ propertyName1 + "= ? and m." + propertyName2 + "= ? order by m.main.num asc";
 			Query queryObject = getSession().createQuery(queryString)
 					.setFirstResult(0).setMaxResults(10);
 			queryObject.setParameter(0, value1);
@@ -239,7 +239,7 @@ public class ProfileDAO extends BaseHibernateDAO {
 		log.debug("学生分页");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName1 + "= ? and m." + propertyName2 + "= ?";
+					+ propertyName1 + "= ? and m." + propertyName2 + "= ? order by m.main.num asc";
 			Query queryObject = getSession().createQuery(queryString)
 					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
 			queryObject.setParameter(0, value1);
@@ -255,7 +255,7 @@ public class ProfileDAO extends BaseHibernateDAO {
 		log.debug("教师分页");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName + "= ? and m.title != 'student'";
+					+ propertyName + "= ? and m.title != 'student' order by m.main.num asc";
 			Query queryObject = getSession().createQuery(queryString)
 					.setFirstResult(0).setMaxResults(10);
 			queryObject.setParameter(0, value);
@@ -270,12 +270,57 @@ public class ProfileDAO extends BaseHibernateDAO {
 		log.debug("教师分页");
 		try {
 			String queryString = "select m from Profile as m where m."
-					+ propertyName + "= ? and m.title != 'student'";
+					+ propertyName + "= ? and m.title != 'student' order by m.main.num asc";
 			Query queryObject = getSession().createQuery(queryString)
 					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
 			queryObject.setParameter(0, value);
 			List<?> s = (List<?>) queryObject.list();
 			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	
+	public List<?> dutypage(String propertyName, Object value) {
+		log.debug("课设分页");
+		try {
+			String queryString = "select p from Profile p,Management m where p."
+					+ propertyName + "= ? and p.title != 'student' and m.main =p.main and m.permission = true order by p.main.num asc";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(0).setMaxResults(10);
+			queryObject.setParameter(0, value);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	public List<?> dutypage(String propertyName, Object value,String index) {
+		log.debug("课设分页");
+		try {
+			String queryString = "select p from Profile p,Management m where p."
+					+ propertyName + "= ? and p.title != 'student' and m.main =p.main and m.permission = true order by p.main.num asc";
+			Query queryObject = getSession().createQuery(queryString)
+					.setFirstResult(Integer.parseInt(index)).setMaxResults(10);
+			queryObject.setParameter(0, value);
+			List<?> s = (List<?>) queryObject.list();
+			return s;
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+	public Integer dutycount(String propertyName, Object value) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(p) from Profile p,Management m where p."
+					+ propertyName + "= ? and p.title != 'student' and m.main =p.main and m.permission = true";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
 		} catch (RuntimeException re) {
 			log.error("count failed", re);
 			throw re;

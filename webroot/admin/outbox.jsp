@@ -223,7 +223,7 @@
 								if($(this).attr("msgstatus") == "true") {msgstatus ="对方已读";}
 								else {msgstatus = "对方未读";}
 								
-								$.post('message-sent', data, function(data,
+								$.post('../message-sent', data, function(data,
 										textStatus, jqXHR) {
 									if (jqXHR.success(function() {
 										$('.modal-body').html("<p>发送时间:"+msgdate+"</p><p>收件人:"+msgreceiver+"</p><p>信息状态："+ msgstatus+"</p><p>信息内容:<br><br>"+data+"</p>");

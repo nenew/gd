@@ -100,6 +100,21 @@
     <servlet-name>DisableSet</servlet-name>
     <servlet-class>admin.DisableSet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DutySet</servlet-name>
+    <servlet-class>admin.DutySet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CountDuty</servlet-name>
+    <servlet-class>admin.CountDuty</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DutyNumSet</servlet-name>
+    <servlet-class>admin.DutyNumSet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -220,6 +235,18 @@
   <servlet-mapping>
     <servlet-name>DisableSet</servlet-name>
     <url-pattern>/admin/disableset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DutySet</servlet-name>
+    <url-pattern>/admin/dutyset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CountDuty</servlet-name>
+    <url-pattern>/admin/countduty</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DutyNumSet</servlet-name>
+    <url-pattern>/admin/dutynumset</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

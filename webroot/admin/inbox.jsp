@@ -216,7 +216,7 @@
 								};
 								var msgsender =$(this).attr("msgsender");
 								var msgdate = $(this).attr("msgdate");
-								$.post('message-get', data, function(data,
+								$.post('../message-get', data, function(data,
 										textStatus, jqXHR) {
 									if (jqXHR.success(function() {
 										$('.modal-body').html("<p>发送时间:"+msgdate+"</p><p>发件人:"+msgsender+"</p><p>信息内容:<br><br>"+data+"</p>");
