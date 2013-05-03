@@ -423,7 +423,6 @@
 				"mainid" : nametarget.attr("mainid"),
 				"newtitle" : $('select[name="inputtitle"]').val()
 			};
-			alert($('select[name="inputtitle"]').val());
 			$.post('changetitle', data, function(data, textStatus, jqXHR) {
 				$('#changetitle').text(data).addClass("disabled");
 			});

@@ -97,7 +97,7 @@ html,body {
 }
 
 .contentitle {
-	background-image: url(../img/batch/user-4-remove.png);
+	background-image: url(../img/batch/reminder.png);
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
@@ -106,7 +106,7 @@ html,body {
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
 	padding-left: 35px;
-	padding-top: 12px;
+	padding-top: 10px;
 	font-size: 20px;
 	margin-top: 20px;
 	color: #0;

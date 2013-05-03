@@ -208,4 +208,18 @@ public class ProposalDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+
+	public Integer count(String id) {
+		log.debug("Count teacher proposal pushed");
+		try {
+			String queryString = "select count(p) from Proposal p where p.main.id = ?";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, Integer.parseInt(id));
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
 }
