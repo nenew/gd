@@ -116,6 +116,16 @@
     <servlet-name>ProposalPush</servlet-name>
     <servlet-class>teacher.ProposalPush</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ProposalEdit</servlet-name>
+    <servlet-class>teacher.ProposalEdit</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProposalSave</servlet-name>
+    <servlet-class>teacher.ProposalSave</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -256,6 +266,14 @@
   <servlet-mapping>
     <servlet-name>ProposalPush</servlet-name>
     <url-pattern>/teacher/proposal-push</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProposalEdit</servlet-name>
+    <url-pattern>/teacher/proposal-edit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProposalSave</servlet-name>
+    <url-pattern>/teacher/proposal-save</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

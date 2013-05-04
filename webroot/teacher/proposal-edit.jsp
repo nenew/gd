@@ -19,15 +19,10 @@
 	String name = (String) request.getSession().getAttribute("name");
 	Integer priority = (Integer) request.getSession().getAttribute(
 	"priority");
-	ManagementDAO managementdao = new ManagementDAO();
-	Management management = new Management();
+
 	ProposalDAO proposaldao = new ProposalDAO();
-	managementdao.getSession().clear();
-	managementdao.getSession().beginTransaction().commit();
-	Iterator<?> iterator = managementdao.findByProperty("main.id", id).iterator();
-	while (iterator.hasNext()) {
-		management = (Management) iterator.next();
-	}
+	Proposal proposal = new Proposal();
+	Iterator <?>iterator =proposaldao.findByProperty("main.id", id).iterator();
 %>
 
 <!DOCTYPE HTML>
@@ -35,10 +30,10 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>课题发布——毕业设计在线管理系统</title>
+<title>课题修改——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/proposal-push.css" rel="stylesheet">
+<link href="css/proposal-edit.css" rel="stylesheet">
 <link href="css/custom-theme/jquery-ui-1.10.0.custom.css"
 	rel="stylesheet">
 <!--[if lt IE 9]>
@@ -81,9 +76,9 @@
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="proposal-push.jsp">课题发布</a>
+									<li><a href="proposal-push.jsp">课题发布</a>
 									</li>
-									<li><a href="proposal-edit.jsp">课题修改</a>
+									<li class="active"><a href="proposal-edit.jsp">课题修改</a>
 									</li>
 									<li><a href="proposal-verify.jsp">开题审核</a>
 									</li>
@@ -109,23 +104,43 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">课题发布</div>
+				<div class="span12 contentitle">课题修改</div>
 			</div>
 			<div class="row-fluid">
-				<div class="span10 offset1 boxshadow well">
-					<%
-						if(management.getPermission()==false){
-										 out.print("<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><h4 align=\"center\">您没有开题权限,请联系管理员处理。</h4></div>");
-									 } else {
-									if(management.getLimitnum()==null){
-										 out.print("<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><h4  align=\"center\">您的开题数量尚未设置，请联系管理员处理。</h4></div>");
-									 } else {
-									 if(management.getLimitnum()<=proposaldao.count(id+"")){
-										 out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>您总共可以添加题目数：<strong> "+ management.getLimitnum()+"</strong> ，现已全部添加完毕。</div>");	
-									 } else {
-										 out.print("<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>您总共可以添加题目数：<strong> "+ management.getLimitnum()+"</strong> ，还可以添加题目数：<strong>"+(management.getLimitnum()-proposaldao.count(id+""))+" </strong>  。</div>");
-					%>
-					<form>
+				<div class="span10 offset1 boxshadow well chooseproposal">
+				<form class="form-horizontal">
+						<div class="control-group">
+							<div style="text-align:center;">
+								<label style="display:inline-block;margin-right:5px;">课题名称：</label>
+								<select id="inputproposal">
+								<%
+									if(iterator.hasNext()==false){
+									out.print("<option>暂无课题</option>");
+									} else {
+										while(iterator.hasNext()){
+										proposal = (Proposal)iterator.next();
+										out.print("<option value=\""+proposal.getThesistitle()+"\">"+proposal.getThesistitle()+"</option>");
+										}
+									}
+								 %>
+								</select><label style="display:inline-block;margin-left:20px;"><button
+										class="btn" id="listtitle" type="button" mainid="<%out.print(id);%>">查看</button> </label>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="span10 offset1 boxshadow well editproposal" style="display:none;">
+					
+
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- 
+	
+	<form>
 						<div>
 							<h3>毕业设计题目：</h3>
 							<input type="text" placeholder="请输入毕业设计题目" id="propossaltitle">
@@ -192,15 +207,7 @@
 							<div id="outputs"></div>
 					</div>
 					</form>
-					<%
-						}
-									 }
-								 }
-					%>
-			</div>
-		</div>
-	</div>
-	</div>
+	 -->
 	<div id="footer">
 		<div class="footext">Copyright © 2013 nenew.net. All Rigths
 			Reserved.</div>
@@ -211,6 +218,7 @@
 	<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
 	<script src="../editor/tinymce.min.js"></script>
 	<script type="text/javascript">
+	function inittinymce(){
 		tinymce
 				.init({
 					selector : "textarea",
@@ -222,27 +230,12 @@
 					autosave_ask_before_unload : false,
 					max_height : 200,
 					min_height : 160,
-					height : 180,
-					init_instance_callback : "hidetinymce"
-
+					height : 180
 				});
-		var i = 3;
-		function hidetinymce(inst) {
-			console.log("test");
-			if (--i == 0) {
-				try {
-					//	      			tinyMCE.get('1').hide();
-					//					tinyMCE.get('2').hide();
-					//					tinyMCE.get('3').hide();
-
-					console.log("hidedone");
-				} catch (error) {
-
-				}
-			}
-		}
+	}
 	</script>
 	<script>
+	function initdatepicker(){
 		//datepicker jQuery UI
 		$("#startdate").datepicker({
 			defaultDate : "+1w",
@@ -259,15 +252,14 @@
 			onClose : function(selectedDate) {
 				$("#rangeBa").datepicker("option", "maxDate", selectedDate);
 			}
-		});
+		});}
 	</script>
 	<script>
-		$('#pushit').click(
-				function(e) {
+		$(document).on('click','#pushit',function(e) {
 					e.preventDefault();
 					var target = $(this);
 					var data = {
-						"mainid" : target.attr("mainid"),
+						"proposalid" : target.attr("proposalid"),
 						"propossaltitle" : $('#propossaltitle').val(),
 						"startdate":$('#startdate').val(),
 						"enddate":$('#enddate').val(),
@@ -277,12 +269,31 @@
 						"proposalprocess": tinyMCE.get('proposalprocess').getContent(),
 						"proposalliterature": tinyMCE.get('proposalliterature').getContent()
 					};
-					$.post('proposal-push', data, function(data, textStatus,
+					$.post('proposal-save', data, function(data, textStatus,
 							jqXHR) {
 						if (jqXHR.success(function() {
 							$('#outputs').html(data);
 							if(data.indexOf("成功")>=0){
 							target.removeClass("btn-primary").addClass("btn-success").text("提交成功");}
+						}))
+							;
+					});
+
+				});
+		$('#listtitle').click(
+				function(e) {
+					e.preventDefault();
+					var target = $(this);
+					var data = {
+						"mainid" : target.attr("mainid"),
+						"propossaltitle" : $('#inputproposal').val()
+					};
+					$.post('proposal-edit', data, function(data, textStatus,
+							jqXHR) {
+						if (jqXHR.success(function() {
+							$('.editproposal').html(data).show();
+							inittinymce();
+							initdatepicker();
 						}))
 							;
 					});
