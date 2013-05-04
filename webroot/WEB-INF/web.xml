@@ -112,6 +112,11 @@
     <servlet-name>DutyNumSet</servlet-name>
     <servlet-class>admin.DutyNumSet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ProposalPush</servlet-name>
+    <servlet-class>teacher.ProposalPush</servlet-class>
+  </servlet>
+
 
 
 
@@ -247,6 +252,10 @@
   <servlet-mapping>
     <servlet-name>DutyNumSet</servlet-name>
     <url-pattern>/admin/dutynumset</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProposalPush</servlet-name>
+    <url-pattern>/teacher/proposal-push</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

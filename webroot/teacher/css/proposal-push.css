@@ -185,3 +185,8 @@ html,body {
 	padding-bottom: 4px;
 	background-color: #d3d3d3;
 }
+.alertfix{
+	margin-top:-4px;
+	margin-left:50px;
+	float:left;
+}
