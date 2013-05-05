@@ -25,6 +25,10 @@
 	Proposal proposal = new Proposal();
 	Iterator<?> iterator = proposaldao.findByStudentid(id)
 	.iterator();
+	if(iterator.hasNext()==false){
+		response.sendRedirect("choose.jsp");
+		return;
+	}
 	while (iterator.hasNext()) {
 		proposal = (Proposal) iterator.next();
 	}
@@ -102,21 +106,18 @@
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well">
 					<%
-						out.print("<h4>设计题目：" + proposal.getThesistitle() + "</h4>");
+						out.print("<h3>设计题目：</h3><input class=\"input-xlarge\"type=\"text\" disabled value=\""+ proposal.getThesistitle()+"\">");
 					%>
-					<form name="proposal" action="proposal-update" method="post">
 						<div>
-							<br>资料调研分析：<br> <br>
-							<textarea name="proposalanalysis" id="1"
-								onfocus="tinyMCE.get('1').show();tinyMCE.get('1').focus();tinyMCE.get('2').hide();tinyMCE.get('3').hide();"
-								style="width:100%;height:100px;">
+							<h3>资料调研分析：</h3>
+							<textarea id="proposalanalysis" style="width:100%;height:100px;">
 								<%
 									if (proposal.getProposalanalysis() == null) {
-																									out.print("尚未填写");
-																					}
-																						else {
-																								out.print(proposal.getProposalanalysis());
-																					}
+											out.print("尚未填写");
+									}
+									 else {
+									 out.print(proposal.getProposalanalysis());
+									 }
 																				//if (proposal.getProposalanalysis().equals("")) {
 																				//	out.print("N''''''''''''空'''''''''''N");
 																				//}
@@ -125,10 +126,8 @@
 							</textarea>
 						</div>
 						<div>
-							<br>设计方案及预期目标：<br> <br>
-							<textarea name="proposalcontent" id="2"
-								onfocus="tinyMCE.get('2').show();tinyMCE.get('2').focus();tinyMCE.get('1').hide();tinyMCE.get('3').hide();"
-								style="width:100%;height:100px;">
+							<h3>设计方案及预期目标：</h3>
+							<textarea id="proposalcontent" style="width:100%;height:100px;">
 								<%
 									out.print(proposal.getProposalcontent());
 								%>
@@ -137,18 +136,20 @@
 
 
 						<div>
-							<br>所需仪器：<br> <br>
-							<textarea name="proposalfacility" id="3"
-								onfocus="tinyMCE.get('3').show();tinyMCE.get('3').focus();tinyMCE.get('1').hide();tinyMCE.get('2').hide();"
-								style="width:100%;height:100px;">
+							<h3>所需仪器：</h3>
+							<textarea id="proposalfacility" style="width:100%;height:100px;">
 								<%
 									out.print(proposal.getProposalfacility());
 								%>								
 								</textarea>
 						</div>
-						<input name="userid" type="hidden" value="1" /> <br> <br>
-						<button class="btn btn-primary" type="submit">提交</button>
-					</form>
+						<div class="clearfix">
+							<br>
+							<div class="pull-left">
+						<button class="btn btn-primary" type="button" id="ajax" proposalid="<%out.print(proposal.getProposalid()); %>">提交</button>
+							</div>
+							<div id="outputs"></div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -175,7 +176,7 @@
 					max_height : 200,
 					min_height : 160,
 					height : 180,
-					init_instance_callback : "hidetinymce"
+//					init_instance_callback : "hidetinymce"
 
 				});
 		var i = 3;
@@ -193,6 +194,30 @@
 				}
 			}
 		}
+	</script>
+	<script>
+			$('#ajax').click(
+				function(e) {
+					e.preventDefault();
+					var target = $(this);
+					var data = {
+						"proposalid" : target.attr("proposalid"),						
+						"proposalanalysis": tinyMCE.get('proposalanalysis').getContent(),
+						"proposalfacility": tinyMCE.get('proposalfacility').getContent(),
+						"proposalcontent": tinyMCE.get('proposalcontent').getContent()
+						
+					};
+					$.post('proposal-update', data, function(data, textStatus,
+							jqXHR) {
+						if (jqXHR.success(function() {
+							$('#outputs').html(data);
+							if(data.indexOf("成功")>=0){
+							target.removeClass("btn-primary").addClass("btn-success").text("提交成功");}
+						}))
+							;
+					});
+
+				});
 	</script>
 
 </body>

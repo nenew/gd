@@ -184,3 +184,9 @@ html,body {
 	padding-bottom: 4px;
 	background-color: #d3d3d3;
 }
+.modal-backdrop {
+	background-color:#f6f6f6;
+}
+.modal-backdrop, .modal-backdrop.fade.in{
+	opacity: 0.5;
+}

@@ -165,3 +165,9 @@ html,body {
 .progress-striped-fix {
 	border-radius: 0px 4px 4px 0px;
 }
+.modal-backdrop {
+	background-color:#f6f6f6;
+}
+.modal-backdrop, .modal-backdrop.fade.in{
+	opacity: 0.5;
+}

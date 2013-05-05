@@ -119,7 +119,7 @@
 									Profile profile = new Profile();
 									proposaldao.getSession().clear();
 									proposaldao.getSession().beginTransaction().commit();
-									Iterator<?> iterator = proposaldao.findAll().iterator();
+									Iterator<?> iterator = proposaldao.findByIschoosen(false).iterator();
 									while (iterator.hasNext()) {
 										proposal = (Proposal) iterator.next();
 
@@ -138,7 +138,7 @@
 										}
 										;
 										out.print("</td><td align=\"center\">");
-										out.print("<button class=\"btn btn-primary\">选择</button>");
+										out.print("<button type=\"button\" class=\"btn btn-primary ajax\" mainid=\""+id+"\" proposalid=\""+proposal.getProposalid()+"\">选择</button>");
 										out.print("</td></tr>");
 
 									}
@@ -152,6 +152,19 @@
 			</div>
 		</div>
 	</div>
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">×</button>
+			<h3 id="myModalLabel"></h3>
+		</div>
+		<div class="modal-body">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary result" type="button"></button>
+		</div>
+	</div>
 	<div id="footer">
 		<div class="footext">Copyright © 2013 nenew.net. All Rigths
 			Reserved.</div>
@@ -159,6 +172,38 @@
 	</div>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/myscript.js"></script>
+	<script>
+	$(document).on('click','.ajax',function(e){
+		e.preventDefault();
+		var target=$(this);
+		var data = {
+			mainid:target.attr("mainid"),
+			proposalid:target.attr("proposalid")
+		};
+		$.post('proposal-choose',data,function(data, textStatus,
+							jqXHR){
+				jqXHR.success(function(){
+					if(data.indexOf("成功")>=0){
+					$('#myModalLabel').text("选题成功");
+					$('.modal-body').html("<h4 align=\"center\">选题成功，您可以进入开题报告填写页面了。</h4>");
+					$('.result').text("填写开题报告").addClass("btn-success").click(function(){window.location.href='proposal-fill.jsp';});
+					$('#myModal').modal('show');
+ 					}
+ 					if(data.indexOf("已经")>=0){
+					$('#myModalLabel').text("选题失败");
+					$('.modal-body').html("<h4 align=\"center\">选题失败，该题目已经被其他同学选择了。</h4>");
+					$('.result').text("关闭").removeClass("btn-primary").attr("data-dismiss","modal").attr("aria-hidden","true");
+					$('#myModal').modal('show');
+ 					}
+ 					if(data.indexOf("重复")>=0){
+					$('#myModalLabel').text("选题失败");
+					$('.modal-body').html("<h4 align=\"center\">选题失败，您已经选择了课题，请不要重复选择。</h4>");
+					$('.result').text("关闭").removeClass("btn-primary").attr("data-dismiss","modal").attr("aria-hidden","true");
+					$('#myModal').modal('show');
+ 					}
+			});
+		});
+	});
+	</script>
 </body>
 </html>

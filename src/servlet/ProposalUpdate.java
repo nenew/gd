@@ -54,20 +54,27 @@ public class ProposalUpdate extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		try{
-		String userid = request.getParameter("userid");
 		String proposalanalysis = request.getParameter("proposalanalysis");
 		String proposalcontent = request.getParameter("proposalcontent");
 		String proposalfacility = request.getParameter("proposalfacility");
+		Integer proposalid = Integer.parseInt(request.getParameter("proposalid"));
+		if(proposalid.equals("")){
+			out.print("<div class=\"alert alert-error alertfix\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>警告! </strong> 您还未选题。</div>");
+			return;
+		}
+		if(proposalanalysis.equals("")||proposalcontent.equals("")||proposalfacility.equals("")){
+			out.print("<div class=\"alert alert-error alertfix\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>警告! </strong> 所有字段都不能为空。</div>");
+			return;
+		}
+		try{
 		ProposalDAO proposaldao = new ProposalDAO();
-		Proposal proposal = proposaldao.findById(Integer.valueOf(userid));
-		out.print(proposal.getThesistitle());
+		Proposal proposal = proposaldao.findById(proposalid);
 		proposal.setProposalanalysis(proposalanalysis);
 		proposal.setProposalcontent(proposalcontent);
 		proposal.setProposalfacility(proposalfacility);
-		proposaldao.attachClean(proposal);
+		proposaldao.attachDirty(proposal);
 		proposaldao.getSession().beginTransaction().commit();
-		out.print("成功success");
+		out.print("<div class=\"alert alert-success alertfix\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>恭喜! </strong> 提交成功。</div>");
 		} catch (Exception e) {
 			out.print("Error"+e);
 		}
