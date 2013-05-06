@@ -72,6 +72,7 @@ public class ProposalUpdate extends HttpServlet {
 		proposal.setProposalanalysis(proposalanalysis);
 		proposal.setProposalcontent(proposalcontent);
 		proposal.setProposalfacility(proposalfacility);
+		proposal.setIsapproved("yes");
 		proposaldao.attachDirty(proposal);
 		proposaldao.getSession().beginTransaction().commit();
 		out.print("<div class=\"alert alert-success alertfix\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button><strong>恭喜! </strong> 提交成功。</div>");

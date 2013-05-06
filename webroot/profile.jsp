@@ -18,6 +18,7 @@
 	"priority");
 	Profile profile = new Profile();
 	ProfileDAO profiledao = new ProfileDAO();
+	MainDAO maindao = new MainDAO();
 	profiledao.getSession().clear();
 	profiledao.getSession().beginTransaction().commit();
 	Iterator<?> iterator = profiledao.findByProperty("main.id", id)

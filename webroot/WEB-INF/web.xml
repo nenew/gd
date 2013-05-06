@@ -128,6 +128,16 @@
     <servlet-name>ProposalChoose</servlet-name>
     <servlet-class>servlet.ProposalChoose</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ProposalVerify</servlet-name>
+    <servlet-class>teacher.ProposalVerify</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ProposalApprove</servlet-name>
+    <servlet-class>teacher.ProposalApprove</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -283,6 +293,14 @@
   <servlet-mapping>
     <servlet-name>ProposalChoose</servlet-name>
     <url-pattern>/proposal-choose</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProposalVerify</servlet-name>
+    <url-pattern>/teacher/proposal-verify</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ProposalApprove</servlet-name>
+    <url-pattern>/teacher/proposal-approve</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
