@@ -193,10 +193,24 @@ html,body {
 .chooseproposal {
 	padding-top: 20px;
 	padding-bottom: 0px;
+	padding-left: 150px;
+	padding-right: 150px;
+
 }
 .editproposal {
 	margin-top: 0px;
 }
 .wellfix{
 	background-color:#EEEEEE;
+}
+.selectfix{
+	width:70px;
+	margin-bottom:-4px;
+	margin-top:-5px;
+}
+.btnfix{
+	margin-top:-4px;
+	margin-bottom:-4px;
+	padding-top:3px;
+	padding-bottom:3px;
 }

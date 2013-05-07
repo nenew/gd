@@ -24,6 +24,7 @@
 	Proposal proposal = new Proposal();
 	Thesis thesis = new Thesis();
 	ThesisDAO thesisdao = new ThesisDAO();
+	MainDAO maindao = new MainDAO();
 	proposaldao.getSession().clear();
 	proposaldao.getSession().beginTransaction().commit();
 	Iterator <?>iterator =proposaldao.findByProperty("main.id", id).iterator();
@@ -38,6 +39,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="css/thesis-verify.css" rel="stylesheet">
+<link href='css/fonts.css' rel='stylesheet' type='text/css'>
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -79,7 +81,7 @@
 									</li>
 									<li><a href="proposal-edit.jsp">课题修改</a>
 									</li>
-									<li class="active"><a href="proposal-verify.jsp">开题审核</a>
+									<li><a href="proposal-verify.jsp">开题审核</a>
 									</li>
 									<li><a href="#">进度信息</a>
 									</li>
@@ -107,37 +109,56 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well chooseproposal">
-				<form class="form-horizontal">
-						<div class="control-group">
-							<div style="text-align:center;">
-								<label style="display:inline-block;margin-right:5px;">课题名称：</label>
-								<select id="inputproposal">
-								<%
+				<table class="table table-hover" style="text-align:center;">
+						<thead>
+							<tr>
+								<th style="width:15%;">序号</th>
+								<th style="width:20%;">设计课题</th>
+								<th style="width:20%;">学生姓名</th>
+								<th style="width:15%;">论文下载</th>
+								<th style="width:15%;">论文评分</th>
+								<th style="width:15%;">设定</th>
+							</tr>
+						</thead>
+						<tbody id="contentbody">
+						<%			
+									int index =1;
 									if(iterator.hasNext()==false){
 									out.print("<option>暂无课题</option>");
 									} else {
 										while(iterator.hasNext()){
 										proposal = (Proposal)iterator.next();
-									？？？？？？	thesis = (Thesis)thesisdao.findByProperty("main.id", proposal.getStudentid()).iterator().next();
-										if(proposal.getIsapproved()!=null){
-										out.print("<option value=\""+proposal.getProposalid()+"\">"+proposal.getThesistitle()+"</option>");
+										if(proposal.getVerification()!=null){
+										if(	proposal.getVerification().equalsIgnoreCase("YES")&&thesisdao.findByProperty("main.id", proposal.getStudentid()).iterator().hasNext()==true){
+										out.print("<tr><td><span class=\"badge\">" + index++	+ "</span></td>");
+										out.print("<td>"+proposal.getThesistitle()+"</td>");
+										out.print("<td>"+maindao.findById(proposal.getStudentid()).getName()+"</td>");
+										out.print("<td><button class=\"btn btnfix download\" type=\"button\" mainid=\""+id+"\" proposalid=\""+proposal.getProposalid()+"\">下载</button></td>");
+										out.print("<td><select class=\"selectfix\" proposalid=\""+proposal.getProposalid()+"\">");
+										out.print("<option value=\"a\" proposalid=\""+proposal.getProposalid()+"\">优秀</option>");
+										out.print("<option value=\"b\" proposalid=\""+proposal.getProposalid()+"\">良好</option>");
+										out.print("<option value=\"c\" proposalid=\""+proposal.getProposalid()+"\">中等</option>");
+										out.print("<option value=\"d\" proposalid=\""+proposal.getProposalid()+"\">合格</option>");
+										out.print("<option value=\"e\" proposalid=\""+proposal.getProposalid()+"\">不合格</option></select></td>");
+										out.print("<td><button class=\"btn btnfix verifyset\" type=\"button\" mainid=\""+id+"\" proposalid=\""+proposal.getProposalid()+"\">评定</button></td></tr>");
+										}
 										}
 										}
 									}
 								 %>
-								</select><label style="display:inline-block;margin-left:20px;"><button
-										class="btn" id="listtitle" type="button" mainid="<%out.print(id);%>">下载</button> </label>
-							</div>
-						</div>
-					</form>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+
 				</div>
 			</div>
-			<div class="row-fluid">
-				<div class="span10 offset1 boxshadow well editproposal" style="display:none;">
-
-					
-			</div>
-		</div>
 	</div>
 	</div>
 	<div id="footer">
@@ -148,12 +169,32 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script>
-		$('#listtitle').click(
+		$('.download').click(
 				function(e) {
 					e.preventDefault();
 					var target = $(this);
-					var data = "thesis-download?mainid="+target.attr("mainid")+"&proposalid="+$('#inputproposal').val();
+					var data = "thesis-download?mainid="+target.attr("mainid")+"&proposalid="+target.attr("proposalid");
 					window.location.href=data;
+
+				});
+		$('.verifyset').click(
+				function(e) {
+					e.preventDefault();
+					var target = $(this);
+					var data = {
+					mainid:target.attr("mainid"),
+					proposalid:target.attr("proposalid"),
+					thesisverification:target.parent().prev().children('select').val()
+					};
+					$.post('thesis-verify', data, function(data, textStatus,
+							jqXHR) {
+						if (jqXHR.success(function() {
+							if(data.indexOf("Done")>=0){
+							target.text("评定成功");
+							}
+						}))
+							;
+					});
 
 				});
 		$(document).on('click','.btn-large',

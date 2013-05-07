@@ -140,6 +140,11 @@
     <servlet-name>ThesisDownload</servlet-name>
     <servlet-class>teacher.ThesisDownload</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ThesisVerify</servlet-name>
+    <servlet-class>teacher.ThesisVerify</servlet-class>
+  </servlet>
+
 
 
 
@@ -310,6 +315,10 @@
   <servlet-mapping>
     <servlet-name>ThesisDownload</servlet-name>
     <url-pattern>/teacher/thesis-download</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ThesisVerify</servlet-name>
+    <url-pattern>/teacher/thesis-verify</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
