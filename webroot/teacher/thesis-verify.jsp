@@ -39,7 +39,6 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 <link href="css/thesis-verify.css" rel="stylesheet">
-<link href='css/fonts.css' rel='stylesheet' type='text/css'>
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -112,10 +111,11 @@
 				<table class="table table-hover" style="text-align:center;">
 						<thead>
 							<tr>
-								<th style="width:15%;">序号</th>
-								<th style="width:20%;">设计课题</th>
-								<th style="width:20%;">学生姓名</th>
+								<th style="width:10%;">序号</th>
+								<th style="width:15%;">设计课题</th>
+								<th style="width:15%;">学生姓名</th>
 								<th style="width:15%;">论文下载</th>
+								<th style="width:15%;">论文成绩</th>
 								<th style="width:15%;">论文评分</th>
 								<th style="width:15%;">设定</th>
 							</tr>
@@ -130,10 +130,20 @@
 										proposal = (Proposal)iterator.next();
 										if(proposal.getVerification()!=null){
 										if(	proposal.getVerification().equalsIgnoreCase("YES")&&thesisdao.findByProperty("main.id", proposal.getStudentid()).iterator().hasNext()==true){
+										thesis = (Thesis)thesisdao.findByProperty("main.id", proposal.getStudentid()).iterator().next();
 										out.print("<tr><td><span class=\"badge\">" + index++	+ "</span></td>");
 										out.print("<td>"+proposal.getThesistitle()+"</td>");
 										out.print("<td>"+maindao.findById(proposal.getStudentid()).getName()+"</td>");
 										out.print("<td><button class=\"btn btnfix download\" type=\"button\" mainid=\""+id+"\" proposalid=\""+proposal.getProposalid()+"\">下载</button></td>");
+										if(thesis.getVeryfication()==null){out.print("<td>未评定</td>");}
+										else{
+											String marks = thesis.getVeryfication();
+											if(marks.equalsIgnoreCase("a")) out.print("<td>优秀</td>");
+											if(marks.equalsIgnoreCase("b")) out.print("<td>良好</td>");
+											if(marks.equalsIgnoreCase("c")) out.print("<td>中等</td>");
+											if(marks.equalsIgnoreCase("d")) out.print("<td>合格</td>");
+											if(marks.equalsIgnoreCase("e")) out.print("<td>不合格</td>");
+										}
 										out.print("<td><select class=\"selectfix\" proposalid=\""+proposal.getProposalid()+"\">");
 										out.print("<option value=\"a\" proposalid=\""+proposal.getProposalid()+"\">优秀</option>");
 										out.print("<option value=\"b\" proposalid=\""+proposal.getProposalid()+"\">良好</option>");
@@ -147,6 +157,7 @@
 									}
 								 %>
 							<tr>
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -191,6 +202,13 @@
 						if (jqXHR.success(function() {
 							if(data.indexOf("Done")>=0){
 							target.text("评定成功");
+							var marks = target.parent().prev().children('select').val();
+							if(marks=="a")marks="优秀";
+							if(marks=="b")marks="良好";
+							if(marks=="c")marks="中等";
+							if(marks=="d")marks="合格";
+							if(marks=="e")marks="不合格";
+							target.parent().prev().prev().text(marks);
 							}
 						}))
 							;

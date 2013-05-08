@@ -50,6 +50,8 @@ public class ProposalVerify extends HttpServlet {
 			ProfileDAO profiledao = new ProfileDAO();
 			profiledao.getSession().clear();
 			profiledao.getSession().beginTransaction().commit();
+			proposaldao.getSession().clear();
+			proposaldao.getSession().beginTransaction().commit();
 			Profile profile = (Profile)profiledao.findByProperty("main.id", proposaldao.findById(proposalid).getStudentid()).iterator().next();
 			Proposal proposal = (Proposal) proposaldao.findById(proposalid);
 			String proposalanalysis = proposal.getProposalanalysis();
