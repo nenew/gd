@@ -79,9 +79,11 @@
 									</li>
 									<li><a href="proposal-fill.jsp">开题报告</a>
 									</li>
-									<li><a href="#">进度信息</a>
+									<li><a href="proposal-result.jsp">开题成绩</a>
 									</li>
 									<li><a href="thesis-upload.jsp">论文提交</a>
+									</li>
+									<li><a href="thesis-result.jsp">毕设成绩</a>
 									</li>
 								</ul>
 							</li>
