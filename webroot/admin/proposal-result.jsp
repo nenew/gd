@@ -26,10 +26,10 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>教师分配——毕业设计在线管理系统</title>
+<title>开题成绩——毕业设计在线管理系统</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="css/teacherset.css" rel="stylesheet">
+<link href="css/proposal-result.css" rel="stylesheet">
 <link href="img/favicon.ico" type="image/x-icon" rel="shortcut icon">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -69,11 +69,11 @@
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li class="active"><a href="teacherset.jsp">教师分配</a>
+									<li><a href="teacherset.jsp">教师分配</a>
 									</li>
 									<li><a href="dutyset.jsp">毕设配置</a>
 									</li>
-									<li><a href="proposal-result.jsp">开题成绩</a></li>
+									<li class="active"><a href="proposal-result.jsp">开题成绩</a></li>
 									<li><a href="thesis-result.jsp">毕设成绩</a></li>
 								</ul>
 							</li>
@@ -114,18 +114,24 @@
 		</div>
 		<div class="container-fluid containerfix">
 			<div class="row-fluid">
-				<div class="span12 contentitle">教师分配</div>
+				<div class="span12 contentitle">开题成绩</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span10 offset1 boxshadow well choosestudent">
 					<form class="form-horizontal">
 						<div class="control-group">
-							<div style="text-align:center;">
+							<div class="controls">
 								<label style="display:inline-block;margin-right:5px;">专业：</label>
 								<select id="inputdepartment">
 									<option value="电子信息工程" selected="selected">电子信息工程</option>
 									<option value="电子信息科学与技术">电子信息科学与技术</option>
 									<option value="电气工程及其自动化">电气工程及其自动化</option>
+								</select> <label
+									style="display:inline-block;margin-left:20px;margin-right:5px;">年级：</label>
+								<select id="inputgrade">
+									<option value="2009" selected="selected">2009</option>
+									<option value="2010">2010</option>
+									<option value="2011">2011</option>
 								</select> <label style="display:inline-block;margin-left:20px;"><button
 										class="btn" id="ajax" type="button">查看</button> </label>
 							</div>
@@ -138,11 +144,11 @@
 					<table class="table table-hover" style="text-align:center;">
 						<thead>
 							<tr>
-								<th style="width:20%;">序号</th>
-								<th style="width:20%;">编号</th>
+								<th style="width:15%;">序号</th>
+								<th style="width:20%;">学号</th>
 								<th style="width:20%;">姓名</th>
-								<th style="width:20%;">禁止开题</th>
-								<th style="width:20%;">允许开题</th>
+								<th style="width:30%;">毕设课题</th>
+								<th style="width:15%;">开题成绩</th>
 							</tr>
 						</thead>
 						<tbody id="contentbody">
@@ -179,16 +185,18 @@
 									"inputdepartment" : $(
 											'select[id="inputdepartment"]')
 											.val(),
+									"inputgrade" : $('select[id="inputgrade"]')
+											.val(),
 									"inputpage" : "",
 								};
-								$.post('teacherset', data, function(data,
+								$.post('proposal-result', data, function(data,
 										textStatus, jqXHR) {
 									$('#contentbody').html(data);
 									$('#ajax').removeClass("disabled").text(
 											"查看");
 
 								});
-								$.post('countteacher', data, function(data,
+								$.post('countstudent', data, function(data,
 										textStatus, jqXHR) {
 									$('#pager').html(data);
 
@@ -206,8 +214,10 @@
 					var data = {
 						"inputdepartment" : target.attr("department"),
 						"inputpage" : target.attr("index"),
+						"inputgrade" : target.attr("grade")
+
 					};
-					$.post('teacherset', data,
+					$.post('proposal-result', data,
 							function(data, textStatus, jqXHR) {
 								$('#contentbody').html(data);
 								if (target.attr("index") >= 10) {
@@ -235,8 +245,9 @@
 			var data = {
 				"inputdepartment" : target.attr("department"),
 				"inputpage" : target.attr("index"),
+				"inputgrade" : target.attr("grade")
 			};
-			$.post('teacherset', data, function(data, textStatus, jqXHR) {
+			$.post('proposal-result', data, function(data, textStatus, jqXHR) {
 				$('#contentbody').html(data);
 				if (target.attr("index") >= 10) {
 					$('a[class="next"]').attr("index", target.attr("index"));
@@ -245,6 +256,7 @@
 				} else {
 					$('.prevpage').addClass('disabled');
 					$('.nextpage').removeClass('disabled');
+
 				}
 			});
 		});
@@ -254,44 +266,21 @@
 			var data = {
 				"inputdepartment" : target.attr("department"),
 				"inputpage" : target.attr("index"),
+				"inputgrade" : target.attr("grade")
+
 			};
-			$.post('teacherset', data, function(data, textStatus, jqXHR) {
+			$.post('proposal-result', data, function(data, textStatus, jqXHR) {
 				$('#contentbody').html(data);
 				if (target.attr("index") < target.attr("total")) {
 					$('a[class="prev"]').attr("index", target.attr("index"));
 					target.attr("index", target.attr("index") - 1 + 11);
 					$('.prevpage').removeClass('disabled');
+
 				} else {
 					$('.nextpage').addClass('disabled');
 					$('.prevpage').removeClass('disabled');
+
 				}
-			});
-		});
-	</script>
-	<script>
-		var nametarget;
-		$(document).on('click', 'button[class="disabletick"]', function() {
-			nametarget = $(this);
-
-			var data = {
-				"mainid" : nametarget.attr("mainid"),
-			};
-			$.post('enableset', data, function(data, textStatus, jqXHR) {
-			}).success(function() {
-				nametarget.attr("class", "enabletick");
-				nametarget.parent().prev().children(':button').attr("class", "disablecross");
-			});
-		});
-		$(document).on('click', 'button[class="disablecross"]', function() {
-			nametarget = $(this);
-
-			var data = {
-				"mainid" : nametarget.attr("mainid"),
-			};
-			$.post('disableset', data, function(data, textStatus, jqXHR) {
-			}).success(function() {
-				nametarget.attr("class", "enablecross");
-				nametarget.parent().next().children(':button').attr("class", "disabletick");
 			});
 		});
 	</script>

@@ -69,6 +69,8 @@
 								<ul class="dropdown-menu">
 									<li><a href="teacherset.jsp">教师分配</a></li>
 									<li><a href="dutyset.jsp">毕设配置</a></li>
+									<li><a href="proposal-result.jsp">开题成绩</a></li>
+									<li><a href="thesis-result.jsp">毕设成绩</a></li>
 								</ul></li>
 							<li class="dropdown  dropdowntrasparent active"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">管理功能<b

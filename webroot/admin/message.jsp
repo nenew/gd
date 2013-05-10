@@ -76,6 +76,8 @@
 									</li>
 									<li><a href="dutyset.jsp">毕设配置</a>
 									</li>
+									<li><a href="proposal-result.jsp">开题成绩</a></li>
+									<li><a href="thesis-result.jsp">毕设成绩</a></li>
 								</ul>
 							</li>
 							<li class="dropdown  dropdowntrasparent"><a href="#"
