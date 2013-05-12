@@ -67,9 +67,9 @@
 								</div>
 								<div class="control-group form-inline">
 									<div class="controls">
-										<label class="checkbox" style="margin-right:30px;"> <input
+										<label class="checkbox" style="margin-right:90px;"> <input
 											type="checkbox" name="remember" value="yes">
-											记住密码&nbsp; &nbsp; &nbsp; <a href="#">忘记密码?</a> </label>
+											记住密码&nbsp; &nbsp; &nbsp; <!-- <a href="#">忘记密码?</a>  --></label>
 
 
 										<button type="submit" class="btn btn-primary">登录</button>

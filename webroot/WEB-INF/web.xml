@@ -152,6 +152,16 @@
     <servlet-name>ThesisResult</servlet-name>
     <servlet-class>admin.ThesisResult</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>servlet.LogOut</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ChangePw</servlet-name>
+    <servlet-class>servlet.ChangePw</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -337,6 +347,14 @@
   <servlet-mapping>
     <servlet-name>ThesisResult</servlet-name>
     <url-pattern>/admin/thesis-result</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChangePw</servlet-name>
+    <url-pattern>/changepw</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
