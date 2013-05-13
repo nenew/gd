@@ -28,6 +28,11 @@
 	Proposal proposal = new Proposal();
 	MessageDAO messagedao = new MessageDAO();
 	Message message = new Message();
+	ThesisDAO thesisdao = new ThesisDAO();
+	Thesis thesis = new Thesis();
+	if(!thesisdao.findByProperty("main.id", id).isEmpty()){
+	thesis = (Thesis)thesisdao.findByProperty("main.id", id).iterator().next();
+	};
 	Transaction tx = profiledao.getSession().beginTransaction();
 	tx.commit();
 
@@ -135,7 +140,7 @@
 					<div class="boxcontent">
 						<%
 							out.print("姓名：" + user.getName() + "<br>");
-							if (profile.getPhonenum() == null) {
+							if (profile.getPhonenum() == null||profile.getEmail() ==null) {
 								out.print("请先填写个人信息！");
 							} else {
 								out.print("专业：" + profile.getDepartment() + "<br>");
@@ -159,8 +164,15 @@
 								
 								out.print("课题名称：" + proposal.getThesistitle() + "<br>");
 								out.print("导师姓名：" + proposal.getMain().getName() + "<br>");
-								out.print("导师电话：" + teacher.getPhonenum() + "<br>");
+								if(teacher.getPhonenum()==null){
+								out.print("导师电话：未填写<br>");
+								}else{
+								out.print("导师电话：" + teacher.getPhonenum() + "<br>");}
+								if(teacher.getEmail()==null){
+								out.print("导师邮箱：未填写<br>");
+								}else{
 								out.print("导师邮箱：" + teacher.getEmail() + "<br>");
+								}
 							}
 						%>
 					</div>
@@ -200,18 +212,50 @@
 					<div class="boxhead">毕设进度</div>
 					<div class="boxcontent">
 						<div>
-							<div style="width:20%;float:left;text-align:center;">选题完成</div>
-							<div style="width:20%;float:left;text-align:center;">开题完成</div>
-							<div style="width:30%;float:left;text-align:center;">设计进行中</div>
+						<% 
+							if(proposaldao.findByStudentid(id).isEmpty()){
+								out.print("<div style=\"width:20%;float:left;text-align:center;\">选题进行中</div>");
+							}else{
+								out.print("<div style=\"width:20%;float:left;text-align:center;\">选题完成</div>");
+								if(!proposal.getVerification().equalsIgnoreCase("yes")){
+									out.print("<div style=\"width:20%;float:left;text-align:center;\">开题进行中</div>");
+								}else{
+									out.print("<div style=\"width:20%;float:left;text-align:center;\">开题完成</div>");
+									if(thesis.getVeryfication()!=null) {
+										out.print("<div style=\"width:40%;float:left;text-align:center;\">设计完成</div>");
+										out.print("<div style=\"width:20%;float:left;text-align:center;\">论文审核完成</div>");
+									}else{
+										out.print("<div style=\"width:30%;float:left;text-align:center;\">设计进行中</div>");
+										
+									}
+									
+								}
+							}
+						%>
+							
 						</div>
 						<div class="progress progressfix">
-							<div class="bar bar-warning" style="width: 20%;"></div>
-							<div class="bar bar-success" style="width: 20%;"></div>
-							<div
-								class="progress progress-striped active progress-striped-fix">
-								<div class="bar" style="width: 30%;"></div>
-							</div>
-
+						<% 
+							if(proposaldao.findByStudentid(id).isEmpty()){
+								out.print("<div class=\"progress progress-striped active progress-striped-fix\"> <div class=\"bar\" style=\"width: 20%;\"></div></div>");
+							}else{
+								out.print("<div class=\"bar bar-warning\" style=\"width: 20%;\"></div>");
+								if(!proposal.getVerification().equalsIgnoreCase("yes")){
+									out.print("<div class=\"progress progress-striped active progress-striped-fix\"> <div class=\"bar\" style=\"width: 20%;\"></div></div>");
+								}else{
+									out.print("<div class=\"bar bar-success\" style=\"width: 20%;\"></div>");
+									if(thesis.getVeryfication()!=null) {
+										out.print("<div class=\"bar bar-info\" style=\"width: 40%;\"></div>");
+										out.print("<div class=\"bar bar-success\" style=\"width: 20%;\"></div>");
+									}else{
+										out.print("<div class=\"progress progress-striped active progress-striped-fix\"> <div class=\"bar\" style=\"width: 30%;\"></div></div>");
+										
+									}
+									
+								}
+							}
+						%>
+							
 						</div>
 					</div>
 				</div>
