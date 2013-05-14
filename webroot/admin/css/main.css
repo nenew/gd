@@ -101,7 +101,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity =                     80);
+	filter: alpha(opacity =                       80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -170,6 +170,168 @@ html,body {
 	color: #FFFFFF;
 }
 
-.label> a:hover {
-	text-decoration: none ;
+.label>a:hover {
+	text-decoration: none;
+}
+
+.function1 {
+	background: url(../img/function1.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function1:hover {
+	background: url(../img/function1.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.function2 {
+	background: url(../img/function2.png) no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	height: 60px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function2:hover {
+	background: url(../img/function2.png) no-repeat;
+	background-size: 60px 60px;
+	width: 60px;
+	height: 60px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.function3 {
+	background: url(../img/function3.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function3:hover {
+	background: url(../img/function3.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.function4 {
+	background: url(../img/function4.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function4:hover {
+	background: url(../img/function4.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.function5 {
+	background: url(../img/function5.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function5:hover {
+	background: url(../img/function5.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+.function6 {
+	background: url(../img/function6.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	filter: alpha(opacity =   80);
+	-moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+
+.function6:hover {
+	background: url(../img/function6.png) no-repeat;
+	background-size: 64px 64px;
+	width: 64px;
+	height: 64px;
+	border: 0px;
+	cursor: pointer;
+	padding: 0px;
+	filter: alpha(opacity =   100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
 }

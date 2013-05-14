@@ -145,4 +145,16 @@ public class ThesisDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	public Integer countsnull(String propertyName) {
+		log.debug("Count teacher proposal pushed");
+		try {
+			String queryString = "select count(p) from Thesis p where p."+ propertyName + " != null";
+			Query queryObject = getSession().createQuery(queryString);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
 }

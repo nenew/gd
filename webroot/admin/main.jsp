@@ -28,6 +28,7 @@
 	Proposal proposal = new Proposal();
 	MessageDAO messagedao = new MessageDAO();
 	Message message = new Message();
+	ThesisDAO thesisdao = new ThesisDAO();
 	Transaction tx = profiledao.getSession().beginTransaction();
 	tx.commit();
 
@@ -143,37 +144,27 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span3 offset1 boxshadow">
-					<div class="boxhead">个人信息</div>
+					<div class="boxhead">人员统计</div>
 					<div class="boxcontent">
 						<%
-							out.print("姓名：" + user.getName() + "<br>");
-							if (profile.getPhonenum() == null) {
-								out.print("请先填写个人信息！");
-							} else {
-								out.print("专业：" + profile.getDepartment() + "<br>");
-								out.print("年级：" + profile.getGrade() + "<br>");
-								out.print("电话：" + profile.getPhonenum() + "<br>");
-								out.print("邮箱：" + profile.getEmail() + "<br>");
-							}
+							MainDAO maindao = new MainDAO();
+							out.print("本系统目前拥有用户："  + maindao.count() + "名<br>");
+							out.print("学生用户："  + maindao.count("priority",1) + "名<br>");
+							out.print("   教师用户："  + maindao.count("priority",2) + "名<br>");
+							out.print("   管理员用户：" + maindao.count("priority",3) + "名<br>");
+							
+							
 						%>
 					</div>
 				</div>
 				<div class="span3 boxshadow" style="margin-left:6.38298%;">
-					<div class="boxhead">选题信息</div>
+					<div class="boxhead">毕设信息</div>
 					<div class="boxcontent">
 						<%
-							if (proposal.getThesistitle() == null) {
-								out.print("请先选题！");
-							} else {
-								Profile teacher = new Profile();
-								Iterator <?>teacheriterator =proposal.getMain().getProfiles().iterator();
-								while(teacheriterator.hasNext()) teacher = (Profile)teacheriterator.next();
-								
-								out.print("课题名称：" + proposal.getThesistitle() + "<br>");
-								out.print("导师姓名：" + proposal.getMain().getName() + "<br>");
-								out.print("导师电话：" + teacher.getPhonenum() + "<br>");
-								out.print("导师邮箱：" + teacher.getEmail() + "<br>");
-							}
+							out.print("本系统目前拥有课题："  + proposaldao.counts() + "个<br>");
+							out.print("已被选的课题："+proposaldao.countsnull("studentid")+"个<br>");
+							out.print("开题审核完成的课题："+proposaldao.countsnull("verification")+"个<br>");
+							out.print("论文审核完成的课题："+thesisdao.countsnull("veryfication")+"个<br>");
 						%>
 					</div>
 				</div>
@@ -209,26 +200,21 @@
 			<div class="row-fluid">
 
 				<div class="span10 offset1 boxshadow">
-					<div class="boxhead">毕设进度</div>
+					<div class="boxhead">管理功能</div>
 					<div class="boxcontent">
-						<div>
-							<div style="width:20%;float:left;text-align:center;">选题完成</div>
-							<div style="width:20%;float:left;text-align:center;">开题完成</div>
-							<div style="width:30%;float:left;text-align:center;">设计进行中</div>
-						</div>
-						<div class="progress progressfix">
-							<div class="bar bar-warning" style="width: 20%;"></div>
-							<div class="bar bar-success" style="width: 20%;"></div>
-							<div
-								class="progress progress-striped active progress-striped-fix">
-								<div class="bar" style="width: 30%;"></div>
-							</div>
+					<div class="clearfix" style="margin-top:15px;margin-bottom:15px;">
+					<div style="float:left;width:12%;margin-left:15%;"><a href="teacherset.jsp"><button class="function5"></button></a><div style="padding-left:5px;">教师分配</div></div>
+					<div style="float:left;width:12%;"><a href="dutyset.jsp"><button class="function2"></button></a><div style="padding-left:5px;">毕设分配</div></div>
+					<div style="float:left;width:12%;"><a href="proposal-result.jsp"><button class="function6"></button></a><div style="padding-left:5px;">开题成绩</div></div>
+					<div style="float:left;width:12%;"><a href="thesis-result.jsp"><button class="function1"></button></a><div style="padding-left:5px;">毕设成绩</div></div>
+					<div style="float:left;width:12%;"><a href="message.jsp"><button class="function3"></button></a><div style="padding-left:8px;">发送消息</div></div>
+					<div style="float:left;width:12%;"><a href="addstudent.jsp"><button class="function4"></button></a><div style="padding-left:8px;">添加学生</div></div>
 
-						</div>
+					</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</div>
 	<div id="footer">
 		<div class="footext">Copyright © 2013 nenew.net. All Rigths

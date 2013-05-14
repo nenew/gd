@@ -222,4 +222,31 @@ public class MainDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	public Integer counts() {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(m) from Main as m";
+			Query queryObject = getSession().createQuery(queryString);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
+
+	public Integer counts(String propertyName, Object value) {
+		log.debug("Count Profile instance");
+		try {
+			String queryString = "select count(m) from Main as m where m."
+					+ propertyName + "= ?";
+			Query queryObject = getSession().createQuery(queryString);
+			queryObject.setParameter(0, value);
+			Number s = (Number) queryObject.list().get(0);
+			return s.intValue();
+		} catch (RuntimeException re) {
+			log.error("count failed", re);
+			throw re;
+		}
+	}
 }
