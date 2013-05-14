@@ -53,12 +53,12 @@ public class ProfileUpdate extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		try{
-		String userid = request.getParameter("userid");
+ 	try{
+		Integer userid = (Integer)request.getSession().getAttribute("id");
 		String phonenum = request.getParameter("phonenum");
 		String email = request.getParameter("email");
 		ProfileDAO profiledao = new ProfileDAO();
-		Profile profile = profiledao.findById(Integer.valueOf(userid));
+		Profile profile = (Profile)profiledao.findByProperty("main.id", userid).iterator().next();
 		profile.setPhonenum(phonenum);
 		profile.setEmail(email);
 		profiledao.attachClean(profile);
@@ -67,9 +67,9 @@ public class ProfileUpdate extends HttpServlet {
 //		request.getSession().setAttribute("profileupdatestatus", "1");
 //		response.sendRedirect("profile.jsp");
 //		response.sendRedirect("index.jsp");
-		} catch (Exception e){
-			out.print("Error:"+e);
-		}
+	 	} catch (Exception e){
+	 		out.print("Error:"+e);
+	 	}
 	}
 
 	/**

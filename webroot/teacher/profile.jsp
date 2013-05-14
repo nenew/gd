@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 	+ request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
+	+ path + "/teacher/";
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 	if (request.getSession().getAttribute("islogin") == null || !request.getSession().getAttribute("islogin").equals("yes"))
@@ -128,15 +128,18 @@
 							<div>
 								姓名：<%
 								out.print(profile.getMain().getName());
-							%><br> 学号：<%
+							%><br> 编号：<%
 								out.print(profile.getMain().getNum());
-							%><br> 年级：
+							%><br> 职称：
 								<%
-								out.print(profile.getGrade());
+								if(profile.getTitle().equalsIgnoreCase("ASSOCIATEPROFESSOR")){out.print("副教授");}
+								if(profile.getTitle().equalsIgnoreCase("ROFESSOR")){out.print("教授");}
+								if(profile.getTitle().equalsIgnoreCase("lecturer")){out.print("讲师");}
 							%><br> 电话：<input type="number" name="phonenum"
 									value="<%out.print(profile.getPhonenum());%>"> <br>
 								邮箱：<input type="email" name="email"
 									value="<%out.print(profile.getEmail());%>"> <br> 
+									
 							</div>
 <!-- 							<button class="btn btn-primary" type="submit">提交</button>  -->
 							<button class="btn btn-primary" id="ajax" type="button">提交</button>
@@ -165,7 +168,7 @@
 											.val(),
 									"email" : $('input[name="email"]').val()
 								};
-								$.post('profile-update', data, function(
+								$.post('../profile-update', data, function(
 										data, textStatus, jqXHR) {
 									//						alert(textStatus+jqXHR);
 									if (jqXHR.success(function() {
