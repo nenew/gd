@@ -39,11 +39,6 @@
 		profile = (Profile) iterator.next();
 	}
 
-	Iterator<?> iterator2 = proposaldao.findByStudentid(id)
-			.iterator();
-	while (iterator2.hasNext()) {
-		proposal = (Proposal) iterator2.next();
-	}
 %>
 
 <!DOCTYPE HTML>
@@ -139,7 +134,9 @@
 								out.print("请先填写个人信息！");
 							} else {
 								out.print("专业：" + profile.getDepartment() + "<br>");
-								out.print("年级：" + profile.getGrade() + "<br>");
+								if(profile.getTitle().equalsIgnoreCase("ASSOCIATEPROFESSOR")){out.print("职称：副教授<br>");}
+								if(profile.getTitle().equalsIgnoreCase("ROFESSOR")){out.print("职称：教授<br>");}
+								if(profile.getTitle().equalsIgnoreCase("lecturer")){out.print("职称：讲师<br>");}
 								out.print("电话：" + profile.getPhonenum() + "<br>");
 								out.print("邮箱：" + profile.getEmail() + "<br>");
 							}
@@ -147,20 +144,28 @@
 					</div>
 				</div>
 				<div class="span3 boxshadow" style="margin-left:6.38298%;">
-					<div class="boxhead">选题信息</div>
+					<div class="boxhead">课题信息</div>
 					<div class="boxcontent">
 						<%
-							if (proposal.getThesistitle() == null) {
-								out.print("请先选题！");
+							ManagementDAO managementdao = new ManagementDAO();
+							if (managementdao.findByProperty("main.id", id).isEmpty())
+							 {
+								out.print("请先发布课题！");
 							} else {
-								Profile teacher = new Profile();
-								Iterator <?>teacheriterator =proposal.getMain().getProfiles().iterator();
-								while(teacheriterator.hasNext()) teacher = (Profile)teacheriterator.next();
-								
-								out.print("课题名称：" + proposal.getThesistitle() + "<br>");
-								out.print("导师姓名：" + proposal.getMain().getName() + "<br>");
-								out.print("导师电话：" + teacher.getPhonenum() + "<br>");
-								out.print("导师邮箱：" + teacher.getEmail() + "<br>");
+								Management management = (Management)managementdao.findByProperty("main.id", id).iterator().next();
+								out.print("可发布课题数目："+ management.getLimitnum() + "<br>");
+								out.print("已发布课题数目：" + proposaldao.counts("main.id", id) + "<br>");
+								int count = 0;
+								int verify=0;
+								Iterator counts = proposaldao.findByProperty("main.id", id).iterator();
+								while(counts.hasNext()){
+									proposal = (Proposal)counts.next();
+									if(proposal.getStudentid()!=null){count++;}
+									if(proposal.getVerification()!=null){verify++;}
+								}
+								out.print("已被选课题数目：" + count + "<br>");
+								out.print("已开题课题数目：" + verify + "<br>");
+
 							}
 						%>
 					</div>
@@ -197,22 +202,50 @@
 			<div class="row-fluid">
 
 				<div class="span10 offset1 boxshadow">
-					<div class="boxhead">毕设进度</div>
+					<div class="boxhead">学生信息</div>
 					<div class="boxcontent">
-						<div>
-							<div style="width:20%;float:left;text-align:center;">选题完成</div>
-							<div style="width:20%;float:left;text-align:center;">开题完成</div>
-							<div style="width:30%;float:left;text-align:center;">设计进行中</div>
-						</div>
-						<div class="progress progressfix">
-							<div class="bar bar-warning" style="width: 20%;"></div>
-							<div class="bar bar-success" style="width: 20%;"></div>
-							<div
-								class="progress progress-striped active progress-striped-fix">
-								<div class="bar" style="width: 30%;"></div>
-							</div>
-
-						</div>
+						    <table class="table table-hover">
+						    <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>课题名称</th>
+                  <th>学生姓名</th>
+                  <th>学生电话</th>
+                  <th>学生邮箱</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              <% 
+              	Iterator <?>info = proposaldao.findByProperty("main.id", id).iterator();
+              	MainDAO maindao = new MainDAO();
+              	int index = 1;
+              	if(info.hasNext()){
+              	while(info.hasNext()){
+              		proposal = (Proposal)info.next();
+              		if(proposal.getStudentid()!=null){
+              			out.print("<tr><td><span class=\"badge\">"+index++ +"</span></td>");
+              			out.print("<td>"+proposal.getThesistitle()+"</td>");
+              			out.print("<td>"+maindao.findById(proposal.getStudentid()).getName()+"</td>");
+              			profile = (Profile)maindao.findById(proposal.getStudentid()).getProfiles().iterator().next();
+              			if(profile.getPhonenum()!=null){
+              				out.print("<td>"+profile.getPhonenum()+"</td>");
+              			}else{
+              				out.print("<td>暂未填写</td>");
+              			}
+              			if(profile.getEmail()!=null){
+              				out.print("<td>"+profile.getEmail()+"</td>");
+              			}else{
+              				out.print("<td>暂未填写</td></tr>");
+              			}
+              		}
+              	}	
+              	}else	{
+              		out.print("<tr><td>暂无学生</td></tr>");
+              	}
+              %>
+              </tbody>
+   						 </table>
 					</div>
 				</div>
 			</div>
