@@ -59,9 +59,9 @@
  	out.print(name);
  %><b class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="changepw.jsp">修改密码</a>
+									<li><a href="../changepw.jsp">修改密码</a>
 									</li>
-									<li><a href="logout">注销登录</a>
+									<li><a href="../logout">注销登录</a>
 									</li>
 
 								</ul></li>
