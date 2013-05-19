@@ -76,15 +76,13 @@
 								class="dropdown-toggle" data-toggle="dropdown">毕业设计<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="choose.jsp">课题选择</a>
+									<li><a href="proposal-push.jsp">课题发布</a>
 									</li>
-									<li><a href="proposal-fill.jsp">开题报告</a>
+									<li><a href="proposal-edit.jsp">课题修改</a>
 									</li>
-									<li><a href="proposal-result.jsp">开题成绩</a>
+									<li><a href="proposal-verify.jsp">开题审核</a>
 									</li>
-									<li><a href="thesis-upload.jsp">论文提交</a>
-									</li>
-									<li><a href="thesis-result.jsp">毕设成绩</a>
+									<li><a href="thesis-verify.jsp">论文审核</a>
 									</li>
 								</ul>
 							</li>
@@ -92,9 +90,12 @@
 								class="dropdown-toggle" data-toggle="dropdown">消息中心<b
 									class="caret"> </b> </a>
 								<ul class="dropdown-menu">
-									<li><a href="message.jsp">发信息</a></li>
-									<li><a href="inbox.jsp">收件箱</a></li>
-									<li><a href="outbox.jsp">发件箱</a></li>
+									<li><a href="message.jsp">发信息</a>
+									</li>
+									<li><a href="inbox.jsp">收件箱</a>
+									</li>
+									<li><a href="outbox.jsp">发件箱</a>
+									</li>
 								</ul>
 							</li>
 							<li class="active"><a href="profile.jsp">信息维护</a>

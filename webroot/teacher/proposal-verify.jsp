@@ -79,8 +79,6 @@
 									</li>
 									<li class="active"><a href="proposal-verify.jsp">开题审核</a>
 									</li>
-									<li><a href="#">进度信息</a>
-									</li>
 									<li><a href="thesis-verify.jsp">论文审核</a>
 									</li>
 								</ul>
