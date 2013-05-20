@@ -101,7 +101,7 @@ html,body {
 	background-repeat: no-repeat;
 	height: 32px;
 	background-size: 32px 32px;
-	filter: alpha(opacity = 80);
+	filter: alpha(opacity =   80);
 	-moz-opacity: 0.8;
 	-khtml-opacity: 0.8;
 	opacity: 0.8;
@@ -159,8 +159,9 @@ html,body {
 }
 
 .modal-backdrop {
-	background-color:#f6f6f6;
+	background-color: #f6f6f6;
 }
-.modal-backdrop, .modal-backdrop.fade.in{
+
+.modal-backdrop,.modal-backdrop.fade.in {
 	opacity: 0.5;
 }

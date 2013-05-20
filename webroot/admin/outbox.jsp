@@ -226,7 +226,7 @@
 								$.post('../message-sent', data, function(data,
 										textStatus, jqXHR) {
 									if (jqXHR.success(function() {
-										$('.modal-body').html("<p>发送时间:"+msgdate+"</p><p>收件人:"+msgreceiver+"</p><p>信息状态："+ msgstatus+"</p><p>信息内容:<br><br>"+data+"</p>");
+										$('.modal-body').html("<div class=\"clearfix\"><div class=\"pull-left\"><p><h5>发送时间:</h5>"+msgdate+"</p></div><div class=\"pull-left\" style=\"margin-left:80px;\"><p><h5>收件人:</h5>"+msgreceiver+"</p></div><div class=\"pull-left\"  style=\"margin-left:80px;\"><p><h5>信息状态：</h5>"+ msgstatus+"</p></div></div><p><h5>信息内容:</h5>"+data+"</p>");
 									}))
 										;
 								});
