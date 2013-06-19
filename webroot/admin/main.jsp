@@ -148,7 +148,7 @@
 					<div class="boxcontent">
 						<%
 							MainDAO maindao = new MainDAO();
-							out.print("本系统目前拥有用户："  + maindao.count() + "名<br>");
+							out.print("本系统目前拥有用户："  + maindao.counts() + "名<br>");
 							out.print("学生用户："  + maindao.count("priority",1) + "名<br>");
 							out.print("   教师用户："  + maindao.count("priority",2) + "名<br>");
 							out.print("   管理员用户：" + maindao.count("priority",3) + "名<br>");

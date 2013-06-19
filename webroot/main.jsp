@@ -217,7 +217,7 @@
 								out.print("<div style=\"width:20%;float:left;text-align:center;\">选题进行中</div>");
 							}else{
 								out.print("<div style=\"width:20%;float:left;text-align:center;\">选题完成</div>");
-								if(!proposal.getVerification().equalsIgnoreCase("yes")){
+								if(null == proposal.getVerification()){
 									out.print("<div style=\"width:20%;float:left;text-align:center;\">开题进行中</div>");
 								}else{
 									out.print("<div style=\"width:20%;float:left;text-align:center;\">开题完成</div>");
@@ -240,7 +240,7 @@
 								out.print("<div class=\"progress progress-striped active progress-striped-fix\"> <div class=\"bar\" style=\"width: 20%;\"></div></div>");
 							}else{
 								out.print("<div class=\"bar bar-warning\" style=\"width: 20%;\"></div>");
-								if(!proposal.getVerification().equalsIgnoreCase("yes")){
+								if(null == proposal.getVerification()){
 									out.print("<div class=\"progress progress-striped active progress-striped-fix\"> <div class=\"bar\" style=\"width: 20%;\"></div></div>");
 								}else{
 									out.print("<div class=\"bar bar-success\" style=\"width: 20%;\"></div>");
